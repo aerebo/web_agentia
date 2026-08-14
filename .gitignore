@@ -1,0 +1,40 @@
+# dependencias
+node_modules/
+.npm/
+package-lock.json.bak
+
+# sistema operativo
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+
+# editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# credenciales y entorno
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+id_rsa*
+credenciales*
+secrets*
+
+# temporales y build
+*.log
+tmp/
+temp/
+.cache/
+dist/
+build/
+
+# herramientas locales
+.mcp.json
