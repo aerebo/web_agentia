@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: 'Bricolage Grotesque';
-  src: url('../fonts/bricolage-grotesque-var-latin.woff2') format('woff2-variations');
+  src: url('../fonts/bricolage-grotesque-var-latin.woff2') format('woff2');
   font-weight: 200 800;
   font-stretch: 75% 100%;
   font-style: normal;
@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: 'Instrument Sans';
-  src: url('../fonts/instrument-sans-var-latin.woff2') format('woff2-variations');
+  src: url('../fonts/instrument-sans-var-latin.woff2') format('woff2');
   font-weight: 400 700;
   font-stretch: 75% 100%;
   font-style: normal;
@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: 'Martian Mono';
-  src: url('../fonts/martian-mono-var-latin.woff2') format('woff2-variations');
+  src: url('../fonts/martian-mono-var-latin.woff2') format('woff2');
   font-weight: 100 800;
   font-stretch: 75% 112.5%;
   font-style: normal;
@@ -723,7 +723,10 @@ svg {
    12. Entradas
    -------------------------------------------------------------------------- */
 
-.rv {
+/* El contenido es visible por defecto. Solo se esconde cuando el script
+   confirmo que puede revelarlo, para que un fallo de JS nunca deje la
+   pagina en blanco. */
+.js-rv .rv {
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -732,7 +735,7 @@ svg {
   transition-delay: var(--rv-retardo, 0ms);
 }
 
-.rv.rv--visible {
+.js-rv .rv.rv--visible {
   opacity: 1;
   transform: none;
 }
@@ -785,7 +788,7 @@ svg {
     scroll-behavior: auto !important;
   }
 
-  .rv {
+  .js-rv .rv {
     opacity: 1;
     transform: none;
   }

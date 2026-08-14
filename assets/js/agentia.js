@@ -89,32 +89,40 @@
     });
   }
 
-  if (revelables.length) {
-    if (movimientoReducido.matches) {
-      Array.prototype.forEach.call(revelables, function (el) {
-        el.classList.add('rv--visible');
-      });
-    } else {
-      asignarRetardos();
+  function revelarTodo() {
+    Array.prototype.forEach.call(revelables, function (el) {
+      el.classList.add('rv--visible');
+    });
+  }
 
-      var observador = new IntersectionObserver(
-        function (entradas) {
-          entradas.forEach(function (entrada) {
-            if (!entrada.isIntersecting) return;
-            entrada.target.classList.add('rv--visible');
-            observador.unobserve(entrada.target);
-          });
-        },
-        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
-      );
+  if (revelables.length && 'IntersectionObserver' in window && !movimientoReducido.matches) {
+    /* Recien aqui se autoriza a esconder el contenido: si el script no
+       llega hasta esta linea, la pagina se ve entera igual. */
+    raiz.classList.add('js-rv');
+    asignarRetardos();
 
-      Array.prototype.forEach.call(revelables, function (el) {
-        observador.observe(el);
-      });
+    var observador = new IntersectionObserver(
+      function (entradas) {
+        entradas.forEach(function (entrada) {
+          if (!entrada.isIntersecting) return;
+          entrada.target.classList.add('rv--visible');
+          observador.unobserve(entrada.target);
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+    );
 
-      if ('ResizeObserver' in window) {
-        new ResizeObserver(asignarRetardos).observe(document.body);
-      }
+    Array.prototype.forEach.call(revelables, function (el) {
+      observador.observe(el);
+    });
+
+    /* Red de seguridad: si el observador no dispara (pestana en segundo
+       plano, prerender, navegador que lo limita), el contenido aparece
+       igual pasados dos segundos y medio. Nunca una pagina en blanco. */
+    window.setTimeout(revelarTodo, 2500);
+
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(asignarRetardos).observe(document.body);
     }
   }
 
