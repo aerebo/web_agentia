@@ -5,13 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agentia · Agencia de marketing con IA en Perú</title>
 <meta name="description" content="Sitios web que convierten, contenido a escala y campañas medibles. Producción creativa asistida por IA en Huaraz, Ica y Lima.">
+
 <meta property="og:title" content="Agentia · Optimizamos tus procesos">
 <meta property="og:description" content="Convertimos tecnologías de vanguardia en métricas de negocio.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://agentia.com.pe">
-<link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta property="og:locale" content="es_PE">
+
+<link rel="preload" href="assets/fonts/bricolage-grotesque-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/martian-mono-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/agentia.css">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,347 +29,161 @@
   "address": { "@type": "PostalAddress", "addressCountry": "PE" }
 }
 </script>
-<style>
-:root{
-  --void:#04060B; --panel:#0B1018; --line:#1A2333;
-  --blue-core:#2E6BFF; --blue-glow:#7FA9FF;
-  --paper:#F2F5FA; --mute:#8A93A6;
-  --step:clamp(1rem,.6rem + 1.6vw,1.6rem);
-  --gut:clamp(1.25rem,5vw,5rem);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--void);color:var(--paper);
-  font-family:'Satoshi',system-ui,sans-serif;
-  font-size:clamp(1rem,.95rem + .2vw,1.0625rem);line-height:1.65;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
-h1,h2,h3{font-family:'Clash Display',system-ui,sans-serif;line-height:1.02;letter-spacing:-.02em;font-weight:700}
-a{color:inherit}
-.ia{color:var(--blue-glow)}
-.wrap{max-width:1180px;margin-inline:auto;padding-inline:var(--gut)}
-section{padding-block:clamp(4.5rem,10vw,8.5rem);position:relative}
-
-/* halo azul del deck */
-.halo{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;pointer-events:none;z-index:0}
-
-/* nav */
-nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
-  background:rgba(4,6,11,.72);border-bottom:1px solid var(--line)}
-.navin{display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1rem var(--gut);max-width:1180px;margin-inline:auto}
-.mark{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.35rem;letter-spacing:.02em}
-.navlinks{display:flex;gap:1.75rem;font-size:.9rem;color:var(--mute)}
-.navlinks a{text-decoration:none;transition:color .2s}
-.navlinks a:hover{color:var(--paper)}
-@media(max-width:820px){.navlinks{display:none}}
-
-/* botones */
-.btn{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;
-  font-weight:700;font-size:.95rem;text-decoration:none;transition:transform .2s,background .2s}
-.btn:focus-visible{outline:2px solid var(--blue-glow);outline-offset:3px}
-.btn-1{background:var(--blue-core);color:#fff}
-.btn-1:hover{background:#1E58E8;transform:translateY(-2px)}
-.btn-2{border:1px solid var(--line);color:var(--paper)}
-.btn-2:hover{border-color:var(--blue-glow)}
-
-/* hero */
-.hero{min-height:88vh;display:grid;place-items:center;text-align:center;overflow:hidden}
-.hero .halo:first-child{width:46rem;height:46rem;background:var(--blue-core);left:-22rem;bottom:-20rem}
-.hero .halo:nth-child(2){width:34rem;height:34rem;background:#1E58E8;right:-16rem;top:-12rem;opacity:.42}
-.hero-in{position:relative;z-index:1}
-.logotype{font-family:'Clash Display',sans-serif;font-weight:700;
-  font-size:clamp(3.4rem,13vw,9rem);letter-spacing:-.01em;line-height:.95}
-.tag{font-family:'JetBrains Mono',monospace;font-size:clamp(.62rem,1.8vw,.85rem);
-  letter-spacing:.42em;color:var(--mute);text-transform:uppercase;margin-top:.9rem}
-.hero p.lede{max-width:44ch;margin:2.4rem auto 0;color:var(--mute);font-size:var(--step)}
-.hero-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem}
-
-/* etiquetas de sección */
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--blue-glow);
-  border:1px solid var(--line);border-radius:999px;padding:.4rem 1.1rem;display:inline-block;margin-bottom:1.5rem}
-h2{font-size:clamp(2rem,5.5vw,3.4rem);max-width:20ch;margin-bottom:1.4rem}
-.lede{color:var(--mute);max-width:62ch;font-size:var(--step)}
-
-/* servicios */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));
-  gap:1.1rem;margin-top:3.4rem}
-.svc{background:var(--panel);border:1px solid var(--line);border-radius:20px;
-  padding:2rem 1.75rem;transition:border-color .25s,transform .25s}
-.svc:hover{border-color:var(--blue-core);transform:translateY(-4px)}
-.svc h3{font-size:1.3rem;margin-bottom:.7rem}
-.svc>p{color:var(--mute);font-size:.95rem;margin-bottom:1.1rem}
-.svc ul{list-style:none;display:grid;gap:.55rem}
-.svc li{position:relative;padding-left:1.1rem;font-size:.9rem;color:var(--mute)}
-.svc li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;
-  border-radius:50%;background:var(--blue-core)}
-
-/* pilares */
-.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));
-  gap:1.1rem;margin-top:3rem}
-.pillar{border-top:2px solid var(--blue-core);padding-top:1.4rem}
-.pillar h3{font-size:1.05rem;margin-bottom:.5rem}
-.pillar p{color:var(--mute);font-size:.92rem}
-
-/* proceso */
-.steps{display:grid;gap:0;margin-top:3rem;border-top:1px solid var(--line)}
-.step{display:grid;grid-template-columns:4.5rem 1fr;gap:1.5rem;
-  padding:1.9rem 0;border-bottom:1px solid var(--line);align-items:start}
-.step .n{font-family:'JetBrains Mono',monospace;color:var(--blue-core);font-size:.9rem;padding-top:.25rem}
-.step h3{font-size:1.25rem;margin-bottom:.4rem}
-.step p{color:var(--mute);font-size:.95rem;max-width:60ch}
-
-/* clientes */
-.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));
-  gap:.9rem;margin-top:2.6rem}
-.logo{border:1px solid var(--line);border-radius:14px;padding:1.6rem 1rem;text-align:center;
-  font-size:.92rem;color:var(--mute);background:var(--panel)}
-.logo.ph{border-style:dashed;color:#4E566B;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.08em}
-.note{margin-top:1.5rem;font-size:.85rem;color:#4E566B;font-family:'JetBrains Mono',monospace}
-
-/* contacto */
-.contact{background:var(--panel);border:1px solid var(--line);border-radius:26px;
-  padding:clamp(2rem,5vw,3.6rem);display:grid;gap:2.6rem;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));position:relative;overflow:hidden}
-.contact .halo{width:26rem;height:26rem;background:var(--blue-core);right:-13rem;bottom:-15rem;opacity:.3}
-.contact>*{position:relative;z-index:1}
-.mail{display:grid;gap:.9rem;margin-top:1.8rem}
-.mail a{text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.9rem;
-  border-bottom:1px solid var(--line);padding-bottom:.7rem;transition:color .2s,border-color .2s}
-.mail a:hover{color:var(--blue-glow);border-color:var(--blue-glow)}
-.mail span{display:block;color:var(--mute);font-family:'Satoshi',sans-serif;font-size:.78rem;margin-bottom:.2rem}
-.field{display:grid;gap:.4rem;margin-bottom:1rem}
-.field label{font-size:.8rem;color:var(--mute)}
-.field input,.field select,.field textarea{
-  background:var(--void);border:1px solid var(--line);border-radius:11px;
-  padding:.8rem .95rem;color:var(--paper);font-family:inherit;font-size:.95rem}
-.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--blue-core);outline-offset:1px}
-textarea{resize:vertical;min-height:6.5rem}
-
-footer{border-top:1px solid var(--line);padding:3rem var(--gut);
-  display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
-  color:var(--mute);font-size:.85rem;max-width:1180px;margin-inline:auto}
-
-/* reveal */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.rv.on{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
-  html{scroll-behavior:auto}
-}
-</style>
 </head>
 <body>
 
-<nav>
-  <div class="navin">
-    <div class="mark">AGENT<span class="ia">IA</span></div>
-    <div class="navlinks">
-      <a href="#servicios">Servicios</a>
-      <a href="#diferencial">Diferencial</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#clientes">Clientes</a>
-      <a href="#contacto">Contacto</a>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<div class="grano" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="nav__in lienzo">
+    <a class="nav__marca" href="#inicio">
+      <svg class="marca" data-marca-viva data-estado="marca" viewBox="0 0 140 120" aria-hidden="true" focusable="false">
+        <g class="marca__brazo marca__brazo--b">
+          <path class="marca__trazo" d="M 40 84 L 70 32 L 100 84"/>
+        </g>
+        <g class="marca__brazo marca__brazo--a">
+          <path class="marca__trazo" d="M 40 84 L 70 32 L 100 84"/>
+        </g>
+        <circle class="marca__punto" cx="70" cy="66" r="9.5"/>
+      </svg>
+      <span>Agentia</span>
+    </a>
+
+    <ul class="nav__enlaces">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#diferencial">Diferencial</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#clientes">Clientes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <div class="nav__acciones">
+      <a class="boton boton--lleno" href="#contacto">
+        Cotizar
+        <span class="boton__flecha" aria-hidden="true">&rarr;</span>
+      </a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
     </div>
-    <a href="#contacto" class="btn btn-1">Cotizar</a>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="halo"></div><div class="halo"></div>
-  <div class="wrap hero-in">
-    <h1 class="logotype">AGENT<span class="ia">IA</span></h1>
-    <p class="tag">Optimizamos tus procesos</p>
-    <p class="lede">Convertimos tecnologías de vanguardia en métricas de negocio: sitios web que convierten, contenido a escala y campañas de alto rendimiento.</p>
-    <div class="hero-cta">
-      <a href="#contacto" class="btn btn-1">Conversemos tu proyecto</a>
-      <a href="#servicios" class="btn btn-2">Ver servicios</a>
-    </div>
-  </div>
-</header>
+<div class="menu" id="menu" hidden>
+  <button class="menu__cerrar" type="button" data-cerrar-menu>Cerrar</button>
+  <nav aria-label="Secciones del sitio">
+    <ul class="menu__lista">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#diferencial">Diferencial</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#clientes">Clientes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</div>
 
-<section id="posicionamiento">
-  <div class="wrap rv">
-    <span class="eyebrow">Por qué Agentia</span>
-    <h2>La <span class="ia">IA</span> no es el producto. El resultado sí.</h2>
-    <p class="lede">Muchas agencias usan inteligencia artificial para producir más rápido. Nosotros la usamos para producir mejor y medirlo. Cada pieza nace dentro de un sistema de marca definido y sale con analítica conectada, así que sabes qué funcionó y por qué.</p>
-  </div>
-</section>
+<main id="contenido">
 
-<section id="servicios">
-  <div class="wrap">
-    <div class="rv">
-      <span class="eyebrow">Servicios</span>
-      <h2>Seis frentes, un mismo estándar de dirección de arte.</h2>
-    </div>
-    <div class="svc-grid">
-      <article class="svc rv">
-        <h3>Desarrollo Web con <span class="ia">IA</span></h3>
-        <p>Landing pages y sitios de alto impacto visual, diseñados y optimizados con IA.</p>
-        <ul>
-          <li>Tracking y analítica integrados desde el primer día</li>
-          <li>Optimización continua basada en datos de comportamiento</li>
-          <li>Rendimiento medido en Core Web Vitals, no en percepción</li>
-        </ul>
-      </article>
-      <article class="svc rv">
-        <h3>Gestión de Identidad y Contenido</h3>
-        <p>Mantenimiento fiel de la identidad visual en colores, tipografía y tono.</p>
-        <ul>
-          <li>Generación masiva y sistematizada de piezas para redes</li>
-          <li>Consistencia entre canales sin producción artesanal repetida</li>
-          <li>Manual de marca vivo, aplicado en cada entrega</li>
-        </ul>
-      </article>
-      <article class="svc rv">
-        <h3>Producción de Video e <span class="ia">IA</span> Audiovisual</h3>
-        <p>Videos generados con IA que preservan la identidad del vocero de marca.</p>
-        <ul>
-          <li>Reels cortos y cortometrajes con modelos generativos de última generación</li>
-          <li>Uniformidad del personaje en múltiples escenas y contextos</li>
-          <li>Dirección de arte humana sobre producción asistida</li>
-        </ul>
-      </article>
-      <article class="svc rv">
-        <h3>Creación de Personajes de Marca</h3>
-        <p>Brand characters a medida mediante storytelling: origen, historia y tipo de voz.</p>
-        <ul>
-          <li>Personajes interactivos, listos para operar como asistentes o bots de atención</li>
-          <li>Consistencia visual garantizada en cualquier formato</li>
-          <li>Activos de marca propios, no licenciados</li>
-        </ul>
-      </article>
-      <article class="svc rv">
-        <h3>Diseño Gráfico Integral</h3>
-        <p>Sistemas gráficos completos para campaña, punto de venta y digital.</p>
-        <ul>
-          <li>Piezas para redes, impresos y formatos publicitarios</li>
-          <li>Adaptación multiformato desde un solo sistema visual</li>
-          <li>Entrega con archivos editables y guía de uso</li>
-        </ul>
-      </article>
-      <article class="svc rv">
-        <h3>Pauta Publicitaria</h3>
-        <p>Campañas de búsqueda y display estructuradas para captación medible.</p>
-        <ul>
-          <li>Configuración de conversiones y seguimiento antes de invertir</li>
-          <li>Optimización semanal por costo por resultado</li>
-          <li>Reporte claro, sin métricas de vanidad</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
+  <header class="hero" id="inicio" data-marca="marca">
+    <div class="lienzo" id="lienzo-hero">
 
-<section id="diferencial">
-  <div class="wrap rv">
-    <span class="eyebrow">El diferencial</span>
-    <h2>Optimización operativa y ahorro de tiempo</h2>
-    <p class="lede">Producir landing pages, videos y material gráfico a diario demanda tiempo y presupuesto. Los procesos tradicionales frenan la velocidad de lanzamiento de campañas.</p>
-    <div class="pillars">
-      <div class="pillar">
-        <h3>Automatización creativa</h3>
-        <p>Reducción del tiempo de producción mediante flujos asistidos por IA.</p>
-      </div>
-      <div class="pillar">
-        <h3>Ahorro operativo</h3>
-        <p>Optimización de costos manteniendo un estándar de dirección de arte profesional.</p>
-      </div>
-      <div class="pillar">
-        <h3>Preservación de identidad</h3>
-        <p>Adaptación inteligente que respeta al 100% el manual de marca.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <p class="cota spec hero__cota">
+        <span class="cota__tope"></span>
+        <span class="cota__linea"></span>
+        <span data-cota-ancho="#lienzo-hero">Lienzo</span>
+        <span class="cota__linea"></span>
+        <span class="cota__tope"></span>
+      </p>
 
-<section id="proceso">
-  <div class="wrap">
-    <div class="rv">
-      <span class="eyebrow">Cómo trabajamos</span>
-      <h2>Cuatro pasos, siempre en este orden.</h2>
-    </div>
-    <div class="steps">
-      <div class="step rv"><div class="n">01</div><div><h3>Diagnóstico</h3><p>Revisamos tu marca, tus canales y tus números actuales antes de proponer nada.</p></div></div>
-      <div class="step rv"><div class="n">02</div><div><h3>Sistema</h3><p>Definimos tokens visuales, tono y plantillas reutilizables. Todo lo que venga después vive dentro de este marco.</p></div></div>
-      <div class="step rv"><div class="n">03</div><div><h3>Producción</h3><p>Generamos a escala dentro de ese sistema, con revisión humana en cada entrega.</p></div></div>
-      <div class="step rv"><div class="n">04</div><div><h3>Medición</h3><p>Conectamos analítica y ajustamos según comportamiento real, no según opinión.</p></div></div>
-    </div>
-  </div>
-</section>
+      <div class="hero__grid">
 
-<section id="clientes">
-  <div class="wrap rv">
-    <span class="eyebrow">Trayectoria</span>
-    <h2>Experienc<span class="ia">ia</span> en Huaraz, Ica y Lima.</h2>
-    <p class="lede">Equipo propio de producción audiovisual y una división dedicada a comunicación política. Trabajamos con gastronomía, turismo, hospedaje y retail local.</p>
-    <div class="logos">
-      <div class="logo">KM Travel Agency</div>
-      <div class="logo">Lhotse Hostel</div>
-      <div class="logo">Cevichería El Pajarito</div>
-      <div class="logo">Valdelomar</div>
-      <div class="logo">La Casa de las Tejas</div>
-      <div class="logo">Daniana Massage</div>
-      <div class="logo ph">MARCA EJEMPLO 01</div>
-      <div class="logo ph">MARCA EJEMPLO 02</div>
-    </div>
-    <p class="note">// Los recuadros punteados son marcadores provisionales. Reemplazar por clientes reales con permiso de uso de logo antes de publicar.</p>
-  </div>
-</section>
+        <!-- TODO: reemplazar por el SVG original del logotipo cuando llegue el vector.
+             Mientras tanto el wordmark va compuesto con la display del sistema. -->
+        <p class="hero__marca">
+          <svg class="marca" data-estado="marca" viewBox="0 0 140 120" aria-hidden="true" focusable="false">
+            <g class="marca__brazo marca__brazo--b">
+              <path class="marca__trazo" d="M 40 84 L 70 32 L 100 84"/>
+            </g>
+            <g class="marca__brazo marca__brazo--a">
+              <path class="marca__trazo" d="M 40 84 L 70 32 L 100 84"/>
+            </g>
+            <circle class="marca__punto" cx="70" cy="66" r="9.5"/>
+          </svg>
+          <span class="hero__wordmark">Agentia</span>
+        </p>
 
-<section id="contacto">
-  <div class="wrap">
-    <div class="contact rv">
-      <div class="halo"></div>
-      <div>
-        <span class="eyebrow">Hablemos</span>
-        <h2>Cuéntanos qué necesitas resolver</h2>
-        <p class="lede">Respondemos en menos de 24 horas hábiles.</p>
-        <div class="mail">
-          <a href="mailto:hola@agentia.com.pe"><span>General</span>hola@agentia.com.pe</a>
-          <a href="mailto:comercial@agentia.com.pe"><span>Cotizaciones y propuestas</span>comercial@agentia.com.pe</a>
-          <a href="mailto:proyectos@agentia.com.pe"><span>Clientes en curso</span>proyectos@agentia.com.pe</a>
+        <h1 class="hero__titular rv">Optimizamos tus <em>procesos</em></h1>
+
+        <dl class="hero__ficha rv">
+          <dt>Acento</dt>
+          <dd>#6D4AFF</dd>
+          <dt>Ejes</dt>
+          <dd>wght 200&ndash;800 · wdth 75&ndash;100</dd>
+          <dt>Operación</dt>
+          <dd>Huaraz · Ica · Lima</dd>
+        </dl>
+
+        <div class="hero__pie rv">
+          <p class="hero__lede">Convertimos tecnologías de vanguardia en métricas de negocio: sitios web que convierten, contenido a escala y campañas de alto rendimiento.</p>
+          <div class="hero__acciones">
+            <a class="boton boton--lleno" href="#contacto">
+              Conversemos tu proyecto
+              <span class="boton__flecha" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="boton boton--linea" href="#servicios">
+              Ver servicios
+              <span class="boton__flecha" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div>
-        <div class="field"><label for="n">Nombre</label><input id="n" type="text" autocomplete="name"></div>
-        <div class="field"><label for="e">Empresa</label><input id="e" type="text" autocomplete="organization"></div>
-        <div class="field"><label for="m">Correo</label><input id="m" type="email" autocomplete="email"></div>
-        <div class="field"><label for="s">Servicio de interés</label>
-          <select id="s">
-            <option>Desarrollo web con IA</option>
-            <option>Gestión de identidad y contenido</option>
-            <option>Producción de video e IA audiovisual</option>
-            <option>Creación de personajes de marca</option>
-            <option>Diseño gráfico integral</option>
-            <option>Pauta publicitaria</option>
-          </select>
+
+        <div class="tira rv">
+          <p class="tira__titulo">
+            <span class="spec">Sistema tipográfico</span>
+            <span class="spec">Bricolage Grotesque</span>
+          </p>
+
+          <p class="tira__campo">
+            <label class="spec" for="eje-peso">Peso</label>
+            <input
+              class="eje"
+              id="eje-peso"
+              type="range"
+              autocomplete="off"
+              min="200"
+              max="800"
+              step="10"
+              value="340"
+              data-eje="--eje-peso"
+              aria-describedby="valor-peso">
+            <output class="spec tira__valor" id="valor-peso">340</output>
+          </p>
+
+          <p class="tira__campo">
+            <label class="spec" for="eje-ancho">Ancho</label>
+            <input
+              class="eje"
+              id="eje-ancho"
+              type="range"
+              autocomplete="off"
+              min="75"
+              max="100"
+              step="1"
+              value="100"
+              data-eje="--eje-ancho"
+              data-sufijo="%"
+              aria-describedby="valor-ancho">
+            <output class="spec tira__valor" id="valor-ancho">100%</output>
+          </p>
+
+          <p class="tira__nota spec">Muévelos: todos los titulares de esta página responden.</p>
         </div>
-        <div class="field"><label for="t">Mensaje</label><textarea id="t"></textarea></div>
-        <a href="mailto:comercial@agentia.com.pe" class="btn btn-1">Enviar mensaje</a>
-        <p class="note">// Formulario de maqueta. Conectar a backend o servicio de formularios antes de publicar.</p>
+
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<footer>
-  <div><strong class="mark">AGENT<span class="ia">IA</span></strong> · Optimizamos tus procesos</div>
-  <div>Huaraz · Ica · Lima — Perú</div>
-  <div>agentia.com.pe</div>
-</footer>
+</main>
 
-<script>
-const io = new IntersectionObserver((es) => {
-  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.rv').forEach((el, i) => {
-  el.style.transitionDelay = (i % 6) * 60 + 'ms';
-  io.observe(el);
-});
-</script>
+<script src="assets/js/agentia.js" defer></script>
 </body>
 </html>

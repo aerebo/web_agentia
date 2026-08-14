@@ -1,0 +1,792 @@
+/* ==========================================================================
+   AGENTIA
+   Direccion: B, Especimen. Sistema completo en docs/diseno.md
+   Ningun valor suelto: todo sale de los tokens declarados en :root
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tipografias autoalojadas. SIL OFL 1.1, licencias en assets/fonts/
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('../fonts/bricolage-grotesque-var-latin.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('../fonts/instrument-sans-var-latin.woff2') format('woff2-variations');
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Martian Mono';
+  src: url('../fonts/martian-mono-var-latin.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-stretch: 75% 112.5%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* color */
+  --papel: #F0F0F3;
+  --lamina: #FAFAFC;
+  --tinta: #121216;
+  --lapiz: #63636F;
+  --regla: #D8D8DE;
+  --borde: #8A8A96;
+  --violeta: #6D4AFF;
+  --violeta-texto: #5B36E8;
+  --nota: #E9E4FF;
+
+  /* familias */
+  --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --f-cuerpo: 'Instrument Sans', system-ui, sans-serif;
+  --f-spec: 'Martian Mono', ui-monospace, monospace;
+
+  /* escala tipografica */
+  --t-display: clamp(3rem, 9vw, 7.5rem);
+  --t-h1: clamp(2.5rem, 6vw, 4.5rem);
+  --t-h2: clamp(1.875rem, 4vw, 3rem);
+  --t-h3: clamp(1.25rem, 2vw, 1.5rem);
+  --t-lede: clamp(1.125rem, 1.6vw, 1.375rem);
+  --t-cuerpo: clamp(1rem, 1.1vw, 1.0625rem);
+  --t-corto: 0.875rem;
+  --t-spec: 0.6875rem;
+
+  /* peso y ancho */
+  --w-fino: 200;
+  --w-libro: 400;
+  --w-medio: 500;
+  --w-fuerte: 600;
+  --wd-estrecho: 75;
+  --wd-normal: 100;
+
+  /* ejes en vivo, los mueve el visitante */
+  --eje-peso: 340;
+  --eje-ancho: 100;
+
+  /* espacio */
+  --e-1: 0.5rem;
+  --e-2: 1rem;
+  --e-3: 1.5rem;
+  --e-4: 2.5rem;
+  --e-5: 4rem;
+  --e-6: 6rem;
+  --e-7: 9rem;
+
+  /* ritmo vertical */
+  --sec-amplia: var(--e-7);
+  --sec-normal: var(--e-6);
+  --sec-corta: var(--e-5);
+
+  /* lienzo */
+  --ancho-max: 1440px;
+  --margen: clamp(1.25rem, 5vw, 6rem);
+  --columnas: 12;
+
+  /* forma */
+  --r-0: 0;
+  --linea-fina: 1px;
+  --linea-gruesa: 2px;
+
+  /* movimiento */
+  --dur-rapida: 180ms;
+  --dur-media: 420ms;
+  --dur-larga: 720ms;
+  --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-fisica: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --retardo-punto: 60ms;
+
+  /* capas */
+  --z-base: 0;
+  --z-grano: 1;
+  --z-lamina: 10;
+  --z-nav: 100;
+  --z-overlay: 200;
+}
+
+/* --------------------------------------------------------------------------
+   3. Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: var(--r-0);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-cuerpo);
+  font-weight: var(--w-libro);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--f-display);
+  font-variation-settings: 'wght' var(--eje-peso), 'wdth' var(--eje-ancho);
+  font-optical-sizing: auto;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: var(--linea-gruesa) solid var(--violeta);
+  outline-offset: 3px;
+}
+
+svg {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   4. Utilidades
+   -------------------------------------------------------------------------- */
+
+.lienzo {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: var(--margen);
+}
+
+.spec {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  font-variation-settings: 'wght' 400, 'wdth' var(--wd-estrecho);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lapiz);
+  font-variant-numeric: tabular-nums;
+}
+
+.oculto-visual {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* cota de medida: la linea con topes que marca un ancho, como en una lamina */
+.cota {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  color: var(--lapiz);
+}
+
+.cota__linea {
+  flex: 1;
+  height: var(--linea-fina);
+  background: var(--regla);
+}
+
+.cota__tope {
+  width: var(--linea-fina);
+  height: 10px;
+  background: var(--regla);
+}
+
+/* --------------------------------------------------------------------------
+   5. Grano. Textura permitida, en lugar de degradados
+   -------------------------------------------------------------------------- */
+
+.grano {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grano);
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23r)' opacity='0.09'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   6. Salto al contenido
+   -------------------------------------------------------------------------- */
+
+.salto {
+  position: absolute;
+  top: var(--e-2);
+  left: var(--e-2);
+  z-index: var(--z-overlay);
+  padding: var(--e-1) var(--e-2);
+  background: var(--tinta);
+  color: var(--papel);
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--dur-rapida) var(--ease-salida);
+}
+
+.salto:focus-visible {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   7. Isotipo y sus fisicas
+   Tres estados de la misma geometria: dos brazos y un punto.
+   marca (A) -> play (>) es una rotacion de 90 grados horaria.
+   play (>) -> code (<*>) suma el brazo espejado y centra el punto.
+   -------------------------------------------------------------------------- */
+
+.marca {
+  height: 1.5rem;
+  width: auto;
+  overflow: visible;
+  color: var(--tinta);
+  flex: none;
+}
+
+.marca__brazo,
+.marca__punto {
+  transform-box: view-box;
+  transform-origin: 70px 60px;
+  transition:
+    transform var(--dur-media) var(--ease-fisica),
+    opacity var(--dur-media) var(--ease-salida);
+}
+
+.marca__punto {
+  transition-delay: var(--retardo-punto);
+  fill: var(--violeta);
+}
+
+.marca__trazo {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* estado marca: la A. El brazo espejado esta escondido detras del principal */
+.marca[data-estado='marca'] .marca__brazo--a { transform: rotate(0deg); }
+.marca[data-estado='marca'] .marca__brazo--b { transform: rotate(0deg); opacity: 0; }
+.marca[data-estado='marca'] .marca__punto    { transform: translate(0, 0); }
+
+/* estado play: rotacion horaria de 90 grados. El punto queda a la izquierda */
+.marca[data-estado='play'] .marca__brazo--a { transform: rotate(90deg); }
+.marca[data-estado='play'] .marca__brazo--b { transform: rotate(90deg); opacity: 0; }
+.marca[data-estado='play'] .marca__punto    { transform: translate(-6px, -6px); }
+
+/* estado code: los dos brazos se separan y el punto se centra entre ambos */
+.marca[data-estado='code'] .marca__brazo--a { transform: translate(20px, 0) rotate(90deg); }
+.marca[data-estado='code'] .marca__brazo--b { transform: translate(-20px, 0) rotate(-90deg); opacity: 1; }
+.marca[data-estado='code'] .marca__punto    { transform: translate(0, -6px); }
+
+/* --------------------------------------------------------------------------
+   8. Navegacion
+   -------------------------------------------------------------------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  background: color-mix(in srgb, var(--papel) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: var(--linea-fina) solid var(--regla);
+}
+
+.nav__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+  padding-block: var(--e-2);
+}
+
+.nav__marca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  text-decoration: none;
+  font-family: var(--f-display);
+  font-variation-settings: 'wght' var(--w-medio), 'wdth' var(--wd-normal);
+  font-size: 1.0625rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.nav__acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+.nav__enlaces {
+  display: flex;
+  gap: var(--e-4);
+  list-style: none;
+  font-size: var(--t-corto);
+}
+
+.nav__enlaces a {
+  position: relative;
+  color: var(--lapiz);
+  text-decoration: none;
+  padding-block: var(--e-1);
+  transition: color var(--dur-rapida) var(--ease-salida);
+}
+
+.nav__enlaces a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--linea-gruesa);
+  background: var(--violeta);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-rapida) var(--ease-salida);
+}
+
+.nav__enlaces a:hover,
+.nav__enlaces a[aria-current='true'] {
+  color: var(--tinta);
+}
+
+.nav__enlaces a:hover::after,
+.nav__enlaces a[aria-current='true']::after {
+  transform: scaleX(1);
+}
+
+.nav__toggle {
+  display: none;
+  padding: var(--e-1) var(--e-2);
+  background: transparent;
+  border: var(--linea-fina) solid var(--borde);
+  color: var(--tinta);
+  cursor: pointer;
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  font-variation-settings: 'wght' 500, 'wdth' var(--wd-estrecho);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color var(--dur-rapida) var(--ease-salida);
+}
+
+.nav__toggle:hover {
+  border-color: var(--tinta);
+}
+
+@media (max-width: 860px) {
+  .nav__enlaces { display: none; }
+  .nav__toggle { display: block; }
+}
+
+/* --------------------------------------------------------------------------
+   8.b Menu movil
+   -------------------------------------------------------------------------- */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background: var(--papel);
+  padding: var(--e-6) var(--margen) var(--e-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--e-1);
+  overflow-y: auto;
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.menu__lista {
+  list-style: none;
+  border-top: var(--linea-fina) solid var(--regla);
+}
+
+.menu__lista a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-2);
+  padding-block: var(--e-3);
+  border-bottom: var(--linea-fina) solid var(--regla);
+  font-family: var(--f-display);
+  font-variation-settings: 'wght' var(--eje-peso), 'wdth' var(--eje-ancho);
+  font-size: var(--t-h3);
+  text-decoration: none;
+  transition: color var(--dur-rapida) var(--ease-salida);
+}
+
+.menu__lista a:hover {
+  color: var(--violeta-texto);
+}
+
+.menu__cerrar {
+  align-self: flex-start;
+  margin-bottom: var(--e-4);
+  padding: var(--e-1) var(--e-2);
+  background: transparent;
+  border: var(--linea-fina) solid var(--borde);
+  color: var(--tinta);
+  cursor: pointer;
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  font-variation-settings: 'wght' 500, 'wdth' var(--wd-estrecho);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   9. Botones
+   -------------------------------------------------------------------------- */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  padding: var(--e-2) var(--e-3);
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-corto);
+  font-weight: var(--w-fuerte);
+  text-decoration: none;
+  border: var(--linea-fina) solid transparent;
+  transition:
+    background var(--dur-rapida) var(--ease-salida),
+    color var(--dur-rapida) var(--ease-salida),
+    transform var(--dur-rapida) var(--ease-fisica);
+}
+
+.boton__flecha {
+  transition: transform var(--dur-rapida) var(--ease-fisica);
+}
+
+.boton:hover .boton__flecha {
+  transform: translateX(4px);
+}
+
+.boton:active {
+  transform: translateY(1px);
+}
+
+.boton--lleno {
+  background: var(--violeta);
+  color: var(--lamina);
+}
+
+.boton--lleno:hover {
+  background: var(--tinta);
+}
+
+.boton--linea {
+  border-color: var(--borde);
+  color: var(--tinta);
+}
+
+.boton--linea:hover {
+  border-color: var(--tinta);
+  background: var(--tinta);
+  color: var(--papel);
+}
+
+/* --------------------------------------------------------------------------
+   10. Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  padding-block: var(--e-5) var(--sec-amplia);
+  position: relative;
+}
+
+.hero__cota {
+  margin-bottom: var(--e-5);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columnas, 12), 1fr);
+  gap: var(--e-3);
+  align-items: start;
+}
+
+.hero__marca {
+  grid-column: 1 / span 8;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  margin-bottom: var(--e-4);
+}
+
+.hero__marca .marca {
+  height: clamp(2.5rem, 5vw, 4rem);
+}
+
+.hero__wordmark {
+  font-family: var(--f-display);
+  font-variation-settings: 'wght' var(--w-fino), 'wdth' var(--wd-normal);
+  font-size: clamp(1.5rem, 3.4vw, 2.75rem);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.hero__titular {
+  grid-column: 1 / span 8;
+  grid-row: 2;
+  font-size: var(--t-display);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--e-3);
+}
+
+.hero__titular em {
+  font-style: normal;
+  color: var(--violeta);
+}
+
+.hero__ficha {
+  grid-column: 10 / span 3;
+  grid-row: 2;
+  display: grid;
+  gap: var(--e-1);
+  padding-top: var(--e-1);
+  border-top: var(--linea-fina) solid var(--regla);
+}
+
+.hero__ficha dt {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  font-variation-settings: 'wght' 400, 'wdth' var(--wd-estrecho);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lapiz);
+}
+
+.hero__ficha dd {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  font-variation-settings: 'wght' 500, 'wdth' var(--wd-estrecho);
+  color: var(--tinta);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--e-2);
+}
+
+.hero__pie {
+  grid-column: 1 / span 6;
+  grid-row: 3;
+  margin-top: var(--e-3);
+}
+
+.hero__lede {
+  font-size: var(--t-lede);
+  color: var(--lapiz);
+  max-width: 46ch;
+  margin-bottom: var(--e-4);
+}
+
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+
+/* --------------------------------------------------------------------------
+   11. Tira de control. La demostracion del sistema en vivo
+   -------------------------------------------------------------------------- */
+
+.tira {
+  grid-column: 8 / span 5;
+  grid-row: 3;
+  margin-top: var(--e-3);
+  padding: var(--e-3);
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+}
+
+.tira__titulo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-2);
+  margin-bottom: var(--e-3);
+  padding-bottom: var(--e-1);
+  border-bottom: var(--linea-fina) solid var(--regla);
+}
+
+.tira__campo {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 3.5rem;
+  align-items: center;
+  gap: var(--e-2);
+  margin-bottom: var(--e-2);
+}
+
+.tira__campo:last-of-type {
+  margin-bottom: 0;
+}
+
+.tira__valor {
+  text-align: right;
+}
+
+.tira__nota {
+  margin-top: var(--e-3);
+  padding-top: var(--e-2);
+  border-top: var(--linea-fina) solid var(--regla);
+}
+
+/* deslizador */
+.eje {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+.eje::-webkit-slider-runnable-track {
+  height: var(--linea-fina);
+  background: var(--borde);
+}
+
+.eje::-moz-range-track {
+  height: var(--linea-fina);
+  background: var(--borde);
+}
+
+.eje::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 22px;
+  margin-top: -10.5px;
+  background: var(--violeta);
+  border: none;
+  transition: transform var(--dur-rapida) var(--ease-fisica);
+}
+
+.eje::-moz-range-thumb {
+  width: 10px;
+  height: 22px;
+  background: var(--violeta);
+  border: none;
+  border-radius: var(--r-0);
+  transition: transform var(--dur-rapida) var(--ease-fisica);
+}
+
+.eje:hover::-webkit-slider-thumb,
+.eje:active::-webkit-slider-thumb { transform: scaleY(1.18); }
+
+.eje:hover::-moz-range-thumb,
+.eje:active::-moz-range-thumb { transform: scaleY(1.18); }
+
+/* --------------------------------------------------------------------------
+   12. Entradas
+   -------------------------------------------------------------------------- */
+
+.rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--dur-larga) var(--ease-salida),
+    transform var(--dur-larga) var(--ease-salida);
+  transition-delay: var(--rv-retardo, 0ms);
+}
+
+.rv.rv--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   13. Respuesta movil
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hero__marca,
+  .hero__titular,
+  .hero__ficha,
+  .hero__pie,
+  .tira {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  /* en columna unica el argumento va antes que la ficha tecnica */
+  .hero__marca   { order: 1; }
+  .hero__titular { order: 2; }
+  .hero__pie     { order: 3; margin-top: 0; }
+  .hero__ficha   { order: 4; grid-template-columns: repeat(2, 1fr); margin-top: var(--e-3); }
+  .tira          { order: 5; margin-top: var(--e-4); }
+}
+
+@media (max-width: 520px) {
+  .hero__acciones .boton {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tira__campo {
+    grid-template-columns: 3.5rem 1fr 3rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Movimiento reducido
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .rv {
+    opacity: 1;
+    transform: none;
+  }
+}
