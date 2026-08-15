@@ -11,32 +11,42 @@
   var movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* ------------------------------------------------------------------------
-     1. Ejes tipograficos en vivo
-     Los deslizadores escriben sobre --eje-peso y --eje-ancho en :root.
-     Un solo punto de control, toda la pagina responde.
+     1. La tuerca
+     Cuatro detenciones, una cada 90 grados. Cada una es la misma pieza del
+     isotipo girada sobre el punto violeta, que es el eje y nunca se mueve.
      ------------------------------------------------------------------------ */
 
-  function conectarEje(control) {
-    var propiedad = control.dataset.eje;
-    var salida = document.getElementById(control.getAttribute('aria-describedby'));
-    var sufijo = control.dataset.sufijo || '';
+  var ESTADOS = ['marca', 'play', 'lapiz', 'code'];
+  var NOMBRES = ['Identidad', 'Video', 'Diseño', 'Código'];
 
-    function aplicar() {
-      raiz.style.setProperty(propiedad, control.value);
-      if (salida) {
-        salida.textContent = control.value + sufijo;
-      }
-      control.setAttribute('aria-valuetext', control.value + sufijo);
+  var control = document.getElementById('tuerca');
+
+  if (control) {
+    var cuerpoTuerca = control.closest('.tuerca');
+    var marcaHero = document.querySelector('[data-marca-hero]');
+    var salidaModo = document.getElementById('modo-activo');
+    var filasModo = document.querySelectorAll('.tuerca__modos li');
+
+    function aplicarTuerca() {
+      var paso = Number(control.value);
+
+      cuerpoTuerca.style.setProperty('--giro', paso * 90 + 'deg');
+      if (marcaHero) marcaHero.dataset.estado = ESTADOS[paso];
+      if (salidaModo) salidaModo.textContent = NOMBRES[paso];
+      control.setAttribute('aria-valuetext', NOMBRES[paso]);
+
+      Array.prototype.forEach.call(filasModo, function (fila) {
+        if (Number(fila.dataset.modo) === paso) {
+          fila.setAttribute('data-activo', 'true');
+        } else {
+          fila.removeAttribute('data-activo');
+        }
+      });
     }
 
-    control.addEventListener('input', aplicar);
-    aplicar();
+    control.addEventListener('input', aplicarTuerca);
+    aplicarTuerca();
   }
-
-  Array.prototype.forEach.call(
-    document.querySelectorAll('[data-eje]'),
-    conectarEje
-  );
 
   /* ------------------------------------------------------------------------
      2. Cota de ancho del lienzo

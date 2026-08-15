@@ -8,43 +8,62 @@
 
 ## 1. Tesis
 
-El sitio no habla del sistema de marca: el sitio **es** el sistema de marca abierto y funcionando, como la lámina de muestra de una fundidora tipográfica. Dos demostraciones en vivo lo sostienen:
+El sitio no habla del sistema de marca: el sitio **es** el sistema de marca abierto y funcionando, como la lámina de muestra de una fundidora tipográfica.
 
-1. **Los ejes tipográficos.** El visitante mueve peso y ancho y todos los titulares de la página responden.
-2. **Las físicas del isotipo.** La marca cambia de estado según el contexto, sin dejar de ser la misma marca.
+La demostración es **la tuerca**: un mando que el visitante gira y que hace pasar al isotipo por sus cuatro estados. Cada estado corresponde a una línea de negocio real. En diez segundos el cliente entiende qué es un sistema de identidad y por qué Agentia cobra por definirlo, sin leer un párrafo de argumentación.
 
-Ambas cosas son la prueba del argumento comercial: "definimos tokens visuales, tono y plantillas reutilizables" y "manual de marca vivo, aplicado en cada entrega". La página no lo promete, lo ejecuta.
+Esa es la prueba del argumento comercial que ya está en el contenido aprobado: "definimos tokens visuales, tono y plantillas reutilizables" y "consistencia visual garantizada en cualquier formato". La página no lo promete, lo ejecuta.
 
 ---
 
 ## 2. Marca
 
-### 2.1 Los tres estados
+El archivo maestro es `assets/img/agentia-logo-original.svg`, exportado de Illustrator. De ahí salen `agentia-isotipo.svg` y `agentia-wordmark.svg` por corte exacto, con un script, nunca transcribiendo trazados a mano.
 
-El isotipo es **dos brazos y un punto**. Los tres estados son la misma geometría en distinta posición.
+### 2.1 Geometría medida
 
-| Estado | Forma | Significado | Dónde se usa |
-|---|---|---|---|
-| `marca` | `Λ` con el punto bajo el vértice | Identidad base | Hero, nav en reposo, footer, favicon |
-| `play` | `>` con el punto a la izquierda del vértice | Grabación y generación con IA | Producción de video e IA audiovisual, creación de personajes |
-| `code` | `<•>` con el punto centrado | Código | Desarrollo web con IA |
+| Dato | Valor en unidades del SVG original |
+|---|---|
+| Caja del chevron | x 438.45 a 661.94, y 315.04 a 525.59 |
+| Centro del punto | 550.19, 480.64 |
+| Radio del punto | 20.86 |
+| Distancia del punto al vértice | 165.6 |
+| Distancia del punto a las patas | 44.95 |
+| Violeta del punto | `#8665F7` |
 
-### 2.2 Las físicas
+El punto está exactamente en el centro horizontal del chevron: 438.45 + 223.49 / 2 = 550.20. No es casualidad, es el eje.
 
-La transformación no es un cambio de imagen, es un movimiento continuo de las mismas piezas. Esto es lo que hace que la marca se lea viva y no como tres logos distintos.
+### 2.2 Los cuatro estados
 
-- **`marca` a `play`:** rotación de 90 grados en sentido horario del grupo completo. La `Λ` con el vértice arriba se convierte en `>` con el vértice a la derecha, y el punto, que estaba debajo del vértice, queda a su izquierda. Es una sola rotación, no un redibujo. Esa es la razón por la que los dos logotipos del manual son coherentes entre sí.
-- **`play` a `code`:** el `>` se desplaza a la izquierda, entra su copia espejada `<` desde la derecha, y el punto viaja al centro entre los dos vértices.
-- **Vuelta a `marca`:** rotación inversa, el `<` sale por donde entró.
+El isotipo es **un brazo y un punto**. Los cuatro estados son la misma pieza girando alrededor del punto. No hay redibujo, no hay traslación, no hay una segunda versión del logotipo: hay un giro.
 
-**Curva:** `--ease-fisica`, con rebote corto. El punto siempre llega un instante después que los brazos, nunca al mismo tiempo. Ese retardo de 60 ms es lo que da la sensación de masa.
+| Grados | Forma | Estado | Significado | Servicio |
+|---|---|---|---|---|
+| 0 | `Λ` | `marca` | Identidad | Gestión de identidad y contenido |
+| 90 | `>` | `play` | Grabación y generación | Producción de video e IA audiovisual |
+| 180 | `V` | `lapiz` | Punta de lápiz hacia abajo | Diseño gráfico integral |
+| 270 | `<` más su gemelo a 90: `<•>` | `code` | Código | Desarrollo web con IA |
 
-### 2.3 Reglas de uso
+**Por qué encaja solo.** Al girar 90 grados en sentido horario alrededor del punto, el vértice que estaba arriba queda a la derecha y el punto, que estaba dentro de la boca de la `A`, queda dentro de la boca del `>`. Es exactamente el logotipo PLAY del manual, sin haberlo dibujado aparte. Y girando en sentido contrario sale el `<`, así que `<•>` son dos copias de la misma pieza giradas en direcciones opuestas compartiendo el mismo punto. Es el logotipo CODE del manual.
 
-- **Una sola marca animada por pantalla.** La del nav es la que se transforma. Las que aparecen dentro de las secciones son estados fijos que funcionan como señal de sección, no se animan solas.
-- **El wordmark AGENTIA va como SVG, nunca como texto vivo.** Su A sin travesaño y su tracking amplio son propios del logotipo y no coinciden con ninguna tipografía del sistema. Trazarlo con una fuente sería falsificarlo.
-- **El corte AGENT + IA no se aplica a otras palabras.** Se acabó el `Experienc<span>ia</span>`. El recurso pertenece a la marca y pierde todo su valor si se usa como adorno.
-- **El punto es el único elemento circular de todo el sitio.** Ver la regla de forma en la sección 6.
+**El punto nunca se mueve.** Verificado en navegador: en los cuatro estados el punto ocupa el mismo píxel. Es el eje mecánico y el eje conceptual a la vez.
+
+### 2.3 Implementación
+
+- El giro se declara en la variable `--giro`, registrada con `@property` como `<angle>`. Sin registrar, el navegador no puede interpolarla.
+- **Se anima la variable, no la propiedad.** `transition: --giro` sobre `.marca`, y `transform: rotate(var(--giro))` sobre el brazo, sin transición propia.
+- El eje de giro se escribe en coordenadas absolutas del SVG: `transform-origin: 550.19px 480.64px`. No se usan coordenadas relativas a la esquina del `viewBox` porque los navegadores no coinciden en cómo las resuelven junto con `transform-box: view-box`.
+- El `viewBox` es **cuadrado**, de 336 unidades, centrado en el punto: `382.19 312.64 336 336`. Tiene que serlo porque la unión de las cuatro rotaciones es un círculo de radio 165.6. Con una caja más baja los brazos girados se salen, y además una caja fija evita que la marca cambie de tamaño al girar, que provocaría desplazamiento de layout.
+- **Curva:** `--ease-fisica`, con rebote corto, para que la tuerca se sienta mecánica. El gemelo del estado `code` aparece 60 ms después de que el brazo empieza a girar, nunca a la vez.
+
+### 2.4 Reglas de uso
+
+- **Una sola marca animada por pantalla.** En el hero manda la tuerca. En el resto de la página manda la sección visible, que cambia el estado del isotipo del nav. Nunca las dos a la vez en pantalla.
+- **El wordmark va siempre como SVG del archivo original, nunca compuesto con una tipografía.** Su A sin travesaño y su tracking son propios del logotipo. Reconstruirlo con una fuente sería falsificarlo.
+- **El wordmark no gira.** Solo el isotipo tiene estados.
+- **En el bloqueo horizontal**, el chevron mide 1.6 veces la altura del wordmark, y ambos se alinean por su centro óptico. Como la caja cuadrada está centrada en el punto y no en el chevron, hay que bajar el SVG un 17.95% de su altura para que el centro óptico coincida.
+- **El corte AGENT + IA no se aplica a otras palabras.** Se acabó el `Experienc<span>ia</span>`. El recurso pertenece a la marca y pierde su valor si se usa de adorno.
+- **El punto es el único elemento circular del sitio**, junto con la tuerca, que es su mecanismo. Ver la sección 6.
 
 ---
 
@@ -59,23 +78,29 @@ La transformación no es un cambio de imagen, es un movimiento continuo de las m
 | `--tinta` | `#121216` | Texto principal y bloques de contraste |
 | `--lapiz` | `#63636F` | Texto secundario, cotas, metadatos |
 | `--regla` | `#D8D8DE` | Líneas de grilla, cotas y separadores decorativos |
-| `--borde` | `#8A8A96` | Bordes de elementos interactivos, campos y controles |
-| `--violeta` | `#6D4AFF` | Acento único: rellenos, estados activos, el punto |
-| `--violeta-texto` | `#5B36E8` | El mismo acento, solo para texto pequeño sobre papel |
-| `--nota` | `#E9E4FF` | Relleno suave de resaltados y estados activos |
+| `--borde` | `#83838F` | Bordes de elementos interactivos, campos y controles |
+| `--violeta` | `#8665F7` | **El violeta del logotipo original.** El punto, rellenos y texto grande |
+| `--violeta-fuerte` | `#6E48E8` | El mismo violeta profundizado hasta cumplir AA |
+| `--nota` | `#EAE4FE` | Relleno suave de resaltados y estados activos |
 
-### 3.2 Contraste verificado
+### 3.2 Contraste verificado en navegador
+
+Medido sobre la página real, no estimado.
 
 | Par | Ratio | Cumple |
 |---|---|---|
-| `--tinta` sobre `--papel` | 16.0:1 | AAA |
-| `--lapiz` sobre `--papel` | 5.2:1 | AA texto normal |
-| `--violeta` sobre `--papel` | 4.5:1 | AA texto normal, al límite |
-| `--violeta-texto` sobre `--papel` | 5.9:1 | AA texto normal, con margen |
-| `--borde` sobre `--papel` | 3.0:1 | AA componentes no textuales |
+| `--tinta` sobre `--papel` | 16.43:1 | AAA |
+| `--lapiz` sobre `--papel` | 5.21:1 | AA texto normal |
+| `--lapiz` sobre `--lamina` | 5.68:1 | AA texto normal |
+| `--violeta` sobre `--papel` | 3.54:1 | **Solo texto grande y componentes** |
+| `--violeta-fuerte` sobre `--papel` | 4.92:1 | AA texto normal |
+| `--lamina` sobre `--violeta-fuerte` | 5.36:1 | AA texto normal, botón lleno |
+| `--borde` sobre `--papel` | 3.29:1 | AA componentes no textuales |
 | `--regla` sobre `--papel` | 1.25:1 | Solo decorativo, nunca borde de control |
 
-Por eso existen dos tokens de violeta y dos de gris de línea. `--violeta` se usa en rellenos, superficies y texto grande. Para un enlace en tamaño de cuerpo va `--violeta-texto`. `--regla` nunca delimita un campo de formulario: para eso está `--borde`.
+**Regla que se deriva de esto:** el violeta de marca `#8665F7` da 3.54:1 sobre papel. Cumple para texto grande y para componentes, pero **no** para texto pequeño ni como fondo de un botón con texto encima, donde daba 3.86:1. Para eso está `--violeta-fuerte`. No son dos acentos: es el mismo acento en dos profundidades, y la de marca manda en todo lo que sea identidad, empezando por el punto.
+
+`--regla` nunca delimita un campo de formulario ni un control. Para eso está `--borde`.
 
 ### 3.3 Reglas de color
 
@@ -132,17 +157,13 @@ El nivel `--t-lede` es el peldaño que faltaba en el sitio anterior, donde el sa
 
 Los seis niveles se usan de verdad. El sitio anterior descargaba pesos 500 y 600 y no los pintaba nunca.
 
-### 4.4 Ejes en vivo
+### 4.4 Peso de titulares
 
-```
---eje-peso:  340   /* lo mueve el deslizador de peso  */
---eje-ancho: 100   /* lo mueve el deslizador de ancho */
-```
+`--w-titular: 340`. Un solo valor para todos los titulares, aplicado con `font-weight`, no con `font-variation-settings`.
 
-Todos los titulares de la página se declaran con `font-variation-settings: 'wght' var(--eje-peso), 'wdth' var(--eje-ancho)`. Los deslizadores escriben sobre estas dos variables en `:root` y nada más. Un solo punto de control, toda la página responde.
+**Nota de historia del proyecto.** La primera versión de esta dirección exponía los ejes variables de Bricolage al visitante con dos deslizadores. Se descartó: era una demostración de fundidora tipográfica, no de Agentia. La demostración correcta es la tuerca de la sección 2, porque lo que Agentia vende no es tipografía variable, es una identidad que se adapta al contexto sin dejar de ser la misma.
 
-**Valores de reposo:** peso 340, ancho 100. **Rango expuesto al visitante:** peso 200 a 800, ancho 75 a 100.
-**Persistencia:** ninguna. Al recargar vuelve al reposo. No se guarda nada en el navegador del visitante.
+Los ejes variables se siguen usando internamente, para la escalera de pesos y para el ancho estrecho de las etiquetas mono. Lo que se quitó fue el control expuesto.
 
 ### 4.5 Detalles
 
@@ -190,7 +211,7 @@ Secuencia definida para la página: hero, amplia, normal, corta, normal, amplia,
 
 **Bloqueo de forma:** todo el sitio es de esquina viva, radio 0. Sin excepciones en tarjetas, campos, botones ni imágenes.
 
-**La única forma circular del sitio es el punto del isotipo.** Esa es justamente la razón de la regla: si nada más es redondo, el punto no compite con nada y se lee como el elemento de marca que es.
+**Las únicas formas circulares del sitio son el punto del isotipo y la tuerca.** Esa es justamente la razón de la regla: si nada más es redondo, el punto no compite con nada y se lee como el elemento de marca que es. La tuerca es la única excepción documentada, y se permite porque no es otra forma: es el punto agrandado hasta volverse mecanismo. Comparten el mismo eje.
 
 | Token | Valor |
 |---|---|
@@ -240,13 +261,14 @@ Nada de `z-index: 9999`.
 
 ## 9. Accesibilidad
 
-- Contraste AA verificado, tabla en 3.2.
+- Contraste AA verificado en navegador, tabla en 3.2.
 - Anillo de foco visible en **todos** los elementos interactivos, no solo en botones: `outline: 2px solid var(--violeta); outline-offset: 3px`.
 - Enlace de salto al contenido como primer elemento del documento.
-- Los deslizadores de ejes son `<input type="range">` reales, operables con teclado, con `aria-label` y `aria-valuetext` en español.
-- La demostración tipográfica es un adorno funcional: si el visitante no la toca, la página se lee igual. Nunca es requisito para acceder a información.
+- **La tuerca es un `<input type="range">` real**, invisible por encima del mando. Funciona con flechas del teclado, tiene `aria-label` y actualiza `aria-valuetext` al nombre del modo en español, no al número. El dibujo del mando lleva `aria-hidden`.
+- La tuerca es un adorno funcional: si el visitante no la toca, la página se lee igual. Nunca es requisito para acceder a información.
 - `aria-current="true"` en el enlace de navegación de la sección visible.
-- Los estados del isotipo son decorativos: el SVG lleva `aria-hidden="true"` y el nombre accesible lo da el texto.
+- Los estados del isotipo son decorativos: el SVG lleva `aria-hidden="true"` y el nombre accesible lo da el texto. El wordmark sí lleva `role="img"` y `aria-label="Agentia"`.
+- **El contenido es visible por defecto.** Solo se esconde para revelarlo cuando el script confirma que puede, con red de seguridad a los 2.5 segundos. Un fallo de JavaScript nunca deja la página en blanco.
 
 ---
 

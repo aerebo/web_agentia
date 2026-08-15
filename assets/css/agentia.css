@@ -36,6 +36,27 @@
 }
 
 /* --------------------------------------------------------------------------
+   1.b Variables animables
+
+   Sin registrar, una custom property es texto sin tipo: el navegador no la
+   puede interpolar y, peor, congela cualquier propiedad que la use y tenga
+   transicion. Registrandolas se animan solas y el giro del isotipo se
+   recalcula cuadro a cuadro.
+   -------------------------------------------------------------------------- */
+
+@property --giro {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --gemelo {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* --------------------------------------------------------------------------
    2. Tokens
    -------------------------------------------------------------------------- */
 
@@ -46,10 +67,14 @@
   --tinta: #121216;
   --lapiz: #63636F;
   --regla: #D8D8DE;
-  --borde: #8A8A96;
-  --violeta: #6D4AFF;
-  --violeta-texto: #5B36E8;
-  --nota: #E9E4FF;
+  --borde: #83838F;
+  /* violeta de marca, tomado del logotipo original. 3.54:1 sobre papel:
+     vale para el punto, rellenos y texto grande, nunca para texto chico */
+  --violeta: #8665F7;
+  /* el mismo violeta profundizado hasta cumplir AA. Texto pequeno sobre
+     papel (4.92:1) y fondo de superficies con texto claro encima (5.36:1) */
+  --violeta-fuerte: #6E48E8;
+  --nota: #EAE4FE;
 
   /* familias */
   --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
@@ -74,9 +99,12 @@
   --wd-estrecho: 75;
   --wd-normal: 100;
 
-  /* ejes en vivo, los mueve el visitante */
-  --eje-peso: 340;
-  --eje-ancho: 100;
+  /* peso de titulares */
+  --w-titular: 340;
+
+  /* estado de la marca. Lo mueve la tuerca del hero o la seccion visible */
+  --giro: 0deg;
+  --gemelo: 0;
 
   /* espacio */
   --e-1: 0.5rem;
@@ -149,7 +177,8 @@ body {
 
 h1, h2, h3 {
   font-family: var(--f-display);
-  font-variation-settings: 'wght' var(--eje-peso), 'wdth' var(--eje-ancho);
+  font-weight: var(--w-titular);
+  font-stretch: 100%;
   font-optical-sizing: auto;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -263,55 +292,64 @@ svg {
 
 /* --------------------------------------------------------------------------
    7. Isotipo y sus fisicas
-   Tres estados de la misma geometria: dos brazos y un punto.
-   marca (A) -> play (>) es una rotacion de 90 grados horaria.
-   play (>) -> code (<*>) suma el brazo espejado y centra el punto.
+   Geometria original del logotipo, sin redibujar. Una sola pieza que gira
+   alrededor del punto violeta, que es el eje y nunca se mueve.
+
+     0 grados    A      identidad
+    90 grados    >      video, grabacion y generacion
+   180 grados    V      punta de lapiz, diseno
+   270 grados    <      mas su gemelo a 90: <*>, codigo
+
+   Todos los estados salen de la misma rotacion. No hay redibujo ni
+   traslacion: por eso encajan entre si.
    -------------------------------------------------------------------------- */
 
 .marca {
-  height: 1.5rem;
+  height: 1.9rem;
   width: auto;
   overflow: visible;
   color: var(--tinta);
   flex: none;
-}
-
-.marca__brazo,
-.marca__punto {
-  transform-box: view-box;
-  transform-origin: 70px 60px;
+  /* se anima la variable, no la propiedad que la usa */
   transition:
-    transform var(--dur-media) var(--ease-fisica),
-    opacity var(--dur-media) var(--ease-salida);
+    --giro var(--dur-media) var(--ease-fisica),
+    --gemelo var(--dur-media) var(--ease-salida) var(--retardo-punto);
 }
 
-.marca__punto {
-  transition-delay: var(--retardo-punto);
-  fill: var(--violeta);
+.marca__brazo {
+  transform-box: view-box;
+  /* Eje de giro: el centro exacto del punto violeta, en coordenadas de
+     usuario del SVG original. Se escriben absolutas y no relativas a la
+     esquina del viewBox porque los navegadores no coinciden en como
+     resuelven transform-origin con transform-box: view-box.
+
+     El viewBox es cuadrado de 336 porque la union de las cuatro rotaciones
+     alrededor del punto es un circulo de radio 165.6, que es la distancia
+     del punto al vertice. Con una caja mas baja, los brazos se salen. */
+  transform-origin: 550.19px 480.64px;
+}
+
+.marca__brazo--a {
+  transform: rotate(var(--giro));
+}
+
+.marca__brazo--b {
+  transform: rotate(calc(var(--giro) - 180deg));
+  opacity: var(--gemelo);
 }
 
 .marca__trazo {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 15;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  fill: currentColor;
 }
 
-/* estado marca: la A. El brazo espejado esta escondido detras del principal */
-.marca[data-estado='marca'] .marca__brazo--a { transform: rotate(0deg); }
-.marca[data-estado='marca'] .marca__brazo--b { transform: rotate(0deg); opacity: 0; }
-.marca[data-estado='marca'] .marca__punto    { transform: translate(0, 0); }
+.marca__punto {
+  fill: var(--violeta);
+}
 
-/* estado play: rotacion horaria de 90 grados. El punto queda a la izquierda */
-.marca[data-estado='play'] .marca__brazo--a { transform: rotate(90deg); }
-.marca[data-estado='play'] .marca__brazo--b { transform: rotate(90deg); opacity: 0; }
-.marca[data-estado='play'] .marca__punto    { transform: translate(-6px, -6px); }
-
-/* estado code: los dos brazos se separan y el punto se centra entre ambos */
-.marca[data-estado='code'] .marca__brazo--a { transform: translate(20px, 0) rotate(90deg); }
-.marca[data-estado='code'] .marca__brazo--b { transform: translate(-20px, 0) rotate(-90deg); opacity: 1; }
-.marca[data-estado='code'] .marca__punto    { transform: translate(0, -6px); }
+.marca[data-estado='marca'] { --giro: 0deg;   --gemelo: 0; }
+.marca[data-estado='play']  { --giro: 90deg;  --gemelo: 0; }
+.marca[data-estado='lapiz'] { --giro: 180deg; --gemelo: 0; }
+.marca[data-estado='code']  { --giro: 270deg; --gemelo: 1; }
 
 /* --------------------------------------------------------------------------
    8. Navegacion
@@ -449,14 +487,14 @@ svg {
   padding-block: var(--e-3);
   border-bottom: var(--linea-fina) solid var(--regla);
   font-family: var(--f-display);
-  font-variation-settings: 'wght' var(--eje-peso), 'wdth' var(--eje-ancho);
+  font-weight: var(--w-titular);
   font-size: var(--t-h3);
   text-decoration: none;
   transition: color var(--dur-rapida) var(--ease-salida);
 }
 
 .menu__lista a:hover {
-  color: var(--violeta-texto);
+  color: var(--violeta-fuerte);
 }
 
 .menu__cerrar {
@@ -507,7 +545,9 @@ svg {
 }
 
 .boton--lleno {
-  background: var(--violeta);
+  /* violeta profundo, no el de marca: con el de marca el texto daba 3.86:1
+     y hace falta 4.5:1 para texto pequeno */
+  background: var(--violeta-fuerte);
   color: var(--lamina);
 }
 
@@ -551,21 +591,25 @@ svg {
   grid-row: 1;
   display: flex;
   align-items: center;
-  gap: var(--e-3);
+  gap: var(--e-2);
   margin-bottom: var(--e-4);
 }
 
 .hero__marca .marca {
-  height: clamp(2.5rem, 5vw, 4rem);
+  height: clamp(2.8rem, 5.6vw, 4.5rem);
+  /* La caja cuadrada esta centrada en el punto, no en el chevron: el
+     vertice sube 165.6 unidades sobre el punto y las patas solo bajan
+     44.95. Eso deja la A pegada al techo de su caja. Se compensa bajando
+     el SVG 60.3 de 336, que es la distancia entre el centro optico del
+     chevron y el centro de la caja. */
+  transform: translateY(17.95%);
 }
 
 .hero__wordmark {
-  font-family: var(--f-display);
-  font-variation-settings: 'wght' var(--w-fino), 'wdth' var(--wd-normal);
-  font-size: clamp(1.5rem, 3.4vw, 2.75rem);
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  line-height: 1;
+  height: clamp(1.1rem, 2.2vw, 1.75rem);
+  width: auto;
+  fill: currentColor;
+  flex: none;
 }
 
 .hero__titular {
@@ -629,7 +673,9 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   11. Tira de control. La demostracion del sistema en vivo
+   11. La tuerca. El control que gira la marca
+   Unica excepcion al bloqueo de forma: la tuerca es circular porque es el
+   punto de la marca agrandado hasta volverse mecanismo. Es el mismo eje.
    -------------------------------------------------------------------------- */
 
 .tira {
@@ -651,20 +697,8 @@ svg {
   border-bottom: var(--linea-fina) solid var(--regla);
 }
 
-.tira__campo {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr 3.5rem;
-  align-items: center;
-  gap: var(--e-2);
-  margin-bottom: var(--e-2);
-}
-
-.tira__campo:last-of-type {
-  margin-bottom: 0;
-}
-
 .tira__valor {
-  text-align: right;
+  color: var(--tinta);
 }
 
 .tira__nota {
@@ -673,51 +707,113 @@ svg {
   border-top: var(--linea-fina) solid var(--regla);
 }
 
-/* deslizador */
-.eje {
-  -webkit-appearance: none;
-  appearance: none;
+.tuerca {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  align-items: center;
+  gap: var(--e-3);
+  transition: --giro var(--dur-media) var(--ease-fisica);
+}
+
+.tuerca__mando {
+  position: relative;
+  width: 6.5rem;
+  height: 6.5rem;
+}
+
+/* el cuerpo de la tuerca, con sus cuatro muescas */
+.tuerca__cuerpo {
+  position: absolute;
+  inset: 0;
+  border: var(--linea-fina) solid var(--borde);
+  border-radius: 50%;
+  transform: rotate(var(--giro));
+}
+
+.tuerca__muesca {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--linea-gruesa);
+  height: 0.55rem;
+  margin-left: -1px;
+  background: var(--borde);
+  transform-origin: 1px 3.25rem;
+  transform: rotate(var(--angulo)) translateY(-3.25rem);
+}
+
+/* la aguja que apunta al modo activo */
+.tuerca__aguja {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--linea-gruesa);
+  height: 2.2rem;
+  margin-left: -1px;
+  margin-top: -2.2rem;
+  background: var(--violeta);
+}
+
+/* el punto de la marca, en el centro y quieto: es el eje */
+.tuerca__eje {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin: -0.375rem 0 0 -0.375rem;
+  background: var(--violeta);
+  border-radius: 50%;
+}
+
+/* el control real, invisible encima de la tuerca: teclado y arrastre */
+.tuerca__control {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 22px;
-  background: transparent;
-  cursor: ew-resize;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: grab;
 }
 
-.eje::-webkit-slider-runnable-track {
-  height: var(--linea-fina);
-  background: var(--borde);
+.tuerca__control:active {
+  cursor: grabbing;
 }
 
-.eje::-moz-range-track {
-  height: var(--linea-fina);
-  background: var(--borde);
+.tuerca__control:focus-visible + .tuerca__cuerpo {
+  outline: var(--linea-gruesa) solid var(--violeta);
+  outline-offset: 4px;
 }
 
-.eje::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 10px;
-  height: 22px;
-  margin-top: -10.5px;
-  background: var(--violeta);
-  border: none;
-  transition: transform var(--dur-rapida) var(--ease-fisica);
+.tuerca__modos {
+  display: grid;
+  gap: var(--e-1);
+  list-style: none;
+  border-top: var(--linea-fina) solid var(--regla);
+  padding-top: var(--e-2);
 }
 
-.eje::-moz-range-thumb {
-  width: 10px;
-  height: 22px;
-  background: var(--violeta);
-  border: none;
-  border-radius: var(--r-0);
-  transition: transform var(--dur-rapida) var(--ease-fisica);
+.tuerca__modos li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-2);
+  color: var(--lapiz);
+  transition: color var(--dur-rapida) var(--ease-salida);
 }
 
-.eje:hover::-webkit-slider-thumb,
-.eje:active::-webkit-slider-thumb { transform: scaleY(1.18); }
+.tuerca__modos li[data-activo='true'] {
+  color: var(--tinta);
+}
 
-.eje:hover::-moz-range-thumb,
-.eje:active::-moz-range-thumb { transform: scaleY(1.18); }
+.tuerca__modos li[data-activo='true'] .tuerca__glifo {
+  color: var(--violeta-fuerte);
+}
+
+.tuerca__glifo {
+  font-variation-settings: 'wght' 700, 'wdth' var(--wd-estrecho);
+}
 
 /* --------------------------------------------------------------------------
    12. Entradas
@@ -768,8 +864,14 @@ svg {
     justify-content: space-between;
   }
 
-  .tira__campo {
-    grid-template-columns: 3.5rem 1fr 3rem;
+  .tuerca {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--e-4);
+  }
+
+  .tuerca__modos {
+    width: 100%;
   }
 }
 
