@@ -56,6 +56,18 @@
   initial-value: 0;
 }
 
+@property --sep {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --escala {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
 /* --------------------------------------------------------------------------
    2. Tokens
    -------------------------------------------------------------------------- */
@@ -105,6 +117,8 @@
   /* estado de la marca. Lo mueve la tuerca del hero o la seccion visible */
   --giro: 0deg;
   --gemelo: 0;
+  --sep: 0px;
+  --escala: 1;
 
   /* espacio */
   --e-1: 0.5rem;
@@ -313,6 +327,8 @@ svg {
   /* se anima la variable, no la propiedad que la usa */
   transition:
     --giro var(--dur-media) var(--ease-fisica),
+    --sep var(--dur-media) var(--ease-fisica),
+    --escala var(--dur-media) var(--ease-fisica),
     --gemelo var(--dur-media) var(--ease-salida) var(--retardo-punto);
 }
 
@@ -329,12 +345,15 @@ svg {
   transform-origin: 550.19px 480.64px;
 }
 
+/* El escalado ocurre alrededor del punto, asi que los brazos se encogen
+   hacia el eje mientras se separan. La traslacion es en sentido opuesto
+   para cada brazo: el que apunta a la izquierda se va a la izquierda. */
 .marca__brazo--a {
-  transform: rotate(var(--giro));
+  transform: translateX(calc(-1 * var(--sep))) rotate(var(--giro)) scale(var(--escala));
 }
 
 .marca__brazo--b {
-  transform: rotate(calc(var(--giro) - 180deg));
+  transform: translateX(var(--sep)) rotate(calc(var(--giro) - 180deg)) scale(var(--escala));
   opacity: var(--gemelo);
 }
 
@@ -346,10 +365,16 @@ svg {
   fill: var(--violeta);
 }
 
-.marca[data-estado='marca'] { --giro: 0deg;   --gemelo: 0; }
-.marca[data-estado='play']  { --giro: 90deg;  --gemelo: 0; }
-.marca[data-estado='lapiz'] { --giro: 180deg; --gemelo: 0; }
-.marca[data-estado='code']  { --giro: 270deg; --gemelo: 1; }
+.marca[data-estado='marca'] { --giro: 0deg;   --gemelo: 0; --sep: 0px;  --escala: 1; }
+.marca[data-estado='play']  { --giro: 90deg;  --gemelo: 0; --sep: 0px;  --escala: 1; }
+.marca[data-estado='lapiz'] { --giro: 180deg; --gemelo: 0; --sep: 0px;  --escala: 1; }
+
+/* Code es el unico estado con dos brazos a la vez. Con rotacion pura se
+   cruzarian formando un rombo, porque cada brazo se mete 44.95 unidades
+   mas alla del eje. Se separan 60 y se encogen a 0.62 para que quede el
+   <*> del manual, con el punto respirando en medio y todo dentro de la
+   caja de 336. */
+.marca[data-estado='code']  { --giro: 270deg; --gemelo: 1; --sep: 60px; --escala: 0.62; }
 
 /* --------------------------------------------------------------------------
    8. Navegacion
