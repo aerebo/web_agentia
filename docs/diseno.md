@@ -46,6 +46,8 @@ El isotipo es **un brazo y un punto**. Los cuatro estados son la misma pieza gir
 
 **Por qué encaja solo.** Al girar 90 grados en sentido horario alrededor del punto, el vértice que estaba arriba queda a la derecha y el punto, que estaba dentro de la boca de la `A`, queda dentro de la boca del `>`. Es exactamente el logotipo PLAY del manual, sin haberlo dibujado aparte. Y girando en sentido contrario sale el `<`, así que `<•>` son dos copias de la misma pieza giradas en direcciones opuestas compartiendo el mismo punto. Es el logotipo CODE del manual.
 
+**La única excepción a la rotación pura es el estado `code`.** Cada brazo se mete 44.95 unidades más allá del eje, así que dos brazos opuestos se solapan 90 unidades y forman un rombo en vez de un `<•>`. Por eso, y solo en ese estado, los brazos se separan 60 unidades y se encogen a 0.62. El escalado ocurre alrededor del punto, de modo que se alejan encogiéndose hacia el eje, que es un movimiento coherente con el resto. Medido: los brazos dejan de cruzarse, el punto queda con aire simétrico a cada lado y todo sigue dentro de la caja de 336.
+
 **El punto nunca se mueve.** Verificado en navegador: en los cuatro estados el punto ocupa el mismo píxel. Es el eje mecánico y el eje conceptual a la vez.
 
 ### 2.3 Implementación
