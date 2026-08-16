@@ -80,13 +80,18 @@
   --lapiz: #63636F;
   --regla: #D8D8DE;
   --borde: #83838F;
-  /* violeta de marca, tomado del logotipo original. 3.54:1 sobre papel:
-     vale para el punto, rellenos y texto grande, nunca para texto chico */
-  --violeta: #8665F7;
-  /* el mismo violeta profundizado hasta cumplir AA. Texto pequeno sobre
-     papel (4.92:1) y fondo de superficies con texto claro encima (5.36:1) */
-  --violeta-fuerte: #6E48E8;
-  --nota: #EAE4FE;
+
+  /* Escala tonal del violeta de marca. Un solo tono, seis profundidades.
+     No son acentos distintos: es el mismo color con distinto peso. */
+  --violeta-humo: #F3F0FE;    /* fondo de seccion, lavado casi imperceptible */
+  --violeta-nota: #E6DEFD;    /* relleno de resaltado y estado activo */
+  --violeta-claro: #A98FFF;   /* acento sobre fondo oscuro, 6.83:1 */
+  --violeta: #8665F7;         /* el del logotipo. Punto, rellenos, texto grande */
+  --violeta-fuerte: #6E48E8;  /* profundizado para cumplir AA en texto chico */
+  --violeta-tinta: #1A1330;   /* violeta llevado a negro. Banda de cierre */
+
+  /* texto sobre la banda oscura */
+  --humo-claro: #9B95B5;
 
   /* familias */
   --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
@@ -638,7 +643,7 @@ svg {
 }
 
 .hero__titular {
-  grid-column: 1 / span 8;
+  grid-column: 1 / span 7;
   grid-row: 2;
   font-size: var(--t-display);
   line-height: 1.05;
@@ -651,31 +656,43 @@ svg {
   color: var(--violeta);
 }
 
-.hero__ficha {
-  grid-column: 10 / span 3;
-  grid-row: 2;
-  display: grid;
-  gap: var(--e-1);
-  padding-top: var(--e-1);
-  border-top: var(--linea-fina) solid var(--regla);
+/* --------------------------------------------------------------------------
+   10.b Campo de piezas
+   Las mismas piezas del isotipo, cada una girando sobre su propio punto.
+   En reposo miran todas al mismo sitio: un sistema, no un enjambre suelto.
+   -------------------------------------------------------------------------- */
+
+.hero__campo {
+  grid-column: 8 / span 5;
+  grid-row: 2 / span 2;
+  align-self: stretch;
+  min-height: clamp(18rem, 34vw, 30rem);
+  pointer-events: none;
 }
 
-.hero__ficha dt {
-  font-family: var(--f-spec);
-  font-size: var(--t-spec);
-  font-variation-settings: 'wght' 400, 'wdth' var(--wd-estrecho);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--lapiz);
+.campo {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.hero__ficha dd {
-  font-family: var(--f-spec);
-  font-size: var(--t-spec);
-  font-variation-settings: 'wght' 500, 'wdth' var(--wd-estrecho);
-  color: var(--tinta);
-  font-variant-numeric: tabular-nums;
-  margin-bottom: var(--e-2);
+.campo__pieza {
+  fill: var(--regla);
+  transition: fill var(--dur-larga) var(--ease-salida);
+}
+
+.campo__pieza .campo__punto {
+  fill: var(--violeta-nota);
+  transition: fill var(--dur-larga) var(--ease-salida);
+}
+
+/* la pieza despierta cuando el puntero la alcanza */
+.campo__pieza[data-despierta='true'] {
+  fill: var(--borde);
+}
+
+.campo__pieza[data-despierta='true'] .campo__punto {
+  fill: var(--violeta);
 }
 
 .hero__pie {
@@ -948,6 +965,430 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
+   11.c Secciones. Ritmo tonal
+   El violeta atraviesa la pagina en tres profundidades: papel, humo y tinta.
+   El oscuro aparece una sola vez y al final, como cierre, nunca suelto en
+   medio de la pagina.
+   -------------------------------------------------------------------------- */
+
+.seccion {
+  padding-block: var(--sec-normal);
+  border-top: var(--linea-fina) solid var(--regla);
+}
+
+.seccion--corta { padding-block: var(--sec-corta); }
+.seccion--humo  { background: var(--violeta-humo); border-top-color: var(--violeta-nota); }
+
+.seccion--tinta {
+  background: var(--violeta-tinta);
+  color: var(--papel);
+  border-top: none;
+  padding-block: var(--sec-amplia);
+}
+
+.seccion--tinta .spec { color: var(--humo-claro); }
+.seccion--tinta .seccion__entrada { color: var(--humo-claro); }
+
+.seccion__titular {
+  font-size: var(--t-h1);
+  max-width: 18ch;
+  margin-bottom: var(--e-3);
+}
+
+.seccion__entrada {
+  font-size: var(--t-lede);
+  color: var(--lapiz);
+  max-width: 58ch;
+}
+
+/* declaracion de posicionamiento: una sola frase, mucho aire */
+.declara {
+  display: grid;
+  grid-template-columns: repeat(var(--columnas), 1fr);
+  gap: var(--e-3);
+}
+
+.declara .spec { grid-column: 1 / -1; }
+
+.declara__titular {
+  grid-column: 1 / span 7;
+  font-size: var(--t-display);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  max-width: none;
+  margin-block: var(--e-3);
+}
+
+.declara__cuerpo {
+  grid-column: 8 / span 5;
+  align-self: end;
+  color: var(--lapiz);
+  font-size: var(--t-lede);
+  padding-top: var(--e-2);
+  border-top: var(--linea-fina) solid var(--regla);
+}
+
+/* --------------------------------------------------------------------------
+   11.d Servicios. Filas de ancho completo, no una grilla de tarjetas
+   -------------------------------------------------------------------------- */
+
+.servicios {
+  margin-top: var(--e-5);
+  border-top: var(--linea-fina) solid var(--regla);
+}
+
+.servicio {
+  border-bottom: var(--linea-fina) solid var(--regla);
+}
+
+.servicio__cabecera {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 1.1fr) 2rem;
+  align-items: baseline;
+  gap: var(--e-3);
+  width: 100%;
+  padding-block: var(--e-3);
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  transition: color var(--dur-rapida) var(--ease-salida);
+}
+
+.servicio__cabecera:hover { color: var(--violeta-fuerte); }
+
+.servicio__numero { align-self: center; }
+
+.servicio__nombre {
+  font-family: var(--f-display);
+  font-weight: var(--w-titular);
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.servicio__entrada {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+  max-width: 46ch;
+}
+
+/* el signo mas que se convierte en menos al abrir */
+.servicio__signo {
+  position: relative;
+  justify-self: end;
+  align-self: center;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.servicio__signo::before,
+.servicio__signo::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: var(--linea-gruesa);
+  margin-top: -1px;
+  background: currentColor;
+  transition: transform var(--dur-media) var(--ease-fisica);
+}
+
+.servicio__signo::after { transform: rotate(90deg); }
+
+.servicio[data-abierto='true'] .servicio__signo::after { transform: rotate(0deg); }
+
+.servicio__cuerpo {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-media) var(--ease-salida);
+}
+
+.servicio[data-abierto='true'] .servicio__cuerpo { grid-template-rows: 1fr; }
+
+.servicio__lista {
+  overflow: hidden;
+  list-style: none;
+  display: grid;
+  gap: var(--e-2);
+  padding-left: calc(3.5rem + var(--e-3));
+}
+
+.servicio[data-abierto='true'] .servicio__lista { padding-bottom: var(--e-4); }
+
+.servicio__lista li {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: var(--e-1);
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+  max-width: 60ch;
+}
+
+.servicio__lista li::before {
+  content: '';
+  width: 0.875rem;
+  height: var(--linea-gruesa);
+  margin-top: 0.72em;
+  background: var(--violeta);
+}
+
+/* --------------------------------------------------------------------------
+   11.e Diferencial
+   -------------------------------------------------------------------------- */
+
+.diferencial {
+  display: grid;
+  grid-template-columns: repeat(var(--columnas), 1fr);
+  gap: var(--e-5) var(--e-3);
+}
+
+.diferencial__intro { grid-column: 1 / span 6; }
+
+.pilares {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: 0;
+  border-top: var(--linea-fina) solid var(--violeta-nota);
+}
+
+.pilar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--e-3);
+  padding-block: var(--e-3);
+  border-bottom: var(--linea-fina) solid var(--violeta-nota);
+}
+
+.pilar dt {
+  font-family: var(--f-display);
+  font-weight: var(--w-fuerte);
+  font-size: var(--t-h3);
+  letter-spacing: -0.02em;
+}
+
+.pilar dd {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+}
+
+/* --------------------------------------------------------------------------
+   11.f Proceso. Una secuencia real, por eso si va numerada
+   -------------------------------------------------------------------------- */
+
+.pasos {
+  list-style: none;
+  margin-top: var(--e-5);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: var(--linea-gruesa) solid var(--tinta);
+}
+
+.paso {
+  padding: var(--e-3) var(--e-3) var(--e-5) 0;
+  border-right: var(--linea-fina) solid var(--regla);
+  position: relative;
+}
+
+.paso:last-child { border-right: none; }
+
+.paso::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--linea-gruesa) * -1 - 3px);
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--violeta);
+  border-radius: 50%;
+}
+
+.paso__numero { display: block; margin-bottom: var(--e-3); }
+
+.paso__nombre {
+  font-size: var(--t-h3);
+  margin-bottom: var(--e-1);
+}
+
+.paso__texto {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+}
+
+/* --------------------------------------------------------------------------
+   11.g Clientes
+   -------------------------------------------------------------------------- */
+
+.clientes__intro { max-width: 62ch; }
+
+.clientes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--linea-fina);
+  margin-top: var(--e-5);
+  background: var(--violeta-nota);
+  border: var(--linea-fina) solid var(--violeta-nota);
+}
+
+.cliente {
+  display: grid;
+  gap: var(--e-1);
+  padding: var(--e-3);
+  background: var(--violeta-humo);
+  font-family: var(--f-display);
+  font-weight: var(--w-medio);
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  transition: background var(--dur-rapida) var(--ease-salida);
+}
+
+.cliente:hover { background: var(--lamina); }
+
+.cliente__sector { font-weight: 400; }
+
+.aviso {
+  margin-top: var(--e-3);
+  padding-left: var(--e-3);
+  border-left: var(--linea-gruesa) solid var(--violeta);
+  max-width: 62ch;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   11.h Contacto
+   -------------------------------------------------------------------------- */
+
+.contacto {
+  display: grid;
+  grid-template-columns: repeat(var(--columnas), 1fr);
+  gap: var(--e-6) var(--e-3);
+}
+
+.contacto__lado { grid-column: 1 / span 5; }
+.formulario { grid-column: 7 / span 6; }
+
+.correos {
+  list-style: none;
+  display: grid;
+  gap: 0;
+  margin-top: var(--e-4);
+  border-top: var(--linea-fina) solid rgba(255, 255, 255, 0.14);
+}
+
+.correos li {
+  display: grid;
+  gap: var(--e-1);
+  padding-block: var(--e-2);
+  border-bottom: var(--linea-fina) solid rgba(255, 255, 255, 0.14);
+}
+
+.correos a {
+  font-family: var(--f-spec);
+  font-size: var(--t-corto);
+  color: var(--papel);
+  text-decoration: none;
+  border-bottom: var(--linea-fina) solid transparent;
+  justify-self: start;
+  transition: color var(--dur-rapida) var(--ease-salida),
+              border-color var(--dur-rapida) var(--ease-salida);
+}
+
+.correos a:hover {
+  color: var(--violeta-claro);
+  border-bottom-color: var(--violeta-claro);
+}
+
+.contacto__lugares { margin-top: var(--e-4); }
+
+.campo {
+  display: grid;
+  gap: var(--e-1);
+  margin-bottom: var(--e-3);
+}
+
+.campo label {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--humo-claro);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: var(--e-2);
+  background: transparent;
+  border: var(--linea-fina) solid rgba(255, 255, 255, 0.28);
+  color: var(--papel);
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-cuerpo);
+  transition: border-color var(--dur-rapida) var(--ease-salida);
+}
+
+.campo select { color: var(--papel); }
+.campo select option { color: var(--tinta); }
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover { border-color: var(--violeta-claro); }
+
+.campo textarea { resize: vertical; min-height: 6rem; }
+
+/* trampa para robots: invisible para personas, sin display none para que
+   los rellenadores automaticos si la vean */
+.trampa {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formulario__enviar { margin-top: var(--e-2); }
+
+.formulario__enviar[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.seccion--tinta .aviso {
+  border-left-color: var(--violeta-claro);
+  color: var(--humo-claro);
+}
+
+/* --------------------------------------------------------------------------
+   11.i Pie
+   -------------------------------------------------------------------------- */
+
+.pie {
+  background: var(--violeta-tinta);
+  color: var(--papel);
+  padding-bottom: var(--e-5);
+}
+
+.pie__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--e-3);
+  padding-top: var(--e-4);
+  border-top: var(--linea-fina) solid rgba(255, 255, 255, 0.14);
+}
+
+.pie__marca { color: var(--papel); }
+.pie__marca .marca { height: 1.75rem; }
+.pie .spec { color: var(--humo-claro); }
+
+/* --------------------------------------------------------------------------
    12. Entradas
    -------------------------------------------------------------------------- */
 
@@ -975,23 +1416,50 @@ svg {
 @media (max-width: 900px) {
   .hero__marca,
   .hero__titular,
-  .hero__ficha,
-  .hero__pie,
-  .tira {
+  .hero__campo,
+  .hero__pie {
     grid-column: 1 / -1;
     grid-row: auto;
   }
 
-  /* en columna unica el argumento va antes que la ficha tecnica */
   .hero__marca   { order: 1; }
   .hero__titular { order: 2; }
   .hero__pie     { order: 3; margin-top: 0; }
-  .hero__ficha   { order: 4; grid-template-columns: repeat(2, 1fr); margin-top: var(--e-3); }
+
+  /* El campo se activa con el puntero. En tactil no hay puntero que lo
+     despierte, seria decoracion muerta ocupando media pantalla y gastando
+     bateria en el dispositivo con menos potencia. Fuera. */
+  .hero__campo { display: none; }
 
   .banco__grid {
     grid-template-columns: 1fr;
     gap: var(--e-5);
   }
+
+  .declara__titular,
+  .declara__cuerpo,
+  .diferencial__intro,
+  .pilares,
+  .contacto__lado,
+  .formulario {
+    grid-column: 1 / -1;
+  }
+
+  .declara__cuerpo { padding-top: var(--e-3); }
+
+  .pasos { grid-template-columns: repeat(2, 1fr); }
+  .paso:nth-child(2) { border-right: none; }
+  .paso:nth-child(-n+2) { border-bottom: var(--linea-fina) solid var(--regla); }
+
+  .servicio__cabecera {
+    grid-template-columns: 3rem 1fr 1.5rem;
+    row-gap: var(--e-1);
+  }
+
+  .servicio__entrada { grid-column: 2 / span 1; }
+  .servicio__lista { padding-left: calc(3rem + var(--e-3)); }
+
+  .pilar { grid-template-columns: 1fr; gap: var(--e-1); }
 }
 
 @media (max-width: 520px) {
@@ -1004,9 +1472,16 @@ svg {
     padding: var(--e-3);
   }
 
-  .revelado__lista li {
+  .revelado__lista li,
+  .servicio__lista li {
     grid-template-columns: 1.25rem 1fr;
   }
+
+  .pasos { grid-template-columns: 1fr; }
+  .paso { border-right: none; border-bottom: var(--linea-fina) solid var(--regla); padding-bottom: var(--e-3); }
+  .paso:last-child { border-bottom: none; }
+
+  .servicio__lista { padding-left: 0; }
 }
 
 /* --------------------------------------------------------------------------

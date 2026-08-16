@@ -156,6 +156,190 @@
   }
 
   /* ------------------------------------------------------------------------
+     1.b Campo de piezas del hero
+
+     Cada pieza es el isotipo girando sobre su punto. En reposo miran todas
+     a cero: un sistema. Al pasar el puntero, las cercanas se orientan hacia
+     el, con muelle amortiguado, y vuelven solas.
+
+     El bucle solo corre cuando queda movimiento pendiente y la seccion esta
+     a la vista. No hay animacion infinita de fondo.
+     ------------------------------------------------------------------------ */
+
+  var campo = document.querySelector('.campo');
+
+  if (campo) {
+    var COLUMNAS = 5;
+    var FILAS = 7;
+    var RADIO = 190;          /* alcance del puntero, en unidades del viewBox */
+    var RIGIDEZ = 0.07;       /* muelle */
+    var AMORTIGUA = 0.78;
+    var HUECOS = [3, 9, 16, 22, 27, 31];  /* posiciones vacias, para dar aire */
+
+    var VB = { w: 600, h: 760 };
+    var piezas = [];
+    var punteroActivo = false;
+    var puntero = { x: 0, y: 0 };
+    var idFrame = 0;
+    var enPantalla = true;
+
+    /* Ruido reproducible: el campo se ve igual en cada carga, no aleatorio */
+    function pseudo(i, semilla) {
+      var v = Math.sin(i * 12.9898 + semilla * 78.233) * 43758.5453;
+      return v - Math.floor(v);
+    }
+
+    (function sembrar() {
+      var pasoX = VB.w / (COLUMNAS + 1);
+      var pasoY = VB.h / (FILAS + 1);
+      var indice = 0;
+
+      for (var f = 0; f < FILAS; f++) {
+        for (var c = 0; c < COLUMNAS; c++) {
+          indice++;
+          if (HUECOS.indexOf(indice) > -1) continue;
+
+          var jitterX = (pseudo(indice, 1) - 0.5) * pasoX * 0.5;
+          var jitterY = (pseudo(indice, 2) - 0.5) * pasoY * 0.4;
+          var x = pasoX * (c + 1) + jitterX;
+          var y = pasoY * (f + 1) + jitterY;
+          var escala = 0.09 + pseudo(indice, 3) * 0.055;
+
+          var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          g.setAttribute('class', 'campo__pieza');
+          var uso = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+          uso.setAttribute('href', '#pieza');
+          g.appendChild(uso);
+          campo.appendChild(g);
+
+          piezas.push({
+            el: g,
+            x: x,
+            y: y,
+            escala: escala,
+            /* Nacen alineadas, no desordenadas. Si el bucle nunca corre
+               (pestana en segundo plano, rAF pausado, JS lento), el campo
+               se ve igual de correcto: todas mirando al mismo sitio, que
+               es justamente lo que la seccion afirma. */
+            angulo: 0,
+            objetivo: 0,
+            velocidad: 0,
+            despierta: false
+          });
+        }
+      }
+    })();
+
+    function pintarPieza(p) {
+      p.el.setAttribute(
+        'transform',
+        'translate(' + p.x.toFixed(2) + ',' + p.y.toFixed(2) + ') ' +
+        'rotate(' + p.angulo.toFixed(2) + ') ' +
+        'scale(' + p.escala.toFixed(4) + ')'
+      );
+    }
+
+    function paso() {
+      idFrame = 0;
+      var quedaMovimiento = false;
+
+      for (var i = 0; i < piezas.length; i++) {
+        var p = piezas[i];
+        var cerca = false;
+
+        if (punteroActivo) {
+          var dx = puntero.x - p.x;
+          var dy = puntero.y - p.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < RADIO) {
+            cerca = true;
+            /* mismo criterio que la tuerca: cero grados apuntando arriba */
+            p.objetivo = Math.atan2(dx, -dy) * 180 / Math.PI;
+          }
+        }
+
+        if (!cerca) p.objetivo = 0;
+
+        if (cerca !== p.despierta) {
+          p.despierta = cerca;
+          if (cerca) {
+            p.el.setAttribute('data-despierta', 'true');
+          } else {
+            p.el.removeAttribute('data-despierta');
+          }
+        }
+
+        /* por el camino corto, nunca dando la vuelta larga */
+        var delta = (((p.objetivo - p.angulo) % 360) + 540) % 360 - 180;
+        p.velocidad = (p.velocidad + delta * RIGIDEZ) * AMORTIGUA;
+        p.angulo += p.velocidad;
+
+        if (Math.abs(p.velocidad) > 0.05 || Math.abs(delta) > 0.3) {
+          quedaMovimiento = true;
+        }
+
+        pintarPieza(p);
+      }
+
+      if ((quedaMovimiento || punteroActivo) && enPantalla) {
+        idFrame = window.requestAnimationFrame(paso);
+      }
+    }
+
+    function despertarBucle() {
+      if (idFrame || !enPantalla) return;
+      /* si el campo esta oculto por CSS, no hay nada que animar */
+      if (!campo.getClientRects().length) return;
+      idFrame = window.requestAnimationFrame(paso);
+    }
+
+    /* Si la pestana se va al fondo, el navegador congela el fotograma
+       pendiente y el campo se queda a medias. Al volver se cancela el
+       fotograma zombi y se reanuda. */
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState !== 'visible') return;
+      if (idFrame) {
+        window.cancelAnimationFrame(idFrame);
+        idFrame = 0;
+      }
+      despertarBucle();
+    });
+
+    if (movimientoReducido.matches) {
+      piezas.forEach(function (p) { p.angulo = 0; pintarPieza(p); });
+    } else {
+      var zona = campo.closest('.hero__campo');
+
+      zona.style.pointerEvents = 'none';
+      var hero = campo.closest('.hero');
+
+      hero.addEventListener('pointermove', function (evento) {
+        var caja = campo.getBoundingClientRect();
+        if (!caja.width || !caja.height) return;
+        puntero.x = ((evento.clientX - caja.left) / caja.width) * VB.w;
+        puntero.y = ((evento.clientY - caja.top) / caja.height) * VB.h;
+        punteroActivo = true;
+        despertarBucle();
+      });
+
+      hero.addEventListener('pointerleave', function () {
+        punteroActivo = false;
+        despertarBucle();
+      });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entradas) {
+          enPantalla = entradas[0].isIntersecting;
+          if (enPantalla) despertarBucle();
+        }, { threshold: 0 }).observe(campo);
+      }
+
+      piezas.forEach(pintarPieza);
+      despertarBucle();
+    }
+  }
+
+  /* ------------------------------------------------------------------------
      2. Cota de ancho del lienzo
      La lamina declara su propia medida, y se actualiza al redimensionar.
      ------------------------------------------------------------------------ */
@@ -241,6 +425,34 @@
     if ('ResizeObserver' in window) {
       new ResizeObserver(asignarRetardos).observe(document.body);
     }
+  }
+
+  /* ------------------------------------------------------------------------
+     3.b Servicios: filas que se abren
+     Uno abierto a la vez. El primero arranca abierto para que la seccion
+     nunca se lea como una lista muerta de titulos.
+     ------------------------------------------------------------------------ */
+
+  var servicios = document.querySelectorAll('.servicio');
+
+  if (servicios.length) {
+    Array.prototype.forEach.call(servicios, function (servicio) {
+      var boton = servicio.querySelector('.servicio__cabecera');
+
+      boton.addEventListener('click', function () {
+        var abierto = servicio.getAttribute('data-abierto') === 'true';
+
+        Array.prototype.forEach.call(servicios, function (otro) {
+          otro.removeAttribute('data-abierto');
+          otro.querySelector('.servicio__cabecera').setAttribute('aria-expanded', 'false');
+        });
+
+        if (!abierto) {
+          servicio.setAttribute('data-abierto', 'true');
+          boton.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
   }
 
   /* ------------------------------------------------------------------------
