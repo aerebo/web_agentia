@@ -703,56 +703,65 @@ svg {
    punto de la marca agrandado hasta volverse mecanismo. Es el mismo eje.
    -------------------------------------------------------------------------- */
 
-.tira {
-  grid-column: 8 / span 5;
-  grid-row: 3;
-  margin-top: var(--e-3);
-  padding: var(--e-3);
-  background: var(--lamina);
-  border: var(--linea-fina) solid var(--regla);
+.banco {
+  padding-block: var(--sec-normal);
+  border-top: var(--linea-fina) solid var(--regla);
 }
 
-.tira__titulo {
+.banco__cabecera {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: var(--e-2);
-  margin-bottom: var(--e-3);
   padding-bottom: var(--e-1);
   border-bottom: var(--linea-fina) solid var(--regla);
+  margin-bottom: var(--e-5);
 }
 
-.tira__valor {
+.banco__modo {
   color: var(--tinta);
 }
 
-.tira__nota {
-  margin-top: var(--e-3);
-  padding-top: var(--e-2);
-  border-top: var(--linea-fina) solid var(--regla);
+.banco__grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: var(--e-6);
+  align-items: start;
+}
+
+.banco__mando {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-4);
+  padding: var(--e-4);
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+}
+
+.marca--panel {
+  height: clamp(5rem, 11vw, 8rem);
 }
 
 .tuerca {
   display: grid;
-  grid-template-columns: 6.5rem 1fr;
-  align-items: center;
-  gap: var(--e-3);
+  justify-items: center;
+  gap: var(--e-2);
   transition: --giro var(--dur-media) var(--ease-fisica);
 }
 
 .tuerca__mando {
   position: relative;
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  touch-action: none;
 }
 
-/* el cuerpo de la tuerca, con sus cuatro muescas */
-.tuerca__cuerpo {
+/* la pista fija con sus cuatro muescas. No gira: es la referencia */
+.tuerca__pista {
   position: absolute;
   inset: 0;
-  border: var(--linea-fina) solid var(--borde);
+  border: var(--linea-fina) solid var(--regla);
   border-radius: 50%;
-  transform: rotate(var(--giro));
 }
 
 .tuerca__muesca {
@@ -760,84 +769,182 @@ svg {
   top: 50%;
   left: 50%;
   width: var(--linea-gruesa);
-  height: 0.55rem;
+  height: 0.5rem;
   margin-left: -1px;
   background: var(--borde);
-  transform-origin: 1px 3.25rem;
-  transform: rotate(var(--angulo)) translateY(-3.25rem);
+  transform-origin: 1px 3.75rem;
+  transform: rotate(var(--angulo)) translateY(-3.75rem);
 }
 
-/* la aguja que apunta al modo activo */
+/* lo que gira: la aguja violeta. Es tambien el tirador */
+.tuerca__agarre {
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--giro));
+  pointer-events: none;
+}
+
+/* zona de agarre ancha alrededor de la aguja fina, para que no haya que
+   apuntar a un pelo de 2 px */
+.tuerca__tirador {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 2.75rem;
+  height: 3.35rem;
+  margin-left: -1.375rem;
+  pointer-events: auto;
+  cursor: grab;
+}
+
 .tuerca__aguja {
   position: absolute;
-  top: 50%;
   left: 50%;
+  bottom: 0;
   width: var(--linea-gruesa);
-  height: 2.2rem;
+  height: 2.6rem;
   margin-left: -1px;
-  margin-top: -2.2rem;
   background: var(--violeta);
 }
 
-/* el punto de la marca, en el centro y quieto: es el eje */
+/* el punto de la marca: eje, centro y parte del agarre */
 .tuerca__eje {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin: -0.375rem 0 0 -0.375rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: -0.75rem 0 0 -0.75rem;
   background: var(--violeta);
   border-radius: 50%;
-}
-
-/* el control real, invisible encima de la tuerca: teclado y arrastre */
-.tuerca__control {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  opacity: 0;
   cursor: grab;
+  transition: transform var(--dur-rapida) var(--ease-fisica);
 }
 
-.tuerca__control:active {
+.tuerca__eje:hover {
+  transform: scale(1.12);
+}
+
+.tuerca--arrastrando .tuerca__tirador,
+.tuerca--arrastrando .tuerca__eje {
   cursor: grabbing;
 }
 
-.tuerca__control:focus-visible + .tuerca__cuerpo {
+/* mientras se arrastra, la marca sigue al dedo sin suavizado */
+.tuerca--arrastrando,
+.marca--siguiendo {
+  transition: none;
+}
+
+/* el control real: existe para teclado y lectores, no se ve */
+.tuerca__control {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.tuerca__control:focus-visible ~ .tuerca__pista {
   outline: var(--linea-gruesa) solid var(--violeta);
   outline-offset: 4px;
 }
 
-.tuerca__modos {
+.tuerca__pie {
+  margin-top: var(--e-1);
+}
+
+/* --------------------------------------------------------------------------
+   11.b Lo que revela la tuerca
+   -------------------------------------------------------------------------- */
+
+.banco__revelado {
   display: grid;
-  gap: var(--e-1);
+}
+
+/* las cuatro fichas se apilan en la misma celda: asi el alto lo marca la
+   mas larga y no hay salto de layout al cambiar de modo */
+.revelado {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity var(--dur-media) var(--ease-salida),
+    transform var(--dur-media) var(--ease-salida),
+    visibility 0s linear var(--dur-media);
+}
+
+.revelado[data-activo='true'] {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s, 0s, 0s;
+}
+
+.revelado__indice {
+  margin-bottom: var(--e-2);
+}
+
+.revelado h2 {
+  font-size: var(--t-h2);
+  margin-bottom: var(--e-2);
+}
+
+.revelado__entrada {
+  font-size: var(--t-lede);
+  color: var(--lapiz);
+  max-width: 46ch;
+  margin-bottom: var(--e-3);
+}
+
+.revelado__lista {
   list-style: none;
+  display: grid;
+  gap: var(--e-2);
   border-top: var(--linea-fina) solid var(--regla);
   padding-top: var(--e-2);
+  margin-bottom: var(--e-4);
 }
 
-.tuerca__modos li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--e-2);
+.revelado__lista li {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: var(--e-1);
+  font-size: var(--t-corto);
   color: var(--lapiz);
-  transition: color var(--dur-rapida) var(--ease-salida);
+  padding-bottom: var(--e-2);
+  border-bottom: var(--linea-fina) solid var(--regla);
 }
 
-.tuerca__modos li[data-activo='true'] {
-  color: var(--tinta);
+/* raya, no punto: el punto es de la marca y no se repite como vineta */
+.revelado__lista li::before {
+  content: '';
+  width: 0.875rem;
+  height: var(--linea-gruesa);
+  margin-top: 0.72em;
+  background: var(--violeta);
 }
 
-.tuerca__modos li[data-activo='true'] .tuerca__glifo {
+.revelado__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  font-size: var(--t-corto);
+  font-weight: var(--w-fuerte);
   color: var(--violeta-fuerte);
+  text-decoration: none;
+  border-bottom: var(--linea-gruesa) solid transparent;
+  transition: border-color var(--dur-rapida) var(--ease-salida);
 }
 
-.tuerca__glifo {
-  font-variation-settings: 'wght' 700, 'wdth' var(--wd-estrecho);
+.revelado__enlace:hover {
+  border-bottom-color: var(--violeta-fuerte);
+}
+
+.revelado__enlace:hover .boton__flecha {
+  transform: translateX(4px);
 }
 
 /* --------------------------------------------------------------------------
@@ -880,7 +987,11 @@ svg {
   .hero__titular { order: 2; }
   .hero__pie     { order: 3; margin-top: 0; }
   .hero__ficha   { order: 4; grid-template-columns: repeat(2, 1fr); margin-top: var(--e-3); }
-  .tira          { order: 5; margin-top: var(--e-4); }
+
+  .banco__grid {
+    grid-template-columns: 1fr;
+    gap: var(--e-5);
+  }
 }
 
 @media (max-width: 520px) {
@@ -889,14 +1000,12 @@ svg {
     justify-content: space-between;
   }
 
-  .tuerca {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: var(--e-4);
+  .banco__mando {
+    padding: var(--e-3);
   }
 
-  .tuerca__modos {
-    width: 100%;
+  .revelado__lista li {
+    grid-template-columns: 1.25rem 1fr;
   }
 }
 

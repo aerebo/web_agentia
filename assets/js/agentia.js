@@ -19,33 +19,140 @@
   var ESTADOS = ['marca', 'play', 'lapiz', 'code'];
   var NOMBRES = ['Identidad', 'Video', 'Diseño', 'Código'];
 
+  /* separacion y escala del estado code, en las mismas unidades que el CSS */
+  var SEP_CODE = 60;
+  var ESCALA_CODE = 0.62;
+
   var control = document.getElementById('tuerca');
 
   if (control) {
-    var cuerpoTuerca = control.closest('.tuerca');
-    var marcaHero = document.querySelector('[data-marca-hero]');
+    var tuerca = control.closest('.tuerca');
+    var mando = control.closest('.tuerca__mando');
+    var marcaPanel = document.querySelector('[data-marca-panel]');
     var salidaModo = document.getElementById('modo-activo');
-    var filasModo = document.querySelectorAll('.tuerca__modos li');
+    var revelados = document.querySelectorAll('.revelado');
 
-    function aplicarTuerca() {
-      var paso = Number(control.value);
+    /* angulo continuo: no se reinicia al pasar de 360, para que la aguja
+       nunca se desenrolle hacia atras sin motivo */
+    var anguloContinuo = 0;
+    var arrastrando = false;
 
-      cuerpoTuerca.style.setProperty('--giro', paso * 90 + 'deg');
-      if (marcaHero) marcaHero.dataset.estado = ESTADOS[paso];
+    function pasoDesdeAngulo(a) {
+      return ((Math.round(a / 90) % 4) + 4) % 4;
+    }
+
+    /* Durante el arrastre libre, el estado code se abre de forma gradual:
+       cuanto mas cerca de los 270 grados, mas separados y mas pequenos los
+       brazos. Asi no hay salto al soltar. */
+    function proximidadACode(a) {
+      var d = Math.abs((((a - 270) % 360) + 540) % 360 - 180);
+      return Math.max(0, Math.min(1, 1 - d / 45));
+    }
+
+    function pintarModo(paso) {
       if (salidaModo) salidaModo.textContent = NOMBRES[paso];
       control.setAttribute('aria-valuetext', NOMBRES[paso]);
 
-      Array.prototype.forEach.call(filasModo, function (fila) {
-        if (Number(fila.dataset.modo) === paso) {
-          fila.setAttribute('data-activo', 'true');
+      Array.prototype.forEach.call(revelados, function (ficha) {
+        if (Number(ficha.dataset.modo) === paso) {
+          ficha.setAttribute('data-activo', 'true');
         } else {
-          fila.removeAttribute('data-activo');
+          ficha.removeAttribute('data-activo');
         }
       });
     }
 
-    control.addEventListener('input', aplicarTuerca);
-    aplicarTuerca();
+    /* estado libre: se escribe angulo crudo, sin pasar por data-estado */
+    function pintarAnguloLibre(a) {
+      var t = proximidadACode(a);
+      [tuerca, marcaPanel].forEach(function (el) {
+        if (!el) return;
+        el.style.setProperty('--giro', a + 'deg');
+        el.style.setProperty('--gemelo', t);
+        el.style.setProperty('--sep', SEP_CODE * t + 'px');
+        el.style.setProperty('--escala', 1 - (1 - ESCALA_CODE) * t);
+      });
+    }
+
+    /* estado en reposo: manda el data-estado y el CSS pone los valores */
+    function asentar(paso) {
+      [tuerca, marcaPanel].forEach(function (el) {
+        if (!el) return;
+        el.style.removeProperty('--gemelo');
+        el.style.removeProperty('--sep');
+        el.style.removeProperty('--escala');
+      });
+      if (marcaPanel) marcaPanel.dataset.estado = ESTADOS[paso];
+      /* la tuerca no tiene data-estado, asi que conserva el angulo continuo */
+      if (tuerca) tuerca.style.setProperty('--giro', anguloContinuo + 'deg');
+      if (marcaPanel) marcaPanel.style.setProperty('--giro', anguloContinuo + 'deg');
+      pintarModo(paso);
+    }
+
+    /* mueve el angulo continuo al equivalente mas cercano del paso pedido,
+       para que ir de Codigo a Identidad avance 90 grados y no retroceda 270 */
+    function irAPaso(paso) {
+      var objetivo = paso * 90;
+      var delta = (((objetivo - anguloContinuo) % 360) + 540) % 360 - 180;
+      anguloContinuo += delta;
+      control.value = paso;
+      asentar(paso);
+    }
+
+    control.addEventListener('input', function () {
+      irAPaso(Number(control.value));
+    });
+
+    /* ---- arrastre giratorio ---- */
+
+    function anguloDelPuntero(evento) {
+      var caja = mando.getBoundingClientRect();
+      var cx = caja.left + caja.width / 2;
+      var cy = caja.top + caja.height / 2;
+      /* 0 grados arriba, positivo en sentido horario */
+      return Math.atan2(evento.clientX - cx, cy - evento.clientY) * 180 / Math.PI;
+    }
+
+    function alMover(evento) {
+      if (!arrastrando) return;
+      var crudo = anguloDelPuntero(evento);
+      var delta = (((crudo - anguloContinuo) % 360) + 540) % 360 - 180;
+      anguloContinuo += delta;
+      pintarAnguloLibre(anguloContinuo);
+      pintarModo(pasoDesdeAngulo(anguloContinuo));
+    }
+
+    function alSoltar(evento) {
+      if (!arrastrando) return;
+      arrastrando = false;
+      tuerca.classList.remove('tuerca--arrastrando');
+      if (marcaPanel) marcaPanel.classList.remove('marca--siguiendo');
+      if (evento.pointerId !== undefined && mando.releasePointerCapture) {
+        try { mando.releasePointerCapture(evento.pointerId); } catch (e) {}
+      }
+      irAPaso(pasoDesdeAngulo(anguloContinuo));
+    }
+
+    Array.prototype.forEach.call(mando.querySelectorAll('[data-agarre]'), function (tirador) {
+      tirador.addEventListener('pointerdown', function (evento) {
+        evento.preventDefault();
+        arrastrando = true;
+        tuerca.classList.add('tuerca--arrastrando');
+        if (marcaPanel) marcaPanel.classList.add('marca--siguiendo');
+        control.focus({ preventScroll: true });
+        if (mando.setPointerCapture) {
+          try { mando.setPointerCapture(evento.pointerId); } catch (e) {}
+        }
+        alMover(evento);
+      });
+    });
+
+    mando.addEventListener('pointermove', alMover);
+    mando.addEventListener('pointerup', alSoltar);
+    mando.addEventListener('pointercancel', alSoltar);
+    window.addEventListener('blur', alSoltar);
+
+    irAPaso(0);
   }
 
   /* ------------------------------------------------------------------------
