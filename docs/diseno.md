@@ -100,6 +100,33 @@ Medido sobre la página real, no estimado.
 | `--borde` sobre `--papel` | 3.29:1 | AA componentes no textuales |
 | `--regla` sobre `--papel` | 1.25:1 | Solo decorativo, nunca borde de control |
 
+### 3.3 Ritmo tonal de la página
+
+El violeta atraviesa el sitio en tres profundidades de fondo. No es decoración: marca el recorrido.
+
+| Sección | Fondo | Por qué |
+|---|---|---|
+| Hero | `--papel` | Punto de partida neutro |
+| Banco de marca | `--papel` | La lámina de espécimen ya aporta su propio escalón |
+| Posicionamiento | `--papel` | Una sola frase, mucho aire |
+| Servicios | `--papel` | Lista larga: el fondo no debe competir |
+| Diferencial | `--violeta-humo` | Primer cambio de tono, marca el argumento |
+| Proceso | `--papel` | Vuelve a neutro, la secuencia manda |
+| Clientes | `--violeta-humo` | Segundo lavado, cierra el bloque de prueba |
+| Contacto y pie | `--violeta-tinta` | Cierre. **Único bloque oscuro de todo el sitio** |
+
+**Regla dura:** el oscuro aparece una sola vez y al final. Un bloque oscuro suelto en medio de una página clara se lee como un error de copiar y pegar, no como una decisión.
+
+### 3.4 Contraste sobre la banda oscura
+
+| Par | Ratio |
+|---|---|
+| `--papel` sobre `--violeta-tinta` | 15.65:1 |
+| `--humo-claro` sobre `--violeta-tinta` | 6.24:1 |
+| `--violeta-claro` sobre `--violeta-tinta` | 6.83:1 |
+
+Sobre oscuro **no se usa `--violeta`**: da 4.42:1 y se queda corto para texto pequeño. Para eso está `--violeta-claro`.
+
 **Regla que se deriva de esto:** el violeta de marca `#8665F7` da 3.54:1 sobre papel. Cumple para texto grande y para componentes, pero **no** para texto pequeño ni como fondo de un botón con texto encima, donde daba 3.86:1. Para eso está `--violeta-fuerte`. No son dos acentos: es el mismo acento en dos profundidades, y la de marca manda en todo lo que sea identidad, empezando por el punto.
 
 `--regla` nunca delimita un campo de formulario ni un control. Para eso está `--borde`.
@@ -238,7 +265,17 @@ Sin sombras. La elevación se comunica con `--lamina` sobre `--papel` y con lín
 | `--ease-fisica` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Solo las físicas del isotipo, con rebote |
 | `--retardo-punto` | `60ms` | El punto siempre llega después que los brazos |
 
-**Reglas duras:**
+### 7.1 El campo del hero
+
+29 piezas del isotipo, cada una girando sobre su propio punto. Muelle amortiguado con rigidez 0.07 y amortiguación 0.78, alcance del puntero 190 unidades del `viewBox`.
+
+- **En reposo miran todas a cero.** Ese es el argumento: un sistema, no un enjambre suelto.
+- **Nacen ya alineadas, no desordenadas.** Si `requestAnimationFrame` nunca corre, el campo se ve igual de correcto. Mismo principio que las entradas de sección.
+- **El bucle lleva control explícito de fotograma.** Si la pestaña se va al fondo con un fotograma pendiente, el navegador lo congela y sin este control el campo se quedaría muerto para siempre. Al volver al primer plano se cancela el fotograma zombi y se reanuda.
+- **El bucle solo corre cuando hay movimiento pendiente y la sección está a la vista.** No hay animación infinita de fondo.
+- **Se oculta por debajo de 900 px.** Se activa con el puntero, y en táctil no hay puntero: sería decoración muerta ocupando media pantalla y gastando batería en el dispositivo con menos potencia.
+
+### 7.2 Reglas duras
 
 - Solo se animan `transform` y `opacity`. Nunca `top`, `left`, `width` ni `height`.
 - Prohibido `window.addEventListener('scroll')`. Se usa `IntersectionObserver` o animaciones de scroll de CSS.
