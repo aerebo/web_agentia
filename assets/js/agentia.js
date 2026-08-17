@@ -166,7 +166,7 @@
      a la vista. No hay animacion infinita de fondo.
      ------------------------------------------------------------------------ */
 
-  var campo = document.querySelector('.campo');
+  var campo = document.querySelector('.campo-piezas');
 
   if (campo) {
     var COLUMNAS = 5;
