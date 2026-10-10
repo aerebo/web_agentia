@@ -33,6 +33,7 @@ publica en GitHub Pages, así que no se pueden usar rutas absolutas que
 empiecen por barra: romperían fuera de la raíz del dominio.
 """
 
+import hashlib
 import pathlib
 import re
 import shutil
@@ -85,6 +86,21 @@ PAGINAS = [
 ]
 
 
+def sello(ruta):
+    """Ocho caracteres del hash del archivo, para colgar de su URL.
+
+    Sin esto, el navegador se queda con el CSS que ya tenia aunque el HTML
+    sea nuevo: GitHub Pages sirve los assets con cache y la URL no cambia
+    nunca. El sintoma es de los peores que hay, porque la pagina carga,
+    no da ningun error, y simplemente no se ve el cambio. Pasa igual en
+    el servidor local.
+
+    Va por contenido y no por fecha: si el archivo no cambia, la URL
+    tampoco, y el navegador se lo ahorra de verdad.
+    """
+    return hashlib.sha1((RAIZ / ruta).read_bytes()).hexdigest()[:8]
+
+
 def pieza(nombre):
     return (PARTES / (nombre + ".html")).read_text(encoding="utf-8")
 
@@ -128,6 +144,8 @@ def armar():
 
     cabeza = pieza("cabeza")
     pie = pieza("pie")
+    version_css = sello("assets/css/agentia.css")
+    version_js = sello("assets/js/agentia.js")
 
     for pagina in PAGINAS:
         ruta = pagina["ruta"]
@@ -161,6 +179,10 @@ def armar():
                 .replace("{{AGENDAR}}", agendar)
                 .replace("{{CONTACTAR}}", contactar)
                 .replace("{{RAIZ}}", raiz))
+        html = html.replace("assets/css/agentia.css",
+                            "assets/css/agentia.css?v=" + version_css)
+        html = html.replace("assets/js/agentia.js",
+                            "assets/js/agentia.js?v=" + version_js)
         html = marcar_activo(html, ruta)
 
         destino = SALIDA / ruta if ruta else SALIDA

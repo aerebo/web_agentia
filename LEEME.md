@@ -203,7 +203,27 @@ subdirectorio, y una ruta absoluta se iría a la raíz del dominio y daría 404.
 Funcionaría en el dominio propio y fallaría en la vista previa, que es la peor
 combinación posible: se rompe justo donde lo revisa el equipo.
 
-### 4.9 El radio del cuadro IA ya no es el medido
+### 4.9 El CSS y el JS van con sello de contenido en la URL
+
+`armar.py` les cuelga `?v=` y ocho caracteres del hash del archivo:
+
+```html
+<link rel="stylesheet" href="assets/css/agentia.css?v=5bf0d3ec">
+```
+
+**Sin eso el navegador se queda con el CSS que ya tenia aunque el HTML sea
+nuevo.** GitHub Pages sirve los assets con cache y la URL no cambiaba nunca.
+El sintoma es de los peores que hay: la pagina carga, no da ningun error, y
+simplemente no se ve el cambio. Paso de verdad durante el desarrollo.
+
+Va por contenido y no por fecha: si el archivo no cambia, la URL tampoco, y
+el navegador se lo ahorra de verdad.
+
+**El HTML sigue sin sello**, porque no puede tenerlo: es la puerta de
+entrada. Para eso esta el sello de version del pie, que dice de un vistazo
+si lo que ves es lo ultimo.
+
+### 4.10 El radio del cuadro IA ya no es el medido
 
 El original entregado tenía radio 0.19 de la altura de mayúscula. En el código
 dice 0.24, y no es un error de transcripción.
@@ -215,7 +235,7 @@ que siga siendo lo más redondeado de la página.
 **Si algún día se quitan las tarjetas, vuelve a 0.19.** Ver la sección 6 de
 `docs/diseno.md`.
 
-### 4.10 La página activa se marca al armar, no con JavaScript
+### 4.11 La página activa se marca al armar, no con JavaScript
 
 `armar.py` le pone `aria-current="page"` al enlace de la página en la que estás.
 Se hace al armar a propósito: si dependiera del script, un fallo de JS dejaría el
