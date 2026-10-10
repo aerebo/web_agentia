@@ -250,21 +250,25 @@ Lección para la próxima: cuando un bloque cambia de fondo, **no basta con mira
 
 ## 4. Tipografía
 
-### 4.1 Familias
+### 4.1 La familia
 
-Las tres son SIL Open Font License 1.1, verificadas, autoalojadas en `assets/fonts/`, con `font-display: swap`.
+**Una sola, desde el 10 de octubre de 2026: Instrument Sans.** Antes eran tres —Bricolage Grotesque, Instrument Sans y Martian Mono— y Agentia pidió reducirlo a una.
 
-| Rol | Familia | Ejes | Archivo | Peso |
-|---|---|---|---|---|
-| Display | Bricolage Grotesque | `wght` 200 a 800, `wdth` 75 a 100, `opsz` 12 a 96 | `bricolage-grotesque-var-latin.woff2` | 128.5 KB |
-| Cuerpo | Instrument Sans | `wght` 400 a 700, `wdth` 75 a 100 | `instrument-sans-var-latin.woff2` | 56 KB |
-| Especificación | Martian Mono | `wght` 100 a 800, `wdth` 75 a 112.5 | `martian-mono-var-latin.woff2` | 37.6 KB |
+**Se conservó Instrument Sans porque el logotipo está construido con ella.** Cualquier otra elección habría obligado a rehacer la marca.
 
-Total: 222 KB. Subconjunto latino, que cubre el español completo incluidos acentos, eñe y signos de apertura.
+| Token | Valor | Papel que documenta |
+|---|---|---|
+| `--f-display` | `'Instrument Sans'` | Titulares |
+| `--f-cuerpo` | `'Instrument Sans'` | Texto corrido, botones, campos |
+| `--f-spec` | `'Instrument Sans'` | Cotas, números, etiquetas |
 
-Las tres licencias están en `assets/fonts/OFL-*.txt` y deben viajar con los archivos.
+**Los tres tokens siguen existiendo y apuntan a la misma familia.** No es redundancia: cada uno documenta un papel distinto, y el día que se quiera recuperar una familia de titulares se cambia una línea en vez de perseguir cien reglas.
 
-**Por qué estas y no otras.** Bricolage es una grotesca con desajustes deliberados en las terminaciones, o sea que no se lee neutra, y sus tres ejes variables son el material mismo de la demostración: sin ejes no hay nada que enseñar. Instrument Sans es la contraparte silenciosa, con caja baja alta que sostiene texto pequeño. Martian Mono es estrecha y se lee como dato técnico, no como código de película. Unbounded queda descartada por estar ocupada por slinky.pe en el mismo mercado.
+**Qué se perdió, dicho claro.** El contraste tipográfico entre los tres papeles. La cota ya no es monoespaciada: lo que la distingue del texto corrido ahora es la caja alta, el tracking de 0.08em y el ancho estrecho. Son tres señales en vez de cuatro, y bastan, pero el sistema es más plano que antes.
+
+Se mantiene `font-variant-numeric: tabular-nums` en las cotas para que los números de columnas distintas sigan alineando sin la mono.
+
+**Peso:** 166 KB menos. El sitio pasó de 352 a 186 KB.
 
 ### 4.2 Escala
 

@@ -5,32 +5,28 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Tipografias autoalojadas. SIL OFL 1.1, licencias en assets/fonts/
-   -------------------------------------------------------------------------- */
+   1. La tipografia. Una sola familia, SIL OFL 1.1, licencia en assets/fonts/
 
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  src: url('../fonts/bricolage-grotesque-var-latin.woff2') format('woff2');
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-style: normal;
-  font-display: swap;
-}
+   Hasta el 10 de octubre de 2026 eran tres: Bricolage Grotesque para
+   titulares, Instrument Sans para el cuerpo y Martian Mono para cotas y
+   numeros. Agentia pidio una sola.
+
+   Se conserva Instrument Sans y no las otras dos por un motivo que no
+   admite discusion: el logotipo esta construido con ella. Cambiar de
+   familia seria cambiar la marca.
+
+   Las otras dos se borraron del repositorio, con sus licencias: la OFL
+   obliga a que la licencia viaje con la fuente, no a guardarla cuando la
+   fuente ya no esta. Se recuperan del historial si alguna vez vuelven.
+
+   Peso que se ahorra: 166 KB de los 352 que pesaba el sitio.
+   -------------------------------------------------------------------------- */
 
 @font-face {
   font-family: 'Instrument Sans';
   src: url('../fonts/instrument-sans-var-latin.woff2') format('woff2');
   font-weight: 400 700;
   font-stretch: 75% 100%;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Martian Mono';
-  src: url('../fonts/martian-mono-var-latin.woff2') format('woff2');
-  font-weight: 100 800;
-  font-stretch: 75% 112.5%;
   font-style: normal;
   font-display: swap;
 }
@@ -89,9 +85,13 @@
   --humo-claro: #959CBE;
 
   /* familias */
-  --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  /* Los tres nombres siguen existiendo y apuntan a la misma familia. No
+     es redundancia: cada uno documenta un papel distinto en la pagina, y
+     el dia que se quiera recuperar una familia de titulares se cambia una
+     linea en vez de perseguir cien reglas. */
+  --f-display: 'Instrument Sans', system-ui, sans-serif;
   --f-cuerpo: 'Instrument Sans', system-ui, sans-serif;
-  --f-spec: 'Martian Mono', ui-monospace, monospace;
+  --f-spec: 'Instrument Sans', system-ui, sans-serif;
 
   /* escala tipografica */
   --t-display: clamp(3rem, 9vw, 7.5rem);
@@ -108,15 +108,17 @@
   --t-indice: clamp(1.5rem, 2.2vw, 2rem);
 
   /* peso y ancho */
-  --w-fino: 200;
   --w-libro: 400;
   --w-medio: 500;
   --w-fuerte: 600;
   --wd-estrecho: 75;
   --wd-normal: 100;
 
-  /* peso de titulares */
-  --w-titular: 340;
+  /* Peso de titulares. Era 340, que venia de Bricolage, cuyo eje empieza
+     en 200. Instrument Sans empieza en 400, asi que 340 se redondeaba
+     solo hacia arriba. Se escribe el valor real para que nadie crea que
+     los titulares van mas finos de lo que van. */
+  --w-titular: 400;
 
   /* angulo de la aguja de la tuerca */
   --giro: 0deg;
@@ -240,10 +242,14 @@ svg {
   padding-inline: var(--margen);
 }
 
+/* La cota ya no es monoespaciada. Lo que la sigue distinguiendo del texto
+   corrido es la caja alta, el tracking abierto y el ancho estrecho, que
+   son tres senales y bastan. Se mantiene tabular-nums para que los
+   numeros de columnas distintas sigan alineando. */
 .spec {
   font-family: var(--f-spec);
   font-size: var(--t-spec);
-  font-variation-settings: 'wght' 400, 'wdth' var(--wd-estrecho);
+  font-variation-settings: 'wght' 500, 'wdth' var(--wd-estrecho);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--lapiz);

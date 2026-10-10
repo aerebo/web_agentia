@@ -372,23 +372,35 @@ No son tareas técnicas: necesitan respuesta de Agentia antes de tocarse.
 
 ---
 
-## 9. Tipografías y licencias
+## 9. Tipografía y licencia
 
-Las tres son **SIL Open Font License 1.1**, que permite el autoalojamiento sin
-pagar y sin pedir permiso. Las licencias están en `assets/fonts/` y **tienen que
-viajar con los archivos** si el sitio se copia a otro lado.
+**Una sola familia desde el 10 de octubre de 2026: Instrument Sans.**
 
-| Rol | Familia | Ejes variables |
-|---|---|---|
-| Display | Bricolage Grotesque | peso 200-800, ancho 75-100, óptico 12-96 |
-| Cuerpo | Instrument Sans | peso 400-700, ancho 75-100 |
-| Datos | Martian Mono | peso 100-800, ancho 75-112.5 |
+Antes eran tres: Bricolage Grotesque para titulares, Instrument Sans para el
+cuerpo y Martian Mono para cotas y números. Agentia pidió una sola.
 
-Solo se incluye el subconjunto latino, que cubre el español completo con acentos,
-eñe y signos de apertura.
+**Se conservó Instrument Sans por un motivo que no admite discusión: el
+logotipo está construido con ella.** Cambiar de familia sería cambiar la marca.
 
-El logotipo **sí es tipografía**, desde el cambio de marca del 9 de octubre de
-2026: Instrument Sans 700 al 92% de ancho. Esto invierte la regla anterior, que
-exigía trazados, y el motivo es que la marca cambió de naturaleza. Los SVG del
-logotipo viejo siguen en `assets/img/` pero ya no se usan en la página. Ver la
-sección 2 de `docs/diseno.md`.
+| Rol | Ejes variables |
+|---|---|
+| Todo | peso 400-700, ancho 75-100 |
+
+Solo se incluye el subconjunto latino, que cubre el español completo con
+acentos, eñe y signos de apertura.
+
+Es **SIL Open Font License 1.1**, que permite el autoalojamiento sin pagar y
+sin pedir permiso. La licencia está en `assets/fonts/` y **tiene que viajar con
+el archivo** si el sitio se copia a otro lado.
+
+Las dos familias que se fueron se borraron con sus licencias. La OFL obliga a
+que la licencia viaje con la fuente, no a guardarla cuando la fuente ya no está.
+Se recuperan del historial de git si alguna vez vuelven.
+
+**Qué se ganó y qué se perdió.** Se ganaron 166 KB: el sitio pasó de 352 a 186.
+Se perdió el contraste tipográfico entre titular, cuerpo y cota, que ahora se
+distinguen solo por tamaño, peso, caja y tracking. Son cuatro señales y bastan,
+pero es menos de lo que había.
+
+El logotipo **sí es tipografía**, al revés que el original de Illustrator:
+Instrument Sans 700 al 92% de ancho. Ver la sección 2 de `docs/diseno.md`.
