@@ -3,6 +3,8 @@
 Documento fuente para la construcción de agentia.com.pe.
 Todo lo marcado `[VERIFICAR]` o `[PROVISIONAL]` debe confirmarse antes de publicar.
 
+**Los «eyebrow» de este documento ya no se publican.** El 10 de octubre de 2026 Agentia pidió quitar las cotas pequeñas que encabezaban cada sección —«Servicios», «Cómo trabajamos», «Quiénes somos», «Hablemos» y demás—. Siguen anotadas aquí porque ordenan el documento, pero **no van a la página**: el titular de cada sección ya dice de qué va.
+
 **El sitio son cinco páginas desde el 10 de octubre de 2026.** Qué contenido cae en cuál está en la sección 1.1 de `docs/diseno.md`. Las secciones de este documento no cambiaron de numeración con el corte: una sección de contenido puede aparecer en una página o en dos.
 
 ---
