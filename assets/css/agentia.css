@@ -1298,6 +1298,23 @@ svg {
   border-bottom-color: var(--azul-claro);
 }
 
+.contacto__entrada {
+  margin-top: var(--e-3);
+  font-size: var(--t-lede);
+  color: var(--humo-claro);
+  max-width: 34ch;
+}
+
+.contacto__otro {
+  margin-top: var(--e-4);
+  color: var(--humo-claro);
+}
+
+.contacto__otro a {
+  color: var(--azul-claro);
+  text-underline-offset: 3px;
+}
+
 .contacto__lugares { margin-top: var(--e-4); }
 
 .campo {

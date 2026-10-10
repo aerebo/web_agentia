@@ -51,7 +51,7 @@ PAGINAS = [
         "ruta": "",
         "titulo": "Agentia · Agencia de marketing con IA en Perú",
         "descripcion": "Sitios web que convierten, contenido a escala y campañas medibles. Producción creativa asistida por IA en Huaraz, Ica y Lima.",
-        "piezas": ["hero", "seccion-servicios-resumen", "seccion-contacto"],
+        "piezas": ["hero", "seccion-servicios-resumen", "seccion-contacto-breve"],
         "prioridad": "1.0",
     },
     {

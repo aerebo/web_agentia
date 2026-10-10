@@ -8,6 +8,7 @@ Solo para verificar en local. No forma parte del sitio ni se despliega.
 """
 import functools
 import http.server
+import importlib
 import pathlib
 import socketserver
 
@@ -23,6 +24,12 @@ class SinCache(http.server.SimpleHTTPRequestHandler):
         # se rearma antes de servir el documento, no antes de cada imagen
         if "." not in self.path.rsplit("/", 1)[-1]:
             try:
+                # Se recarga el modulo, no solo se le llama. Sin esto el
+                # servidor se queda con el armar.py que leyo al arrancar:
+                # editas la lista de paginas, recargas, y no pasa nada.
+                # Las piezas de partes/ si se releen solas porque se abren
+                # en cada pasada; el codigo del armador no.
+                importlib.reload(armar)
                 armar.armar()
             except Exception as error:
                 self.send_error(500, "fallo al armar: %s" % error)
