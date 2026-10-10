@@ -3,7 +3,7 @@
 Propuesta de sitio para **agentia.com.pe**. Una sola pagina, estatica, sin build
 ni dependencias: se abre, se edita y se sube tal cual.
 
-**Vista en vivo:** https://agentia-pe.github.io/agentia-web/
+**Vista en vivo:** https://aerebo.github.io/web_agentia/
 
 La vista en vivo se actualiza sola en cada push a `main`, unos dos minutos
 despues. El estado de cada publicacion esta en la pestana **Actions**.

@@ -32,6 +32,8 @@ jobs:
           cp -R assets _sitio/
           # Pages no necesita el procesado de Jekyll
           touch _sitio/.nojekyll
+          # si algun dia hay dominio propio, el CNAME tiene que viajar al sitio
+          if [ -f CNAME ]; then cp CNAME _sitio/; fi
 
       - uses: actions/configure-pages@v5
 
