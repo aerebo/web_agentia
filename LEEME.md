@@ -43,6 +43,7 @@ assets/img/agentia-*.svg        logotipo original y sus piezas extraídas
 docs/diseno.md                  el sistema de diseño. Léelo antes de tocar CSS
 docs/contenido-agentia.md       el contenido aprobado y los pendientes
 docs/direcciones.md             la auditoría del sitio v1 y por qué se eligió esto
+docs/benchmark.md               siete sitios del sector, medidos. Qué nos falta y qué no
 servidor-local.py               servidor de desarrollo sin caché
 agentia-historial.bundle        el repositorio git completo, 13 commits
 ```
@@ -68,6 +69,12 @@ duración se escribe suelto en el CSS: todo sale de los tokens de `:root`. Si
 necesitas un valor que no existe, se agrega primero al documento y después se usa.
 Ahí está también la geometría medida del logotipo y por qué las rotaciones
 funcionan como funcionan.
+
+**`docs/benchmark.md` dice contra quién nos medimos.** Siete sitios del sector
+leídos uno por uno el 10 de octubre de 2026. El resumen en una línea: el oficio
+de esta página está por encima de la media, y le falta lo único que todo el
+mercado tiene sin excepción, que son casos con resultado. Antes de discutir
+cualquier cambio de la página, léelo.
 
 **`docs/contenido-agentia.md` es la fuente del contenido.** Titulares, servicios y
 textos salen de ahí sin reescribir. Lo que está marcado `[PENDIENTE]` o
