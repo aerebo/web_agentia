@@ -53,7 +53,6 @@ PAGINAS = [
         "descripcion": "Sitios web que convierten, contenido a escala y campañas medibles. Producción creativa asistida por IA en Huaraz, Ica y Lima.",
         "piezas": ["hero", "seccion-servicios-resumen", "seccion-contacto-breve"],
         "prioridad": "1.0",
-        "aviso_envio": "El envío todavía no está conectado. Mientras tanto, escríbenos: las tres direcciones están en Contacto.",
     },
     {
         "ruta": "servicios",
@@ -82,7 +81,6 @@ PAGINAS = [
         "descripcion": "Cuéntanos qué necesitas resolver. Cotizaciones y propuestas en comercial@agentia.com.pe.",
         "piezas": ["seccion-contacto"],
         "prioridad": "0.7",
-        "aviso_envio": "El envío todavía no está conectado. Mientras tanto, usa cualquiera de los tres correos de aquí al lado.",
     },
 ]
 
@@ -144,7 +142,6 @@ def armar():
                 .replace("{{TITULO}}", pagina["titulo"])
                 .replace("{{DESCRIPCION}}", pagina["descripcion"])
                 .replace("{{URL}}", url)
-                .replace("{{AVISO_ENVIO}}", pagina.get("aviso_envio", ""))
                 .replace("{{RAIZ}}", raiz))
         html = marcar_activo(html, ruta)
 

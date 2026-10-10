@@ -1,12 +1,6 @@
 <!-- El formulario esta completo pero todavia no envia: falta decidir
              entre contact.php propio o servicio externo. Fase 6. -->
         <form class="formulario rv" novalidate>
-          <!-- El aviso va ARRIBA, no bajo el boton. Debajo obligaba a llenar
-               cinco campos, pulsar y recien ahi enterarse de que no envia.
-               Y debajo del boton no puede ir nada: lo ultimo que ve quien
-               esta a punto de enviar tiene que ser el boton. -->
-          <p class="aviso aviso--formulario spec">{{AVISO_ENVIO}}</p>
-
           <p class="campo">
             <label for="f-nombre">Nombre</label>
             <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
@@ -40,7 +34,12 @@
             <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off">
           </p>
 
-          <button class="boton boton--lleno formulario__enviar" type="submit" disabled>
+          <!-- Viaja HABILITADO y es el script el que lo deshabilita hasta que
+               los campos obligatorios esten completos. Al reves que lo
+               habitual, y por el mismo motivo que la seccion 4.4 del LEEME:
+               si el script no corre, un boton muerto para siempre es peor
+               que uno que se pueda pulsar. -->
+          <button class="boton boton--lleno formulario__enviar" type="submit">
             Enviar mensaje
             <span class="boton__flecha" aria-hidden="true">&rarr;</span>
           </button>

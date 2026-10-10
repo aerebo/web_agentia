@@ -207,9 +207,16 @@ El azul atraviesa el sitio en tres profundidades de fondo. No es decoración: ma
 | Diferencial | `--azul-humo` | Primer cambio de tono, marca el argumento |
 | Proceso | `--papel` | Vuelve a neutro, la secuencia manda |
 | Clientes | `--azul-humo` | Segundo lavado, cierra el bloque de prueba |
-| Contacto y pie | `--azul-tinta` | Cierre. **Único bloque oscuro de todo el sitio** |
+| Contacto | `--papel` | **Cambiado el 10 de octubre de 2026.** Era la banda oscura; ahora comparte fondo con el hero |
+| Pie | `--azul-tinta` | Cierre. **Único bloque oscuro de todo el sitio** |
 
 **Regla dura:** el oscuro aparece una sola vez y al final. Un bloque oscuro suelto en medio de una página clara se lee como un error de copiar y pegar, no como una decisión.
+
+**El formulario dejó de vivir sobre oscuro el 10 de octubre de 2026**, a petición de Agentia: comparte fondo con el hero. El bloque oscuro se reduce al pie.
+
+Al moverlo salió a la luz un fallo que llevaba ahí desde el principio y que nadie habría visto en el diseño anterior: **los tres correos estaban pintados en `--papel`**, que sobre la banda oscura era blanco legible y sobre papel es exactamente el color del fondo. Quedaron invisibles. Lo mismo las líneas de la lista, que eran blancos translúcidos, y el texto del desplegable.
+
+Lección para la próxima: cuando un bloque cambia de fondo, **no basta con mirarlo**. Hay que recorrer sus textos comparando color contra fondo, porque un texto invisible no se nota en una captura: se nota cuando falta.
 
 ### 3.5 Reglas de color
 

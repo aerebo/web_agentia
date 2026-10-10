@@ -1272,20 +1272,20 @@ svg {
   display: grid;
   gap: 0;
   margin-top: var(--e-4);
-  border-top: var(--linea-fina) solid rgba(255, 255, 255, 0.14);
+  border-top: var(--linea-fina) solid var(--regla);
 }
 
 .correos li {
   display: grid;
   gap: var(--e-1);
   padding-block: var(--e-2);
-  border-bottom: var(--linea-fina) solid rgba(255, 255, 255, 0.14);
+  border-bottom: var(--linea-fina) solid var(--regla);
 }
 
 .correos a {
   font-family: var(--f-spec);
   font-size: var(--t-corto);
-  color: var(--papel);
+  color: var(--tinta);
   text-decoration: none;
   border-bottom: var(--linea-fina) solid transparent;
   justify-self: start;
@@ -1294,24 +1294,24 @@ svg {
 }
 
 .correos a:hover {
-  color: var(--azul-claro);
-  border-bottom-color: var(--azul-claro);
+  color: var(--azul-fuerte);
+  border-bottom-color: var(--azul-fuerte);
 }
 
 .contacto__entrada {
   margin-top: var(--e-3);
   font-size: var(--t-lede);
-  color: var(--humo-claro);
+  color: var(--lapiz);
   max-width: 34ch;
 }
 
 .contacto__otro {
   margin-top: var(--e-4);
-  color: var(--humo-claro);
+  color: var(--lapiz);
 }
 
 .contacto__otro a {
-  color: var(--azul-claro);
+  color: var(--azul-fuerte);
   text-underline-offset: 3px;
 }
 
@@ -1328,7 +1328,7 @@ svg {
   font-size: var(--t-spec);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--humo-claro);
+  color: var(--lapiz);
 }
 
 .campo input,
@@ -1336,20 +1336,20 @@ svg {
 .campo textarea {
   width: 100%;
   padding: var(--e-2);
-  background: transparent;
-  border: var(--linea-fina) solid rgba(255, 255, 255, 0.28);
-  color: var(--papel);
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--borde);
+  color: var(--tinta);
   font-family: var(--f-cuerpo);
   font-size: var(--t-cuerpo);
   transition: border-color var(--dur-rapida) var(--ease-salida);
 }
 
-.campo select { color: var(--papel); }
+.campo select { color: var(--tinta); }
 .campo select option { color: var(--tinta); }
 
 .campo input:hover,
 .campo select:hover,
-.campo textarea:hover { border-color: var(--azul-claro); }
+.campo textarea:hover { border-color: var(--azul); }
 
 .campo textarea { resize: vertical; min-height: 6rem; }
 
@@ -1370,14 +1370,22 @@ svg {
 
 .formulario__enviar { margin-top: var(--e-2); }
 
+/* Deshabilitado hasta que los campos obligatorios esten completos.
+   No se resuelve bajando la opacidad del azul: queda un azul palido que
+   se lee como boton activo mal impreso. Con relleno gris se distingue de
+   un vistazo. Texto 4.17:1, por debajo del minimo normal, pero los
+   controles inactivos estan exentos en WCAG 1.4.3 y es muy superior al
+   2.4:1 que daba la version con opacidad. */
 .formulario__enviar[disabled] {
-  opacity: 0.55;
+  background: var(--regla);
+  border-color: var(--regla);
+  color: var(--lapiz);
   cursor: not-allowed;
 }
 
-.seccion--tinta .aviso {
-  border-left-color: var(--azul-claro);
-  color: var(--humo-claro);
+.formulario__enviar[disabled]:hover {
+  background: var(--regla);
+  border-color: var(--regla);
 }
 
 /* --------------------------------------------------------------------------

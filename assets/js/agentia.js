@@ -435,6 +435,49 @@
   });
 
   /* ------------------------------------------------------------------------
+     3.c El boton de envio, deshabilitado hasta que el formulario este listo
+
+     El boton viaja habilitado en el HTML y es este script el que lo
+     deshabilita. Al reves que lo habitual, y por el mismo motivo que la
+     seccion 4.4: si el script no corre, un boton muerto para siempre es
+     peor que uno que se pueda pulsar.
+
+     OJO: el envio todavia no esta conectado. Mientras no lo este, el
+     submit se frena aqui para no recargar la pagina y perder lo escrito.
+     Cuando se decida el backend, se quita ese freno y ya.
+     ------------------------------------------------------------------------ */
+
+  Array.prototype.forEach.call(document.querySelectorAll('.formulario'), function (form) {
+    var enviar = form.querySelector('.formulario__enviar');
+    if (!enviar) return;
+
+    var obligatorios = form.querySelectorAll('[required]');
+
+    function listo() {
+      for (var i = 0; i < obligatorios.length; i++) {
+        /* checkValidity cubre el correo mal escrito, no solo el campo vacio */
+        if (!obligatorios[i].value.trim() || !obligatorios[i].checkValidity()) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function repasar() {
+      enviar.disabled = !listo();
+    }
+
+    form.addEventListener('input', repasar);
+    form.addEventListener('change', repasar);
+
+    form.addEventListener('submit', function (evento) {
+      evento.preventDefault();
+    });
+
+    repasar();
+  });
+
+  /* ------------------------------------------------------------------------
      4. Menu movil
      Panel completo, cierre con Escape, foco devuelto al boton que lo abrio.
      ------------------------------------------------------------------------ */

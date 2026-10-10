@@ -265,11 +265,19 @@ El `<form>` está completo: campos con `name`, etiquetas reales asociadas, campo
 trampa contra spam (`.trampa`, el input `web`), y `novalidate` puesto para que la
 validación sea de servidor y no del navegador.
 
-**El botón está deshabilitado y la página lo dice en pantalla, arriba del
-primer campo.** El aviso estaba debajo del botón hasta el 10 de octubre de 2026
-y se movió por dos motivos: debajo obligaba a llenar cinco campos, pulsar y
-recién ahí enterarse; y **debajo del botón no debe ir nada**, porque lo último
-que ve quien está a punto de enviar tiene que ser el botón. Se hizo así para
+**El botón se deshabilita hasta que los campos obligatorios estén completos y
+el correo sea válido**, que es el comportamiento normal de cualquier formulario.
+El aviso en pantalla de que el envío no está conectado se quitó el 10 de octubre
+de 2026 por decisión de Agentia.
+
+**Consecuencia que hay que tener presente:** con todo completo el botón se
+habilita, y al pulsarlo el script frena el envío para no recargar la página y
+perder lo escrito. O sea que **no pasa nada visible**. Esto se arregla solo
+conectando el backend, no retocando el formulario.
+
+**El botón viaja habilitado en el HTML** y es el script el que lo deshabilita,
+al revés que lo habitual. Mismo motivo que la sección 4.4: si el script no
+corre, un botón muerto para siempre es peor que uno que se pueda pulsar. Se hizo así para
 que no finja funcionar, que es lo que hacía la versión anterior del sitio con un
 `mailto:` disfrazado de botón de envío.
 
