@@ -1443,6 +1443,139 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
+   12.b Piezas de la reestructuracion del 10 de octubre de 2026
+
+   La pagina se reordeno para que responda, en orden, a las preguntas que
+   se hace un cliente potencial: que hacen, como trabajan, que me llevo,
+   es para mi, quien les ha comprado, y que dudas me quedan.
+
+   El banco de marca dejo de ser una seccion suelta. Era una demostracion
+   de cuatro servicios colocada antes de la lista de los seis: dos
+   secciones contando lo mismo. Ahora encabeza Servicios y el acordeon
+   queda debajo como lista completa. De paso cierra la decision abierta
+   numero 3 del LEEME, la de que la tuerca solo da para cuatro de seis:
+   la tuerca muestra cuatro, la lista los seis, y ya no se contradicen.
+   -------------------------------------------------------------------------- */
+
+/* el banco, ahora dentro de Servicios */
+.banco--dentro {
+  margin-block: var(--e-5);
+}
+
+.servicios__titulo {
+  font-size: var(--t-h3);
+  margin-bottom: var(--e-2);
+  color: var(--lapiz);
+}
+
+/* --- el pacto de cada paso del proceso ---
+   Dos filas por paso: que recibes y que te pedimos. Es lo que impide que
+   el proceso vuelva a ser cuatro titulos genericos. */
+.paso__pacto {
+  margin-top: var(--e-3);
+  padding-top: var(--e-2);
+  border-top: var(--linea-fina) solid var(--regla);
+  display: grid;
+  gap: var(--e-1);
+}
+
+.paso__pacto dt {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul-fuerte);
+}
+
+.paso__pacto dd {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+  margin-bottom: var(--e-2);
+}
+
+.paso__pacto dd:last-child { margin-bottom: 0; }
+
+/* nota al pie de seccion, para lo que se dice en voz baja pero se dice */
+.nota {
+  margin-top: var(--e-4);
+  padding-left: var(--e-2);
+  border-left: var(--linea-gruesa) solid var(--azul-nota);
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+}
+
+/* --- para quien es --- */
+.publico {
+  margin-top: var(--e-5);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-5) var(--e-4);
+}
+
+.publico__titulo {
+  font-size: var(--t-h3);
+  padding-bottom: var(--e-2);
+  border-bottom: var(--linea-gruesa) solid var(--tinta);
+  margin-bottom: var(--e-3);
+}
+
+.publico__lista {
+  list-style: none;
+  display: grid;
+  gap: var(--e-2);
+}
+
+.publico__lista li {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: var(--e-1);
+  font-size: var(--t-cuerpo);
+  max-width: 44ch;
+}
+
+/* la marca de cada lista: una barra azul para lo que si, una cruz tenue
+   para lo que no. Sin verde ni rojo: la pagina tiene un solo acento. */
+.publico__lista li::before {
+  content: '';
+  width: 0.875rem;
+  height: var(--linea-gruesa);
+  margin-top: 0.72em;
+  background: var(--azul);
+}
+
+.publico__lista--no li { color: var(--lapiz); }
+
+.publico__lista--no li::before {
+  background: none;
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  content: '\00d7';
+  font-family: var(--f-spec);
+  color: var(--borde);
+  line-height: 1.5;
+}
+
+/* --- preguntas frecuentes ---
+   Reutilizan el acordeon de servicios. Solo cambia que no llevan la
+   columna de entrada, asi que la cabecera pasa de cuatro a tres columnas. */
+.servicio--faq .servicio__cabecera {
+  grid-template-columns: 3.5rem minmax(0, 1fr) 2rem;
+}
+
+.servicio__respuesta {
+  overflow: hidden;
+  padding-left: calc(3.5rem + var(--e-3));
+}
+
+.servicio__respuesta p {
+  font-size: var(--t-cuerpo);
+  color: var(--lapiz);
+  max-width: 60ch;
+  padding-bottom: var(--e-2);
+}
+
+/* --------------------------------------------------------------------------
    13. Respuesta movil
    -------------------------------------------------------------------------- */
 
@@ -1493,6 +1626,9 @@ svg {
   .servicio__lista { padding-left: calc(3rem + var(--e-3)); }
 
   .pilar { grid-template-columns: 1fr; gap: var(--e-1); }
+  .publico { grid-template-columns: 1fr; gap: var(--e-4); }
+  .servicio--faq .servicio__cabecera { grid-template-columns: 3rem 1fr 1.5rem; }
+  .servicio__respuesta { padding-left: calc(3rem + var(--e-3)); }
 }
 
 @media (max-width: 520px) {

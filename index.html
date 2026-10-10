@@ -42,9 +42,10 @@
 
     <ul class="nav__enlaces">
       <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#diferencial">Diferencial</a></li>
       <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#diferencial">Diferencial</a></li>
       <li><a href="#clientes">Clientes</a></li>
+      <li><a href="#preguntas">Preguntas</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
 
@@ -63,9 +64,10 @@
   <nav aria-label="Secciones del sitio">
     <ul class="menu__lista">
       <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#diferencial">Diferencial</a></li>
       <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#diferencial">Diferencial</a></li>
       <li><a href="#clientes">Clientes</a></li>
+      <li><a href="#preguntas">Preguntas</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>
@@ -127,8 +129,22 @@
     </div>
   </header>
 
-  <section class="banco" id="marca-viva" data-vigia>
+  <section class="seccion seccion--corta" id="posicionamiento" data-vigia>
     <div class="lienzo">
+      <div class="declara rv">
+        <p class="spec">Por qué Agentia</p>
+        <h2 class="declara__titular">La IA no es el producto.<br>El resultado sí.</h2>
+        <p class="declara__cuerpo">Muchas agencias usan inteligencia artificial para producir más rápido. Nosotros la usamos para producir mejor y medirlo. Cada pieza que entregamos nace dentro de un sistema de marca definido y sale con analítica conectada, así que sabes qué funcionó y por qué.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="servicios" data-vigia>
+    <div class="lienzo">
+      <h2 class="seccion__titular rv">Seis frentes, un mismo estándar de dirección de arte.</h2>
+      <p class="seccion__entrada rv">Gira el mando para ver cuatro de ellos en detalle. La lista completa está debajo.</p>
+    </div>
+    <div class="lienzo banco banco--dentro">
 
       <p class="banco__cabecera rv">
         <span class="spec">Modo de marca</span>
@@ -194,7 +210,7 @@
               <li>Consistencia entre canales sin producción artesanal repetida</li>
               <li>Manual de marca vivo, aplicado en cada entrega</li>
             </ul>
-            <a class="revelado__enlace" href="#servicios">Ver el servicio completo <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
           </article>
 
           <article class="revelado" data-modo="1">
@@ -206,7 +222,7 @@
               <li>Uniformidad del personaje en múltiples escenas y contextos</li>
               <li>Dirección de arte humana sobre producción asistida</li>
             </ul>
-            <a class="revelado__enlace" href="#servicios">Ver el servicio completo <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
           </article>
 
           <article class="revelado" data-modo="2">
@@ -218,7 +234,7 @@
               <li>Adaptación multiformato desde un solo sistema visual</li>
               <li>Entrega con archivos editables y guía de uso</li>
             </ul>
-            <a class="revelado__enlace" href="#servicios">Ver el servicio completo <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
           </article>
 
           <article class="revelado" data-modo="3">
@@ -230,29 +246,18 @@
               <li>Optimización continua basada en datos de comportamiento</li>
               <li>Rendimiento medido en Core Web Vitals, no en percepción</li>
             </ul>
-            <a class="revelado__enlace" href="#servicios">Ver el servicio completo <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
           </article>
 
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="seccion seccion--corta" id="posicionamiento" data-vigia>
     <div class="lienzo">
-      <div class="declara rv">
-        <p class="spec">Por qué Agentia</p>
-        <h2 class="declara__titular">La IA no es el producto.<br>El resultado sí.</h2>
-        <p class="declara__cuerpo">Muchas agencias usan inteligencia artificial para producir más rápido. Nosotros la usamos para producir mejor y medirlo. Cada pieza que entregamos nace dentro de un sistema de marca definido y sale con analítica conectada, así que sabes qué funcionó y por qué.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="seccion" id="servicios" data-vigia>
-    <div class="lienzo">
-      <h2 class="seccion__titular rv">Seis frentes, un mismo estándar de dirección de arte.</h2>
+      <h3 class="servicios__titulo rv">Los seis frentes, uno por uno</h3>
 
-      <div class="servicios">
+      <div class="servicios" id="lista-servicios">
         <article class="servicio rv" data-abierto="true">
           <button class="servicio__cabecera" type="button" aria-expanded="true" aria-controls="svc-1">
             <span class="servicio__numero spec">01</span>
@@ -352,62 +357,121 @@
     </div>
   </section>
 
-  <section class="seccion seccion--humo" id="diferencial" data-vigia>
-    <div class="lienzo">
-      <div class="diferencial">
-        <div class="diferencial__intro rv">
-          <h2 class="seccion__titular">Optimización operativa y ahorro de tiempo</h2>
-          <p class="seccion__entrada">Producir landing pages, videos y material gráfico a diario demanda tiempo y presupuesto. Los procesos tradicionales de producción frenan la velocidad de lanzamiento de campañas.</p>
-        </div>
-
-        <dl class="pilares rv">
-          <div class="pilar">
-            <dt>Automatización creativa</dt>
-            <dd>Reducción del tiempo de producción mediante flujos asistidos por IA</dd>
-          </div>
-          <div class="pilar">
-            <dt>Ahorro operativo</dt>
-            <dd>Optimización de costos manteniendo un estándar de dirección de arte profesional</dd>
-          </div>
-          <div class="pilar">
-            <dt>Preservación de identidad</dt>
-            <dd>Adaptación inteligente que respeta al 100% el manual de marca</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
   <section class="seccion" id="proceso" data-vigia>
     <div class="lienzo">
+      <p class="spec rv">Cómo trabajamos</p>
       <h2 class="seccion__titular rv">Cuatro pasos, siempre en este orden.</h2>
+      <p class="seccion__entrada rv">En cada uno sabes qué recibes y qué te vamos a pedir. Sin eso, un proceso es una lista de palabras bonitas.</p>
 
       <ol class="pasos">
         <li class="paso rv">
           <span class="paso__numero spec">01</span>
           <h3 class="paso__nombre">Diagnóstico</h3>
           <p class="paso__texto">Revisamos tu marca, tus canales y tus números actuales.</p>
+          <dl class="paso__pacto">
+            <dt>Recibes</dt>
+            <dd>El estado de tu marca y tus canales por escrito, y qué se puede medir hoy.</dd>
+            <dt>Te pedimos</dt>
+            <dd>Acceso a tus analíticas y a tu material de marca.</dd>
+          </dl>
         </li>
         <li class="paso rv">
           <span class="paso__numero spec">02</span>
           <h3 class="paso__nombre">Sistema</h3>
           <p class="paso__texto">Definimos tokens visuales, tono y plantillas reutilizables.</p>
+          <dl class="paso__pacto">
+            <dt>Recibes</dt>
+            <dd>El sistema de marca escrito: color, tipografía, tono y plantillas.</dd>
+            <dt>Te pedimos</dt>
+            <dd>Una validación tuya del sistema antes de que produzcamos nada.</dd>
+          </dl>
         </li>
         <li class="paso rv">
           <span class="paso__numero spec">03</span>
           <h3 class="paso__nombre">Producción</h3>
           <p class="paso__texto">Generamos a escala dentro de ese sistema, con revisión humana.</p>
+          <dl class="paso__pacto">
+            <dt>Recibes</dt>
+            <dd>Las piezas, en los formatos que pide cada canal.</dd>
+            <dt>Te pedimos</dt>
+            <dd>Aprobación por lote, no pieza por pieza.</dd>
+          </dl>
         </li>
         <li class="paso rv">
           <span class="paso__numero spec">04</span>
           <h3 class="paso__nombre">Medición</h3>
           <p class="paso__texto">Conectamos analítica y ajustamos según comportamiento real.</p>
+          <dl class="paso__pacto">
+            <dt>Recibes</dt>
+            <dd>Analítica conectada y un reporte de qué funcionó.</dd>
+            <dt>Te pedimos</dt>
+            <dd>Que nos digas qué significa «funcionar» en tu negocio.</dd>
+          </dl>
         </li>
       </ol>
+
+      <p class="nota rv">Los plazos se fijan al cotizar, porque dependen del alcance.</p>
     </div>
   </section>
 
-  <section class="seccion seccion--humo" id="clientes" data-vigia>
+  <section class="seccion seccion--humo" id="diferencial" data-vigia>
+    <div class="lienzo">
+      <div class="diferencial">
+        <div class="diferencial__intro rv">
+          <p class="spec">Qué te llevas</p>
+          <h2 class="seccion__titular">Volumen con IA lo consigue cualquiera. Que sirva, no.</h2>
+          <p class="seccion__entrada">La inteligencia artificial resuelve el volumen: muchas piezas, rápido. Lo que no resuelve sola es que todas hablen igual y que sepas cuál funcionó. Ese es el trabajo.</p>
+        </div>
+
+        <dl class="pilares rv">
+          <div class="pilar">
+            <dt>Sale medido, no a ojo</dt>
+            <dd>Cada pieza se publica con analítica conectada: qué se vio, qué se hizo clic y qué no funcionó. En web, rendimiento medido en Core Web Vitals, no en percepción.</dd>
+          </div>
+          <div class="pilar">
+            <dt>Sale del sistema, no de la improvisación</dt>
+            <dd>Color, tipografía y tono salen del mismo manual en todos los canales. Nada se decide pieza por pieza.</dd>
+          </div>
+          <div class="pilar">
+            <dt>Volumen sin repetir el trabajo a mano</dt>
+            <dd>Las piezas se generan en serie dentro del sistema, no una por una desde cero.</dd>
+          </div>
+          <div class="pilar">
+            <dt>La IA produce, la decisión es humana</dt>
+            <dd>Dirección de arte humana sobre producción asistida. Ningún lote sale sin revisión.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--corta" id="para-quien" data-vigia>
+    <div class="lienzo">
+      <p class="spec rv">Para quién es</p>
+      <h2 class="seccion__titular rv">Decirlo claro ahorra tiempo a los dos.</h2>
+
+      <div class="publico">
+        <div class="publico__col rv">
+          <h3 class="publico__titulo">Esto es para ti si</h3>
+          <ul class="publico__lista publico__lista--si">
+            <li>Publicas seguido y necesitas que todo se vea igual en todos lados</li>
+            <li>Tu operación no vive solo en Lima</li>
+            <li>Ya tienes manual de marca, o quieres uno antes de producir</li>
+          </ul>
+        </div>
+        <div class="publico__col rv">
+          <h3 class="publico__titulo">Esto no es para ti si</h3>
+          <ul class="publico__lista publico__lista--no">
+            <li>Buscas una sola pieza suelta</li>
+            <li>Decides por el precio más bajo del mercado</li>
+            <li>Quieres IA sin revisión humana de por medio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="seccion seccion--humo" id="clientes" data-vigia>
     <div class="lienzo">
       <div class="clientes__intro rv">
         <p class="spec">Trayectoria</p>
@@ -428,7 +492,71 @@
     </div>
   </section>
 
-  <section class="seccion seccion--tinta" id="contacto" data-vigia>
+  <section class="seccion" id="preguntas" data-vigia>
+    <div class="lienzo">
+      <p class="spec rv">Antes de que preguntes</p>
+      <h2 class="seccion__titular rv">Lo que nos preguntan siempre.</h2>
+
+      <div class="servicios" id="lista-preguntas">
+        <article class="servicio servicio--faq rv" data-abierto="true">
+          <button class="servicio__cabecera" type="button" aria-expanded="true" aria-controls="faq-1">
+            <span class="servicio__numero spec">01</span>
+            <span class="servicio__nombre">¿La IA reemplaza al diseñador?</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="faq-1">
+            <div class="servicio__respuesta"><p>No. La IA produce; la dirección de arte es humana y ningún lote sale sin revisión. Esa es justamente la diferencia entre generar mucho y entregar algo publicable.</p></div>
+          </div>
+        </article>
+
+        <article class="servicio servicio--faq rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="faq-2">
+            <span class="servicio__numero spec">02</span>
+            <span class="servicio__nombre">¿Respetan nuestro manual de marca?</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="faq-2">
+            <div class="servicio__respuesta"><p>Sí, al 100%. Y si todavía no existe, construirlo es el paso 02 del proceso, antes de producir nada.</p></div>
+          </div>
+        </article>
+
+        <article class="servicio servicio--faq rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="faq-3">
+            <span class="servicio__numero spec">03</span>
+            <span class="servicio__nombre">¿Trabajan con marcas fuera de Lima?</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="faq-3">
+            <div class="servicio__respuesta"><p>Sí. Operamos entre Huaraz, Ica y Lima.</p></div>
+          </div>
+        </article>
+
+        <article class="servicio servicio--faq rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="faq-4">
+            <span class="servicio__numero spec">04</span>
+            <span class="servicio__nombre">¿Cómo sé si funcionó?</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="faq-4">
+            <div class="servicio__respuesta"><p>Cada pieza sale con analítica conectada. En web, además, el rendimiento se mide en Core Web Vitals, no en percepción.</p></div>
+          </div>
+        </article>
+
+        <article class="servicio servicio--faq rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="faq-5">
+            <span class="servicio__numero spec">05</span>
+            <span class="servicio__nombre">¿Cuánto cuesta un proyecto?</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="faq-5">
+            <div class="servicio__respuesta"><p>Se cotiza por proyecto, después del diagnóstico, porque el precio depende del alcance.</p></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+<section class="seccion seccion--tinta" id="contacto" data-vigia>
     <div class="lienzo">
       <div class="contacto">
         <div class="contacto__lado rv">

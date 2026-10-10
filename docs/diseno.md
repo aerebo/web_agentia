@@ -16,6 +16,35 @@ Esa es la prueba del argumento comercial que ya está en el contenido aprobado: 
 
 ---
 
+### 1.1 Orden de la página
+
+Reordenada el 10 de octubre de 2026. **El orden no es estético: es el orden en que un cliente potencial hace las preguntas.** Cada sección contesta una y solo una.
+
+| # | Sección | La pregunta que contesta |
+|---|---|---|
+| 1 | Hero | ¿Qué hacen? |
+| 2 | Posicionamiento | ¿Por qué ustedes y no cualquier agencia con IA? |
+| 3 | Servicios | ¿Qué puedo contratar? |
+| 4 | Proceso | ¿Cómo se trabaja y qué me van a pedir? |
+| 5 | Diferencial | ¿Qué me llevo exactamente? |
+| 6 | Para quién es | ¿Esto es para mí? |
+| 7 | Clientes | ¿A quién le han hecho esto antes? |
+| 8 | Preguntas frecuentes | ¿Qué duda me queda? |
+| 9 | Contacto | ¿Cómo empiezo? |
+
+**El banco de marca dejó de ser sección propia.** Era una demostración de cuatro servicios colocada justo antes de la lista de los seis: dos secciones contando lo mismo con distinta ropa. Ahora encabeza Servicios y el acordeón queda debajo como lista completa.
+
+Eso además cierra una decisión que llevaba meses abierta: la tuerca tiene cuatro posiciones y los servicios son seis, así que Personajes de Marca y Pauta Publicitaria quedaban fuera sin explicación. Dentro de la misma sección ya no hay contradicción: **la tuerca muestra cuatro en detalle, la lista los enumera los seis.**
+
+**Reglas del orden:**
+
+- **La prueba social no se adelanta con nombres sueltos.** Lo estándar es poner logos de clientes justo debajo del hero. Aquí no se hizo: no hay permiso de uso de logo todavía, y una fila de nombres en texto plano no es prueba, es relleno. Cuando lleguen los permisos, se reevalúa.
+- **Decir para quién NO es va antes de los clientes.** Calificar al visitante antes de enseñarle la lista evita la consulta que no iba a ningún lado.
+- **Las preguntas frecuentes van pegadas al contacto.** Son las últimas objeciones antes del formulario; más arriba interrumpen el argumento.
+- **El oscuro sigue apareciendo una sola vez y al final.** Ver la sección 3.4.
+
+---
+
 ## 2. Marca
 
 **La marca cambió el 9 de octubre de 2026.** Antes era el chevron violeta heredado del archivo de Illustrator, girando sobre su punto. Ahora es un logotipo tipográfico: **AGENT** en tinta más **IA** en blanco dentro de un cuadro azul. El cambio lo pidió el cliente sobre una propuesta entregada como imagen.

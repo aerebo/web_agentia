@@ -249,13 +249,25 @@ No son tareas técnicas: necesitan respuesta de Agentia antes de tocarse.
 1. **Backend del formulario.** PHP propio o servicio externo.
 2. **Alto del hero.** Mide 1108 px y en una ventana de 900 los botones quedan bajo
    el pliegue. Hay tres salidas posibles y ninguna es obviamente mejor.
-3. **Dos servicios fuera del mando.** La tuerca tiene cuatro posiciones y hay seis
-   servicios: Personajes de Marca y Pauta Publicitaria se quedan fuera.
+3. ~~**Dos servicios fuera del mando.**~~ **Resuelto el 10 de octubre de 2026.** El
+   banco de marca se fusiono con Servicios: la tuerca muestra cuatro en detalle y
+   el acordeon de abajo enumera los seis. Ya no se contradicen.
 4. **Permisos de logo de clientes**, y decidir si se atribuyen a Agentia o a otra
    marca del grupo. Hoy aparecen como texto, con el aviso puesto.
 5. **Material real de casos.** Sin piezas reales, la sección de casos no se publica.
 6. **Teléfono, WhatsApp y handles de redes.**
 7. **Cifras de trayectoria.** No se publican hasta contarlas.
+8. **Entregables del proceso.** Las lineas de «recibes» y «te pedimos» de cada
+   paso son redaccion propuesta, derivada de lo que ya decia cada paso, pero
+   comprometen entregables. Confirmar antes de publicar.
+9. **Las tres puertas que cierra «para quien no es».** Pieza suelta, precio mas
+   bajo, e IA sin revision humana. Son tres clientes que Agentia rechaza por
+   escrito. Confirmar las tres.
+10. **Cinco preguntas frecuentes sin respuesta.** Contratar un solo servicio,
+   que pasa si ya hay agencia, permanencia minima, de quien son los archivos al
+   terminar, y si se publican rangos de precio. Estan listadas en la seccion 8.c
+   de `docs/contenido-agentia.md` y no se publican hasta tener respuesta. La de
+   los archivos es la que mas incomoda y la que mas confianza da contestarla.
 
 ---
 

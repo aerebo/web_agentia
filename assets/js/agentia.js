@@ -400,32 +400,39 @@
   }
 
   /* ------------------------------------------------------------------------
-     3.b Servicios: filas que se abren
-     Uno abierto a la vez. El primero arranca abierto para que la seccion
-     nunca se lea como una lista muerta de titulos.
+     3.b Filas que se abren: servicios y preguntas frecuentes
+     Uno abierto a la vez DENTRO DE CADA GRUPO. El primero de cada grupo
+     arranca abierto para que la seccion nunca se lea como una lista
+     muerta de titulos.
+
+     Ojo: antes esto cerraba todos los .servicio de la pagina, que daba
+     igual porque solo habia un grupo. Con las preguntas frecuentes ya
+     hay dos, y sin acotar por contenedor abrir una pregunta cerraria el
+     servicio que estuviera abierto mas arriba.
      ------------------------------------------------------------------------ */
 
-  var servicios = document.querySelectorAll('.servicio');
+  Array.prototype.forEach.call(document.querySelectorAll('.servicios'), function (grupo) {
+    var filas = grupo.querySelectorAll('.servicio');
+    if (!filas.length) return;
 
-  if (servicios.length) {
-    Array.prototype.forEach.call(servicios, function (servicio) {
-      var boton = servicio.querySelector('.servicio__cabecera');
+    Array.prototype.forEach.call(filas, function (fila) {
+      var boton = fila.querySelector('.servicio__cabecera');
 
       boton.addEventListener('click', function () {
-        var abierto = servicio.getAttribute('data-abierto') === 'true';
+        var abierto = fila.getAttribute('data-abierto') === 'true';
 
-        Array.prototype.forEach.call(servicios, function (otro) {
-          otro.removeAttribute('data-abierto');
-          otro.querySelector('.servicio__cabecera').setAttribute('aria-expanded', 'false');
+        Array.prototype.forEach.call(filas, function (otra) {
+          otra.removeAttribute('data-abierto');
+          otra.querySelector('.servicio__cabecera').setAttribute('aria-expanded', 'false');
         });
 
         if (!abierto) {
-          servicio.setAttribute('data-abierto', 'true');
+          fila.setAttribute('data-abierto', 'true');
           boton.setAttribute('aria-expanded', 'true');
         }
       });
     });
-  }
+  });
 
   /* ------------------------------------------------------------------------
      4. Menu movil

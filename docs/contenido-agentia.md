@@ -98,33 +98,48 @@ Campañas de búsqueda y display estructuradas para captación medible.
 
 ---
 
-## 4. Optimización operativa
+## 4. Diferencial — qué te llevas `[VERIFICAR redaccion]`
 
-**Eyebrow:** El diferencial
+**Eyebrow:** Qué te llevas
 
-**Titular:** Optimización operativa y ahorro de tiempo
+**Titular:** Volumen con IA lo consigue cualquiera. Que sirva, no.
 
 **Cuerpo:**
-Producir landing pages, videos y material gráfico a diario demanda tiempo y presupuesto. Los procesos tradicionales de producción frenan la velocidad de lanzamiento de campañas.
+La inteligencia artificial resuelve el volumen: muchas piezas, rápido. Lo que no resuelve sola es que todas hablen igual y que sepas cuál funcionó. Eso es el trabajo, y es lo que hacemos.
 
-| Pilar | Qué significa |
-|---|---|
-| Automatización creativa | Reducción del tiempo de producción mediante flujos asistidos por IA |
-| Ahorro operativo | Optimización de costos manteniendo un estándar de dirección de arte profesional |
-| Preservación de identidad | Adaptación inteligente que respeta al 100% el manual de marca |
+> **Reescrito el 10 de octubre de 2026.** La versión anterior vendía ahorro de tiempo y reducción de costos. Es cierto, pero lo dice toda agencia con IA: no diferencia nada y además repetía el argumento de la sección 2. Esta versión cambia el sujeto: deja de hablar de lo que ahorramos nosotros y pasa a lo que recibe el cliente.
+
+**Los cuatro pilares.** Los cuatro están respaldados por texto ya aprobado en la sección 3 de este documento, no son promesas nuevas:
+
+| Pilar | Qué significa | De dónde sale |
+|---|---|---|
+| Sale medido, no a ojo | Cada pieza se publica con analítica conectada: qué se vio, qué se hizo clic, qué no funcionó | Servicio 1: «tracking y analítica integrados desde el primer día», «rendimiento medido en Core Web Vitals, no en percepción» |
+| Sale del sistema, no de la improvisación | Color, tipografía y tono salen del mismo manual en todos los canales | Servicio 2: «manual de marca vivo, aplicado en cada entrega», «consistencia entre canales» |
+| Volumen sin repetir el trabajo a mano | Las piezas se generan en serie dentro del sistema, no una por una desde cero | Servicio 2: «generación masiva y sistematizada», «sin producción artesanal repetida» |
+| La IA produce, la decisión es humana | Dirección de arte humana sobre producción asistida. Ningún lote sale sin revisión | Servicio 3: «dirección de arte humana sobre producción asistida» |
+
+**Regla:** si un pilar deja de poder señalar la línea de la que sale, se cae. Nada de adjetivos sueltos tipo «inteligente», «ágil» o «de vanguardia»: eso es exactamente lo que hace que todas las agencias suenen igual.
 
 ---
 
-## 5. Proceso
+## 5. Proceso `[VERIFICAR entregables]`
 
 **Eyebrow:** Cómo trabajamos
 
 Aquí la numeración sí corresponde: es una secuencia real.
 
-1. **Diagnóstico.** Revisamos tu marca, tus canales y tus números actuales.
-2. **Sistema.** Definimos tokens visuales, tono y plantillas reutilizables.
-3. **Producción.** Generamos a escala dentro de ese sistema, con revisión humana.
-4. **Medición.** Conectamos analítica y ajustamos según comportamiento real.
+**Decisión tomada el 10 de octubre de 2026: sin plazos.** Agentia prefiere no comprometer tiempos antes de cotizar, porque dependen del alcance. A cambio, el proceso tiene que ser concreto en otra cosa, o vuelve a ser la lista genérica de siempre. Esa otra cosa son **los entregables y lo que se le pide al cliente en cada paso**.
+
+| # | Paso | Qué hacemos | Qué recibes | Qué necesitamos de ti |
+|---|---|---|---|---|
+| 01 | Diagnóstico | Revisamos tu marca, tus canales y tus números actuales | El estado de tu marca y tus canales por escrito, y qué se puede medir hoy | Acceso a tus analíticas y a tu material de marca |
+| 02 | Sistema | Definimos tokens visuales, tono y plantillas reutilizables | El sistema de marca escrito: color, tipografía, tono y plantillas | Una validación tuya del sistema antes de producir |
+| 03 | Producción | Generamos a escala dentro de ese sistema, con revisión humana | Las piezas, en los formatos de cada canal | Aprobación por lote, no pieza por pieza |
+| 04 | Medición | Conectamos analítica y ajustamos según comportamiento real | Analítica conectada y un reporte de qué funcionó | Que nos digas qué significa «funcionar» en tu negocio |
+
+**Nota de cierre en la página:** los plazos se fijan al cotizar, porque dependen del alcance.
+
+> **Las columnas «qué recibes» y «qué necesitamos de ti» son redacción propuesta, no dictada por Agentia.** Están derivadas de lo que ya decía cada paso, pero comprometen entregables. **Confirmar antes de publicar.**
 
 ---
 
@@ -185,6 +200,54 @@ Estructura por caso, tres casos mínimo:
 - **Material** — video o imágenes reales del trabajo
 
 Sin material audiovisual real, esta sección no se publica. Un portafolio con mockups genéricos resta más de lo que suma.
+
+---
+
+## 8.b Para quién es `[VERIFICAR postura]`
+
+**Eyebrow:** Para quién es
+
+Sección nueva, 10 de octubre de 2026. Calificar al visitante es estándar de mercado y ahorra consultas que no van a ningún lado.
+
+**Para quién es:**
+
+- Marcas que publican seguido y necesitan que todo se vea igual en todos lados
+- Negocios con operación regional, no solo en Lima — ver ciudades en la sección 6
+- Quien ya tiene manual de marca, o quiere uno antes de producir
+
+**Para quién no es:**
+
+- Encargos de una sola pieza suelta
+- Quien busca el precio más bajo del mercado
+- Quien quiere IA sin revisión humana de por medio
+
+> **Decir a quién no sirves es lo que da credibilidad a la otra lista.** Pero son tres puertas que Agentia cierra: **confirmar las tres antes de publicar.** La tercera en particular es una postura sobre cómo se trabaja, no una preferencia comercial.
+
+---
+
+## 8.c Preguntas frecuentes `[PARCIAL]`
+
+**Eyebrow:** Antes de que preguntes
+
+Sección nueva, 10 de octubre de 2026. **Solo se publican las preguntas cuya respuesta ya está respaldada por contenido aprobado.** Las demás quedan abajo, en la lista de pendientes, hasta que Agentia las conteste.
+
+**Publicables ya:**
+
+| Pregunta | Respuesta | De dónde sale |
+|---|---|---|
+| ¿La IA reemplaza al diseñador? | No. La IA produce; la dirección de arte es humana y ningún lote sale sin revisión | Sección 3, servicio 3 |
+| ¿Respetan nuestro manual de marca? | Sí, al 100%. Si todavía no existe, construirlo es el paso 02 del proceso | Sección 3, servicio 2, y sección 5 |
+| ¿Trabajan con marcas fuera de Lima? | Sí. Operamos entre Huaraz, Ica y Lima | Sección 6, dato confirmado |
+| ¿Cómo sé si funcionó? | Cada pieza sale con analítica conectada. En web, además, rendimiento medido en Core Web Vitals, no en percepción | Sección 3, servicio 1 |
+| ¿Cuánto cuesta un proyecto? | Se cotiza por proyecto, después del diagnóstico, porque depende del alcance | Coherente con el buzón de cotizaciones de la sección 9 |
+
+**Sin respuesta todavía. No publicar hasta tenerla:**
+
+- ¿Puedo contratar un solo servicio o es todo el paquete? `[PENDIENTE]`
+- ¿Qué pasa si ya tengo agencia? `[PENDIENTE]`
+- ¿Hay permanencia mínima o contrato por meses? `[PENDIENTE]`
+- ¿De quién son los archivos y las piezas al terminar? `[PENDIENTE]` — es la pregunta que más incomoda y la que más confianza da contestarla
+- ¿Publican rangos de precio? `[PENDIENTE — decisión comercial]`
 
 ---
 
