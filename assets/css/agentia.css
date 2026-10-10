@@ -1336,8 +1336,16 @@ svg {
 .campo textarea {
   width: 100%;
   padding: var(--e-2);
-  background: var(--lamina);
-  border: var(--linea-fina) solid var(--borde);
+  /* Relleno blanco y linea gruesa, no las de 1px del resto del sitio.
+     Con --lamina sobre --papel el campo daba 1.09:1 contra la pagina, o
+     sea invisible, y todo el peso recaia en un pelo de 1px a 3.29:1. Pasa
+     el minimo de 3:1 en el papel, pero en pantalla no se veia el campo.
+
+     El campo es el elemento mas importante de la pagina: es donde el
+     visitante hace lo unico que queremos que haga. Se gana la linea
+     gruesa, igual que la tuerca se gana ser lo unico redondo. */
+  background: #FFFFFF;
+  border: var(--linea-gruesa) solid var(--borde);
   color: var(--tinta);
   font-family: var(--f-cuerpo);
   font-size: var(--t-cuerpo);
@@ -1350,6 +1358,15 @@ svg {
 .campo input:hover,
 .campo select:hover,
 .campo textarea:hover { border-color: var(--azul); }
+
+/* El anillo de foco lo pone la regla global de la pagina, que gana a esta.
+   Aqui solo se tine el borde, para que el campo enfocado se distinga
+   tambien por dentro y no solo por el anillo de fuera. */
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible {
+  border-color: var(--azul);
+}
 
 .campo textarea { resize: vertical; min-height: 6rem; }
 

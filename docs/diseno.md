@@ -240,6 +240,7 @@ Lección para la próxima: cuando un bloque cambia de fondo, **no basta con mira
 - **Nada de degradados de acento.** Ni glows, ni halos, ni blur de fondo. Esa es exactamente la huella que estamos borrando del sitio anterior.
 - **La textura permitida es el grano**, no el degradado: una capa fija de ruido a opacidad muy baja sobre el papel, sin eventos de puntero.
 - `--regla` nunca delimita un campo de formulario ni un control. Para eso está `--borde`.
+- **Los campos de formulario llevan línea gruesa y relleno blanco**, no la línea fina del resto del sitio. Cuando el formulario se mudó al fondo claro el 10 de octubre de 2026, quedó con relleno `--lamina` sobre `--papel`: **1.09:1 contra la página, o sea invisible**, y todo el peso del campo recaía en un pelo de 1px a 3.29:1. Pasaba el mínimo de 3:1 sobre el papel y aun así no se veía. El campo es donde el visitante hace lo único que queremos que haga: se gana la línea gruesa, igual que la tuerca se gana ser lo único redondo.
 
 ---
 
