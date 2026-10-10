@@ -16,6 +16,31 @@ Esa es la prueba del argumento comercial que ya está en el contenido aprobado: 
 
 ---
 
+### 1.0 Menos es más. La página tiene que fluir
+
+**Principio de Agentia, 10 de octubre de 2026. Manda sobre todo lo que sigue.**
+
+> «Esta es una web que debe transmitir fluidez. Colocar esos textos pequeños resta. Mientras menos titulares tenga, mejor.»
+
+Lo que esto significa a la hora de decidir:
+
+- **Un titular por bloque, y solo si el bloque lo necesita.** Un titular que resume lo que ya se entiende sin él es un obstáculo, no una ayuda. Se quitaron «Los seis frentes, uno por uno» y «Clientes» por eso: en los dos casos el titular de la sección ya lo decía.
+- **Ningún rótulo pequeño que no lleve un dato.** Ver la regla de la sección 4.1.b y el guardián del armador.
+- **Ante la duda, fuera.** Es más fácil volver a poner algo que descubrir que estorbaba.
+- **El texto que no se lee, resta.** No es neutro: ocupa altura, corta el recorrido y obliga al ojo a decidir si le interesa.
+
+**Cómo se mide.** Contando. Estado tras la poda del 10 de octubre:
+
+| Página | Titulares | Rótulos pequeños |
+|---|---|---|
+| Portada | 3 | 6 |
+| `/servicios/` | 5 | 7 |
+| `/trabajos/` | 7 | 13 |
+| `/agentia/` | 14 | 20 |
+| `/contacto/` | 1 | 5 |
+
+**`/agentia/` es la que más carga**, y no es casual: reúne cuatro secciones que antes eran cuatro páginas de scroll. Sus titulares son nombres de ficha, que son el contenido mismo y no se pueden quitar. Si alguna vez hay que adelgazar algo, es ahí donde hay que mirar primero, y la salida sería separar de nuevo alguna sección, no borrar titulares.
+
 ### 1.1 El sitio son cinco páginas
 
 **Partido el 10 de octubre de 2026.** Hasta entonces era una sola página con todo dentro. El benchmark de `docs/benchmark.md` mostró que **los siete sitios del sector son multipágina**, y el sitio se alineó con eso.

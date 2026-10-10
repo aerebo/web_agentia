@@ -931,7 +931,6 @@ svg {
   transition-delay: 0s, 0s, 0s;
 }
 
-
 .revelado h2 {
   font-size: var(--t-h2);
   margin-bottom: var(--e-2);
@@ -1529,12 +1528,6 @@ svg {
   margin-block: var(--e-5);
 }
 
-.servicios__titulo {
-  font-size: var(--t-h3);
-  margin-bottom: var(--e-2);
-  color: var(--lapiz);
-}
-
 /* --- el pacto de cada paso del proceso ---
    Dos filas por paso: que recibes y que te pedimos. Es lo que impide que
    el proceso vuelva a ser cuatro titulos genericos. */
@@ -1718,13 +1711,6 @@ svg {
 .cifra dd {
   font-size: var(--t-cuerpo);
   max-width: 32ch;
-}
-
-.clientes__titulo {
-  margin-top: var(--e-5);
-  margin-bottom: var(--e-2);
-  font-size: var(--t-h3);
-  color: var(--lapiz);
 }
 
 /* --------------------------------------------------------------------------

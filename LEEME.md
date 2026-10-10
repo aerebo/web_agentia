@@ -85,6 +85,12 @@ necesitas un valor que no existe, se agrega primero al documento y después se u
 Ahí está también la geometría medida del logotipo y por qué las rotaciones
 funcionan como funcionan.
 
+**La regla que manda sobre todas: menos es más.** La página tiene que fluir.
+Un titular que resume lo que ya se entiende sin él estorba, y un rótulo pequeño
+que no lleva un dato resta. Ante la duda, fuera: es más fácil volver a poner algo
+que descubrir que molestaba. Está en la sección 1.0 de `docs/diseno.md` y el
+armador avisa cuando se incumple.
+
 **`docs/benchmark.md` dice contra quién nos medimos.** Siete sitios del sector
 leídos uno por uno el 10 de octubre de 2026. El resumen en una línea: el oficio
 de esta página está por encima de la media, y le falta lo único que todo el
