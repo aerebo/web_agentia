@@ -49,6 +49,8 @@ Y clientes se juntó con trayectoria, cifras y equipo en la 6. Esa sección ya d
 - **Decir para quién NO es cierra el argumento**, no lo abre. Por eso va al final de la 5 y no en sección propia.
 - **Las preguntas frecuentes van pegadas al contacto.** Son las últimas objeciones antes del formulario.
 - **El oscuro sigue apareciendo una sola vez y al final.** Ver la sección 3.4.
+- **Dos llamadas a la acción intermedias, ni una más.** Van al cerrar «Cómo trabajamos» y al cerrar «Quiénes somos», que son los dos puntos donde el visitante acaba de recibir un argumento completo. Seis de los siete sitios del benchmark repiten la llamada; aquí solo estaba en el hero y en el formulario, con media página en medio sin salida hacia el contacto. Una tercera dentro de la misma pantalla convertiría la página en un anuncio.
+- **La llamada hereda el fondo de su sección.** No es una banda de color: es una línea y una frase. La página tiene un solo bloque de color y es el del cierre.
 
 ---
 

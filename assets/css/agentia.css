@@ -1673,6 +1673,41 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
+   12.d Llamada a la accion intermedia
+   Seis de los siete sitios del benchmark repiten la llamada a lo largo de
+   la pagina. Aqui solo estaba en el hero y en el formulario del final, con
+   media pagina en medio sin una sola salida hacia el contacto.
+
+   Dos, no mas. Van al cerrar «Como trabajamos» y al cerrar «Quienes
+   somos», que son los dos puntos donde el visitante acaba de recibir un
+   argumento completo. Una tercera dentro de la misma pantalla convertiria
+   la pagina en un anuncio.
+
+   Hereda el fondo de su seccion a proposito: no es una banda de color, es
+   una linea y una frase. La pagina tiene un solo bloque oscuro y es el
+   del cierre.
+   -------------------------------------------------------------------------- */
+
+.llamada {
+  margin-top: var(--e-5);
+  padding-top: var(--e-3);
+  border-top: var(--linea-gruesa) solid var(--tinta);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+}
+
+.llamada__texto {
+  font-family: var(--f-display);
+  font-weight: var(--w-titular);
+  font-size: var(--t-h3);
+  letter-spacing: -0.02em;
+  max-width: 34ch;
+}
+
+/* --------------------------------------------------------------------------
    13. Respuesta movil
    -------------------------------------------------------------------------- */
 
@@ -1747,6 +1782,7 @@ svg {
 
   .pasos { grid-template-columns: 1fr; }
   .trabajos { grid-template-columns: 1fr; }
+  .llamada { flex-direction: column; align-items: flex-start; }
   .paso { border-right: none; border-bottom: var(--linea-fina) solid var(--regla); padding-bottom: var(--e-3); }
   .paso:last-child { border-bottom: none; }
 
