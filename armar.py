@@ -81,6 +81,27 @@ PAGINAS = [
         "prioridad": "0.9",
     },
     {
+        "ruta": "trabajos/video",
+        "titulo": "Video · Trabajos · Agentia",
+        "descripcion": "Reels y cortometrajes con modelos generativos y dirección de arte humana. Equipo audiovisual propio en Huaraz, Ica y Lima.",
+        "piezas": ["seccion-tipo-video"],
+        "prioridad": "0.7",
+    },
+    {
+        "ruta": "trabajos/grafica",
+        "titulo": "Gráfica · Trabajos · Agentia",
+        "descripcion": "Sistemas gráficos para campaña, punto de venta y digital, adaptados a multiformato desde un solo manual de marca.",
+        "piezas": ["seccion-tipo-grafica"],
+        "prioridad": "0.7",
+    },
+    {
+        "ruta": "trabajos/web",
+        "titulo": "Web · Trabajos · Agentia",
+        "descripcion": "Landing pages y sitios con analítica integrada antes de publicar y rendimiento medido en Core Web Vitals.",
+        "piezas": ["seccion-tipo-web"],
+        "prioridad": "0.7",
+    },
+    {
         "ruta": "nosotros",
         "titulo": "Nosotros · Agentia",
         "descripcion": "Por qué Agentia, nuestro proceso paso a paso y qué recibes en cada uno. Operamos entre Huaraz, Ica y Lima.",
@@ -180,9 +201,43 @@ def marcar_activo(html, ruta):
     Se hace al armar y no con JavaScript: si dependiera del script, un
     fallo de JS dejaria el menu sin indicar donde esta el visitante, y
     esa es informacion de orientacion, no un adorno.
+
+    Va por `data-nav` y no por href. Buscar el href fallaba en cuanto una
+    pagina enlazaba a su propia seccion desde el cuerpo: /trabajos/video/
+    tiene una miga que vuelve a /trabajos/, con el mismo href que el menu,
+    y el replace marcaba tambien esa miga como pagina actual. El atributo
+    solo esta en los diez enlaces del menu, asi que no hay confusion.
+
+    Una interna marca su seccion madre: estando en /trabajos/video/ el
+    menu senala Trabajos, que es donde el visitante cree que esta.
     """
-    destino = 'href="./"' if not ruta else 'href="../%s/"' % ruta
-    return html.replace(destino, destino + ' aria-current="page"')
+    seccion = ruta.split("/")[0] if ruta else "inicio"
+    marca = 'data-nav="%s"' % seccion
+    return html.replace(marca, marca + ' aria-current="page"')
+
+
+def promover_a_h1(html):
+    """Sube a h1 el primer titular de la pagina, si no hay uno ya.
+
+    Cuatro de las cinco paginas se quedaron sin h1 cuando el sitio se
+    partio: todas las secciones traen su titular como h2 porque nacieron
+    siendo secciones de una sola pagina larga, donde el h1 era el del
+    hero. Repartidas en cinco paginas, cuatro quedaron empezando por h2.
+
+    Para un buscador y para un lector de pantalla eso es una pagina sin
+    titulo: el h1 es lo que anuncia de que va y es el primer salto de
+    navegacion por encabezados.
+
+    Se arregla aqui y no editando las piezas porque una misma pieza es la
+    primera en una pagina y la tercera en otra. El resumen de servicios
+    abre la portada por debajo del hero, que ya tiene su h1, y entonces
+    tiene que seguir siendo h2. La posicion la sabe el armador, no la
+    pieza.
+    """
+    if "<h1" in html:
+        return html
+    return re.sub(r'<h2(\s+class="seccion__titular[^"]*"[^>]*)>(.*?)</h2>',
+                  r'<h1\1>\2</h1>', html, count=1, flags=re.S)
 
 
 def armar():
@@ -198,7 +253,11 @@ def armar():
 
     for pagina in PAGINAS:
         ruta = pagina["ruta"]
-        raiz = "" if not ruta else "../"
+        # Una pagina puede colgar de otra: /trabajos/video/ esta a dos
+        # niveles, asi que necesita dos "../" para llegar a los assets. Se
+        # cuenta por segmentos y no por if, que es lo que habia cuando todas
+        # las paginas estaban al mismo nivel.
+        raiz = "../" * len([s for s in ruta.split("/") if s])
         url = DOMINIO + "/" + (ruta + "/" if ruta else "")
 
         # Los dos CTA llevan a sitios de verdad distintos: Agendar al
@@ -233,6 +292,7 @@ def armar():
         html = html.replace("assets/js/agentia.js",
                             "assets/js/agentia.js?v=" + version_js)
         html = marcar_activo(html, ruta)
+        html = promover_a_h1(html)
 
         sospechosos = avisar_de_eyebrows(html)
         if sospechosos:

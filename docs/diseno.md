@@ -41,7 +41,7 @@ Lo que esto significa a la hora de decidir:
 
 **`/nosotros/` es la que más carga**, y no es casual: reúne cuatro secciones que antes eran cuatro páginas de scroll. Sus titulares son nombres de ficha, que son el contenido mismo y no se pueden quitar. Si alguna vez hay que adelgazar algo, es ahí donde hay que mirar primero, y la salida sería separar de nuevo alguna sección, no borrar titulares.
 
-### 1.1 El sitio son cinco páginas
+### 1.1 El sitio son ocho páginas
 
 **Partido el 10 de octubre de 2026.** Hasta entonces era una sola página con todo dentro. El benchmark de `docs/benchmark.md` mostró que **los siete sitios del sector son multipágina**, y el sitio se alineó con eso.
 
@@ -50,8 +50,15 @@ Lo que esto significa a la hora de decidir:
 | `/` | ¿Qué hacen, qué puedo contratar, y cómo los contacto? |
 | `/servicios/` | ¿Qué incluye cada frente? |
 | `/trabajos/` | ¿Puedo ver algo? |
+| `/trabajos/video/` | ¿Qué hacen en video y por qué así? |
+| `/trabajos/grafica/` | ¿Qué hacen en gráfica y por qué así? |
+| `/trabajos/web/` | ¿Qué hacen en web y por qué así? |
 | `/nosotros/` | ¿Por qué ustedes, cómo trabajan, quiénes son, qué dudas quedan? |
 | `/contacto/` | ¿A qué correo escribo? |
+
+**Las tres internas de Trabajos se abrieron el 10 de octubre de 2026.** Video, gráfica y web se contratan por separado y quien llega buscando una no quiere leer las otras dos. Cada una dice qué entra en esa disciplina, con material sacado de los servicios que ya estaban escritos, no inventado.
+
+Son el único nivel anidado del sitio y no van en el menú: se llega desde `/trabajos/`, y cada una vuelve con una miga. El menú sigue teniendo cinco entradas, y estando en una interna señala Trabajos, que es donde el visitante cree que está.
 
 ### 1.2 La portada es corta a propósito, y es una decisión suya
 

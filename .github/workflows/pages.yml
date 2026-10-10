@@ -29,6 +29,11 @@ jobs:
         run: |
           python3 armar.py
 
+          # Enlaces, anclas y encabezados. Un enlace roto no rompe el
+          # armado: la pagina se publica y el boton simplemente no hace
+          # nada. Aqui si para la publicacion.
+          python3 comprobar.py
+
           # Sello de version en el pie de cada pagina. Sin esto no hay forma
           # de saber si lo que ves es lo ultimo o lo que guardo tu navegador:
           # Pages manda las paginas con cache de 10 minutos y no deja tocar

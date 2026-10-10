@@ -32,7 +32,9 @@ Si solo quieres servir lo ya armado: `python3 armar.py && python3 -m http.server
 
 ```
 armar.py                        el armador. Lee partes/ y escribe _sitio/
-partes/cabeza.html              head, barra y menú móvil. Los comparten las cinco
+comprobar.py                    enlaces, anclas y encabezados del sitio armado
+armar-captura.py                copias autocontenidas para subir a Figma
+partes/cabeza.html              head, barra y menú móvil. Los comparten las ocho
 partes/pie.html                 el pie, idem
 partes/hero.html                el hero de la portada
 partes/seccion-*.html           una pieza por sección
@@ -52,19 +54,43 @@ agentia-historial.bundle        el repositorio git completo, 13 commits
 
 Peso de lo que se despliega: **328 KB**, de los cuales 222 KB son las tres tipografías.
 
-### Las cinco páginas
+### Las ocho páginas
 
 | Ruta | Qué lleva |
 |---|---|
 | `/` | Hero · los seis servicios en resumen · formulario |
 | `/servicios/` | El mando que gira y los seis en detalle |
-| `/trabajos/` | La galería. Seis huecos esperando material |
-| `/nosotros/` | Por qué Agentia · cómo trabajamos · quiénes somos · preguntas |
+| `/trabajos/` | Los tres tipos y la galería. Seis huecos esperando material |
+| `/trabajos/video/` | Qué entra en video. Sin galería todavía |
+| `/trabajos/grafica/` | Qué entra en gráfica. Sin galería todavía |
+| `/trabajos/web/` | Qué entra en web. Sin galería todavía |
+| `/nosotros/` | Por qué Agentia · cómo trabajamos · dónde operamos · preguntas |
 | `/agentia/` | Página de salto a `/nosotros/`. La ruta cambió el 10 de octubre |
 | `/contacto/` | Los tres correos. **Sin formulario**: ese vive en la portada |
 
 Quién lleva qué lo decide la lista `PAGINAS` de `armar.py`. Añadir una página
-es añadir una entrada ahí y una pieza en `partes/`.
+es añadir una entrada ahí y una pieza en `partes/`. La ruta puede llevar barra:
+`trabajos/video` se arma en `_sitio/trabajos/video/` y el armador le calcula
+solos los `../../` que necesita para llegar a los assets.
+
+**Las internas no van en el menú.** El menú sigue teniendo cinco entradas; a las
+tres de Trabajos se llega desde su índice y se vuelve con la miga. Estando en una
+de ellas el menú señala Trabajos.
+
+### Comprobar antes de publicar
+
+```bash
+python3 armar.py && python3 comprobar.py
+```
+
+Revisa tres cosas sobre el sitio ya armado: que no quede ningún enlace interno
+apuntando a nada, que cada ancla `#algo` exista de verdad en la página a la que
+apunta, y que cada página tenga un `h1` y solo uno. Sale con código 1 si algo
+falla, y el workflow lo corre antes de publicar.
+
+Existe porque un enlace roto **no rompe el armado**: la página se publica, el
+botón se ve perfecto y al pulsarlo no pasa nada. Pasó con un botón que apuntaba
+a `#contacto` después de que esa sección se mudara a su propia página.
 
 ### Recuperar el historial de git
 
@@ -307,6 +333,23 @@ que siga siendo lo más redondeado de la página.
 `armar.py` le pone `aria-current="page"` al enlace de la página en la que estás.
 Se hace al armar a propósito: si dependiera del script, un fallo de JS dejaría el
 menú sin indicar dónde está el visitante, y eso es orientación, no adorno.
+
+Va por el atributo `data-nav` de los diez enlaces del menú, no por su `href`.
+Buscar el href fallaba en cuanto una página enlazaba a su propia sección desde el
+cuerpo: `/trabajos/video/` tiene una miga que vuelve a `/trabajos/` con el mismo
+href que el menú, y la miga acababa marcada también como página actual.
+
+### 4.12 El h1 lo pone el armador
+
+Cuatro de las cinco páginas se quedaron sin `h1` al partir el sitio: todas las
+secciones traen su titular como `h2` porque nacieron siendo secciones de una sola
+página larga, donde el `h1` era el del hero.
+
+El armador sube a `h1` el primer titular de cada página, si no hay uno ya. Se hace
+ahí y no editando las piezas porque **una misma pieza es la primera en una página
+y la tercera en otra**: el resumen de servicios abre la portada por debajo del
+hero, que ya tiene su `h1`, así que ahí tiene que seguir siendo `h2`. La posición
+la sabe el armador, no la pieza. `comprobar.py` vigila que siga cumpliéndose.
 
 ---
 

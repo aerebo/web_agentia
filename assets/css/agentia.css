@@ -1660,6 +1660,89 @@ svg {
   letter-spacing: -0.02em;
 }
 
+/* --- los tres tipos de trabajo ---
+   Trabajos dejo de ser una sola reja: cada tipo tiene su pagina interna
+   porque video, grafica y web se contratan por separado y quien busca una
+   no quiere leer las otras dos.
+
+   Son enlaces, no tarjetas decorativas: todo el bloque es clicable y el
+   nombre lleva subrayado al pasar, que es lo que distingue un enlace de
+   una caja. La flecha confirma que lleva a otro sitio. */
+.tipos {
+  list-style: none;
+  margin-top: var(--e-4);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-2);
+}
+
+.tipos--otros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.tipo__enlace {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: start;
+  gap: var(--e-1) var(--e-2);
+  padding: var(--e-3);
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
+  background: var(--lamina);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--dur-rapida) var(--ease-salida),
+              border-color var(--dur-rapida) var(--ease-salida);
+}
+
+.tipo__enlace:hover {
+  background: var(--azul-humo);
+  border-color: var(--azul-claro);
+}
+
+.tipo__nombre {
+  grid-column: 1;
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.tipo__enlace:hover .tipo__nombre { text-decoration: underline; }
+
+.tipo__entrada {
+  grid-column: 1 / -1;
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+  max-width: 30ch;
+}
+
+.tipo__flecha {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--azul);
+  transition: transform var(--dur-rapida) var(--ease-salida);
+}
+
+.tipo__enlace:hover .tipo__flecha { transform: translateX(0.25rem); }
+
+/* --- la miga de las internas ---
+   Dos niveles, no mas. Dice de donde cuelga la pagina y da la vuelta
+   atras sin depender del boton del navegador. */
+.miga {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--humo-claro);
+  margin-bottom: var(--e-2);
+  display: flex;
+  align-items: center;
+  gap: var(--e-1);
+}
+
+.miga a { color: var(--azul-fuerte); }
+
+.tipo__lista { margin-top: var(--e-4); }
+
 /* --- cifras de quienes somos ---
    Solo van las confirmadas. Anos operando y proyectos entregados siguen
    sin contarse, y un numero inventado en la web es justo el detalle que
@@ -1914,6 +1997,7 @@ svg {
   .fichas { --fichas-columnas: 2; }
   .publico { grid-template-columns: 1fr; gap: var(--e-4); }
   .trabajos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tipos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cifras { grid-template-columns: 1fr; gap: var(--e-3); }
   .servicio--faq .servicio__cabecera { grid-template-columns: 3rem 1fr 1.5rem; }
   .resumen__fila { grid-template-columns: 3rem 1fr; row-gap: var(--e-1); }
@@ -1922,6 +2006,12 @@ svg {
 }
 
 @media (max-width: 520px) {
+  /* Tres accesos en fila no caben en un telefono sin que el nombre del
+     tipo se parta en dos. Uno debajo de otro, que ademas es el orden en
+     que se leen. */
+  .tipos,
+  .tipos--otros { grid-template-columns: 1fr; }
+
   .hero__acciones .boton {
     width: 100%;
     justify-content: space-between;
