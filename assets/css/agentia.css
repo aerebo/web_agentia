@@ -1363,6 +1363,11 @@ svg {
   overflow: hidden;
 }
 
+/* el aviso de que el envio no esta conectado, arriba del primer campo */
+.aviso--formulario {
+  margin-bottom: var(--e-3);
+}
+
 .formulario__enviar { margin-top: var(--e-2); }
 
 .formulario__enviar[disabled] {

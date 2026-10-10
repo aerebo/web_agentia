@@ -265,7 +265,11 @@ El `<form>` está completo: campos con `name`, etiquetas reales asociadas, campo
 trampa contra spam (`.trampa`, el input `web`), y `novalidate` puesto para que la
 validación sea de servidor y no del navegador.
 
-**El botón está deshabilitado y la página lo dice en pantalla.** Se hizo así para
+**El botón está deshabilitado y la página lo dice en pantalla, arriba del
+primer campo.** El aviso estaba debajo del botón hasta el 10 de octubre de 2026
+y se movió por dos motivos: debajo obligaba a llenar cinco campos, pulsar y
+recién ahí enterarse; y **debajo del botón no debe ir nada**, porque lo último
+que ve quien está a punto de enviar tiene que ser el botón. Se hizo así para
 que no finja funcionar, que es lo que hacía la versión anterior del sitio con un
 `mailto:` disfrazado de botón de envío.
 

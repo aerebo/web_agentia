@@ -1,6 +1,12 @@
 <!-- El formulario esta completo pero todavia no envia: falta decidir
              entre contact.php propio o servicio externo. Fase 6. -->
         <form class="formulario rv" novalidate>
+          <!-- El aviso va ARRIBA, no bajo el boton. Debajo obligaba a llenar
+               cinco campos, pulsar y recien ahi enterarse de que no envia.
+               Y debajo del boton no puede ir nada: lo ultimo que ve quien
+               esta a punto de enviar tiene que ser el boton. -->
+          <p class="aviso aviso--formulario spec">{{AVISO_ENVIO}}</p>
+
           <p class="campo">
             <label for="f-nombre">Nombre</label>
             <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
@@ -39,5 +45,4 @@
             <span class="boton__flecha" aria-hidden="true">&rarr;</span>
           </button>
 
-          <p class="aviso spec">{{AVISO_ENVIO}}</p>
         </form>
