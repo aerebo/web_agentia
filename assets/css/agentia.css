@@ -1267,6 +1267,13 @@ svg {
 .contacto__lado { grid-column: 1 / span 5; }
 .formulario { grid-column: 7 / span 6; }
 
+/* /contacto/ no lleva formulario, solo los correos. Sin esto el contenido
+   se quedaba en la columna estrecha de la izquierda con media pantalla
+   vacia al lado, porque la reticula seguia reservando el hueco del
+   formulario que ya no esta. */
+.contacto--correos .contacto__lista { grid-column: 7 / span 6; }
+.contacto--correos .correos { margin-top: 0; }
+
 .correos {
   list-style: none;
   display: grid;
@@ -1900,6 +1907,7 @@ svg {
   .declara__titular,
   .declara__cuerpo,
   .contacto__lado,
+  .contacto--correos .contacto__lista,
   .formulario {
     grid-column: 1 / -1;
   }

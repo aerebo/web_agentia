@@ -51,7 +51,7 @@ PAGINAS = [
         "ruta": "",
         "titulo": "Agentia · Agencia de marketing con IA en Perú",
         "descripcion": "Sitios web que convierten, contenido a escala y campañas medibles. Producción creativa asistida por IA en Huaraz, Ica y Lima.",
-        "piezas": ["hero", "seccion-servicios-resumen", "seccion-contacto-breve"],
+        "piezas": ["hero", "seccion-servicios-resumen", "seccion-formulario"],
         "prioridad": "1.0",
     },
     {
@@ -79,7 +79,7 @@ PAGINAS = [
         "ruta": "contacto",
         "titulo": "Contacto · Agentia",
         "descripcion": "Cuéntanos qué necesitas resolver. Cotizaciones y propuestas en comercial@agentia.com.pe.",
-        "piezas": ["seccion-contacto"],
+        "piezas": ["seccion-correos"],
         "prioridad": "0.7",
     },
 ]
@@ -136,14 +136,17 @@ def armar():
         raiz = "" if not ruta else "../"
         url = DOMINIO + "/" + (ruta + "/" if ruta else "")
 
-        # Los dos CTA del sitio apuntan al mismo sitio, pero por el camino
-        # corto: si la pagina ya trae el formulario o los correos, se baja
-        # a ellos en vez de recargar otra pagina para ver lo que ya estaba
-        # debajo. La portada lleva formulario; los correos solo /contacto/.
+        # Los dos CTA llevan a sitios de verdad distintos: Agendar al
+        # formulario, que vive solo en la portada, y Contactar a los
+        # correos, que viven solo en /contacto/. Si la pagina actual ya
+        # trae uno de los dos, se baja a el con un ancla en vez de
+        # recargar otra pagina para ver lo que estaba debajo.
         piezas = pagina["piezas"]
-        tiene_formulario = any(p.startswith("seccion-contacto") for p in piezas)
-        tiene_correos = "seccion-contacto" in piezas
-        agendar = "#formulario" if tiene_formulario else raiz + "contacto/#formulario"
+        tiene_formulario = "seccion-formulario" in piezas
+        tiene_correos = "seccion-correos" in piezas
+        # el formulario vive solo en la portada, asi que desde fuera se va
+        # a la raiz del sitio, no a /contacto/
+        agendar = "#formulario" if tiene_formulario else raiz + "#formulario"
         contactar = "#correos" if tiene_correos else raiz + "contacto/#correos"
 
         cuerpo = resolver_piezas("\n\n".join(pieza(p) for p in pagina["piezas"]))

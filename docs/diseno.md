@@ -26,7 +26,7 @@ Esa es la prueba del argumento comercial que ya está en el contenido aprobado: 
 | `/servicios/` | ¿Qué incluye cada frente? |
 | `/trabajos/` | ¿Puedo ver algo? |
 | `/agentia/` | ¿Por qué ustedes, cómo trabajan, quiénes son, qué dudas quedan? |
-| `/contacto/` | ¿Cómo empiezo? |
+| `/contacto/` | ¿A qué correo escribo? |
 
 ### 1.2 La portada es corta a propósito, y es una decisión suya
 
@@ -59,8 +59,12 @@ Fijado el 10 de octubre de 2026. Antes había **siete etiquetas distintas** en l
 
 | Etiqueta | Lleva a | Dónde |
 |---|---|---|
-| **Agendar** | El formulario | La principal. Barra, hero, y al cerrar «Cómo trabajamos» |
-| **Contactar** | Los tres correos | La alternativa de quien prefiere escribir directo. Al cerrar «Quiénes somos» |
+| **Agendar** | El formulario, que vive **solo en la portada** | La principal. Barra, hero, y al cerrar «Cómo trabajamos» |
+| **Contactar** | Los tres correos, que viven **solo en `/contacto/`** | La alternativa de quien prefiere escribir directo. Al cerrar «Quiénes somos» |
+
+**Cada uno lleva a un sitio de verdad distinto**, desde el 10 de octubre de 2026. Antes `/contacto/` tenía el formulario *y* los correos, así que los dos botones acababan en la misma página y la diferencia entre ellos era nominal. Ahora el formulario es de la portada y los correos son de `/contacto/`.
+
+Cada una de las dos páginas enlaza a la otra con una línea discreta, para quien llegó por el camino que no era.
 
 **Agendar va en relleno y Contactar en línea.** No compiten: una es la principal y la otra es la salida de quien no quiere llenar campos.
 

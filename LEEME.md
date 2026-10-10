@@ -60,7 +60,7 @@ Peso de lo que se despliega: **328 KB**, de los cuales 222 KB son las tres tipog
 | `/servicios/` | El mando que gira y los seis en detalle |
 | `/trabajos/` | La galería. Seis huecos esperando material |
 | `/agentia/` | Por qué Agentia · cómo trabajamos · quiénes somos · preguntas |
-| `/contacto/` | El formulario con los correos |
+| `/contacto/` | Los tres correos. **Sin formulario**: ese vive en la portada |
 
 Quién lleva qué lo decide la lista `PAGINAS` de `armar.py`. Añadir una página
 es añadir una entrada ahí y una pieza en `partes/`.
