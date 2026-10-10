@@ -47,6 +47,17 @@ SALIDA = RAIZ / "_sitio"
 # que se va a indexar.
 DOMINIO = "https://agentia.com.pe"
 
+# Rutas que cambiaron de nombre. Siguen existiendo como pagina de salto
+# porque ya se habian compartido: quien tenga el enlace viejo guardado
+# llega al nuevo en vez de encontrarse un 404.
+#
+# Pages no sabe hacer redirecciones de servidor, asi que se hace con la
+# pagina: meta refresh para el navegador, canonical para los buscadores y
+# noindex para que la vieja no compita con la nueva en Google.
+REDIRECCIONES = {
+    "agentia": "nosotros",
+}
+
 PAGINAS = [
     {
         "ruta": "",
@@ -70,9 +81,9 @@ PAGINAS = [
         "prioridad": "0.9",
     },
     {
-        "ruta": "agentia",
-        "titulo": "Agentia · Cómo trabajamos y quiénes somos",
-        "descripcion": "Nuestro proceso paso a paso, qué recibes en cada uno, y quién está detrás. Operamos entre Huaraz, Ica y Lima.",
+        "ruta": "nosotros",
+        "titulo": "Nosotros · Agentia",
+        "descripcion": "Por qué Agentia, nuestro proceso paso a paso y qué recibes en cada uno. Operamos entre Huaraz, Ica y Lima.",
         "piezas": ["seccion-porque", "seccion-proceso", "seccion-quienes", "seccion-preguntas"],
         "prioridad": "0.8",
     },
@@ -230,6 +241,21 @@ def armar():
         destino = SALIDA / ruta if ruta else SALIDA
         destino.mkdir(parents=True, exist_ok=True)
         (destino / "index.html").write_text(html, encoding="utf-8")
+
+    for vieja, nueva in REDIRECCIONES.items():
+        destino = SALIDA / vieja
+        destino.mkdir(parents=True, exist_ok=True)
+        (destino / "index.html").write_text(
+            '<!DOCTYPE html>\n<html lang="es-PE">\n<head>\n'
+            '<meta charset="UTF-8">\n'
+            '<meta http-equiv="refresh" content="0; url=../%s/">\n'
+            '<meta name="robots" content="noindex">\n'
+            '<link rel="canonical" href="%s/%s/">\n'
+            '<title>Esta página se mudó · Agentia</title>\n'
+            '</head>\n<body>\n'
+            '<p>Esta página ahora está en <a href="../%s/">/%s/</a>.</p>\n'
+            '</body>\n</html>\n' % (nueva, DOMINIO, nueva, nueva, nueva),
+            encoding="utf-8")
 
     shutil.copytree(RAIZ / "assets", SALIDA / "assets")
     (SALIDA / ".nojekyll").write_text("", encoding="utf-8")

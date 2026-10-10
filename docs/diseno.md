@@ -39,7 +39,7 @@ Lo que esto significa a la hora de decidir:
 | `/agentia/` | 14 | 20 |
 | `/contacto/` | 1 | 5 |
 
-**`/agentia/` es la que más carga**, y no es casual: reúne cuatro secciones que antes eran cuatro páginas de scroll. Sus titulares son nombres de ficha, que son el contenido mismo y no se pueden quitar. Si alguna vez hay que adelgazar algo, es ahí donde hay que mirar primero, y la salida sería separar de nuevo alguna sección, no borrar titulares.
+**`/nosotros/` es la que más carga**, y no es casual: reúne cuatro secciones que antes eran cuatro páginas de scroll. Sus titulares son nombres de ficha, que son el contenido mismo y no se pueden quitar. Si alguna vez hay que adelgazar algo, es ahí donde hay que mirar primero, y la salida sería separar de nuevo alguna sección, no borrar titulares.
 
 ### 1.1 El sitio son cinco páginas
 
@@ -50,7 +50,7 @@ Lo que esto significa a la hora de decidir:
 | `/` | ¿Qué hacen, qué puedo contratar, y cómo los contacto? |
 | `/servicios/` | ¿Qué incluye cada frente? |
 | `/trabajos/` | ¿Puedo ver algo? |
-| `/agentia/` | ¿Por qué ustedes, cómo trabajan, quiénes son, qué dudas quedan? |
+| `/nosotros/` | ¿Por qué ustedes, cómo trabajan, quiénes son, qué dudas quedan? |
 | `/contacto/` | ¿A qué correo escribo? |
 
 ### 1.2 La portada es corta a propósito, y es una decisión suya
@@ -68,7 +68,7 @@ Queda escrito para que, si algún día los números decepcionan, se sepa dónde 
 
 **No es estético: es el orden en que un cliente potencial hace las preguntas.**
 
-En `/agentia/` el orden es: por qué Agentia, cómo trabajamos, quiénes somos, preguntas frecuentes. El argumento primero, la mecánica después, las credenciales al final y las objeciones pegadas a la salida.
+En `/nosotros/` el orden es: por qué Agentia, cómo trabajamos, quiénes somos, preguntas frecuentes. El argumento primero, la mecánica después, las credenciales al final y las objeciones pegadas a la salida.
 
 **Reglas que sobreviven al corte:**
 
