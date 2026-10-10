@@ -117,9 +117,7 @@ def marcar_activo(html, ruta):
     fallo de JS dejaria el menu sin indicar donde esta el visitante, y
     esa es informacion de orientacion, no un adorno.
     """
-    if not ruta:
-        return html
-    destino = 'href="../%s/"' % ruta
+    destino = 'href="./"' if not ruta else 'href="../%s/"' % ruta
     return html.replace(destino, destino + ' aria-current="page"')
 
 
@@ -147,6 +145,10 @@ def armar():
         # el formulario vive solo en la portada, asi que desde fuera se va
         # a la raiz del sitio, no a /contacto/
         agendar = "#formulario" if tiene_formulario else raiz + "#formulario"
+        # En la portada el enlace a Inicio es "./" y no "": vacio apunta a
+        # la URL actual con sus parametros, y ademas no se puede marcar
+        # como pagina actual sin pisar otros href vacios que aparezcan.
+        inicio = "./" if not ruta else raiz
         contactar = "#correos" if tiene_correos else raiz + "contacto/#correos"
 
         cuerpo = resolver_piezas("\n\n".join(pieza(p) for p in pagina["piezas"]))
@@ -155,6 +157,7 @@ def armar():
                 .replace("{{TITULO}}", pagina["titulo"])
                 .replace("{{DESCRIPCION}}", pagina["descripcion"])
                 .replace("{{URL}}", url)
+                .replace("{{INICIO}}", inicio)
                 .replace("{{AGENDAR}}", agendar)
                 .replace("{{CONTACTAR}}", contactar)
                 .replace("{{RAIZ}}", raiz))
