@@ -1421,6 +1421,9 @@ svg {
 .pie__marca .logo { font-size: 1.0625rem; }
 .pie .spec { color: var(--humo-claro); }
 
+/* el sello de version: esta, pero no compite con nada */
+.pie__version { opacity: 0.55; }
+
 /* --------------------------------------------------------------------------
    12. Entradas
    -------------------------------------------------------------------------- */
