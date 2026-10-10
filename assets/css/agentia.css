@@ -1857,24 +1857,6 @@ svg {
   line-height: 1;
 }
 
-.ficha__icono {
-  flex: none;
-  width: 1.1rem;
-  height: 1.1rem;
-  color: var(--azul);
-}
-
-.ficha__icono svg {
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  overflow: visible;
-}
-
 .ficha__titulo {
   font-family: var(--f-display);
   font-weight: var(--w-fuerte);

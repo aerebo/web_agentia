@@ -469,13 +469,15 @@ Sin él, el botón de menú salía a 31 px contra los 56 del botón de al lado: 
 
 Los 56 px además superan los 44 que piden las pautas de accesibilidad para una diana táctil.
 
-### 6.4 Iconos
+### 6.4 Iconos: ya no hay
 
-Ocho iconos de línea, dibujados a mano como SVG en línea dentro de las piezas: cuatro para el proceso y cuatro para los pilares. Mismo trazo que los glifos de la insignia: sin relleno, `stroke-width: 7` sobre un `viewBox` de 100, puntas y uniones redondeadas.
+Hubo ocho iconos de línea en las cabeceras de ficha, cuatro en el proceso y cuatro en los pilares. **Se retiraron el 10 de octubre de 2026.**
 
-**No hay librería de iconos ni CDN**, y no la va a haber: es la regla de cero dependencias de la sección 10. Si hace falta un icono nuevo, se dibuja con esos mismos parámetros o desentona.
+Medían 18 px y se sentaban entre el número en círculo y el título. El número ya ordena la secuencia y ya carga el peso visual que se le pidió; el icono al lado no añadía información —iban con `aria-hidden="true"`, o sea que ni siquiera eran información— y partía en tres una cabecera que lee mejor en dos. Es la sección 1.0 aplicada: si no suma, resta.
 
-Van en `--azul` y con `aria-hidden="true"`: son refuerzo visual del título, no información.
+Lo confirmó además el tablero de Figma: al importar la página, el convertidor descarta las formas sin relleno, así que de los cuatro iconos de pilares solo sobrevivía el cuadrado de la tarjeta 3 y la cabecera quedaba desigual. Un elemento que no se puede revisar en el tablero y que no aporta nada en la web no se defiende.
+
+**No hay librería de iconos ni CDN**, y no la va a haber: es la regla de cero dependencias de la sección 10. Si alguna vez vuelve a hacer falta un icono, se dibuja a mano con el trazo de la insignia —sin relleno, `stroke-width: 7` sobre un `viewBox` de 100, puntas redondeadas— y se le busca un sitio donde sea el único elemento, no el tercero.
 
 ---
 
