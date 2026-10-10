@@ -136,12 +136,24 @@ def armar():
         raiz = "" if not ruta else "../"
         url = DOMINIO + "/" + (ruta + "/" if ruta else "")
 
+        # Los dos CTA del sitio apuntan al mismo sitio, pero por el camino
+        # corto: si la pagina ya trae el formulario o los correos, se baja
+        # a ellos en vez de recargar otra pagina para ver lo que ya estaba
+        # debajo. La portada lleva formulario; los correos solo /contacto/.
+        piezas = pagina["piezas"]
+        tiene_formulario = any(p.startswith("seccion-contacto") for p in piezas)
+        tiene_correos = "seccion-contacto" in piezas
+        agendar = "#formulario" if tiene_formulario else raiz + "contacto/#formulario"
+        contactar = "#correos" if tiene_correos else raiz + "contacto/#correos"
+
         cuerpo = resolver_piezas("\n\n".join(pieza(p) for p in pagina["piezas"]))
         html = cabeza + "\n\n" + cuerpo + "\n\n" + pie
         html = (html
                 .replace("{{TITULO}}", pagina["titulo"])
                 .replace("{{DESCRIPCION}}", pagina["descripcion"])
                 .replace("{{URL}}", url)
+                .replace("{{AGENDAR}}", agendar)
+                .replace("{{CONTACTAR}}", contactar)
                 .replace("{{RAIZ}}", raiz))
         html = marcar_activo(html, ruta)
 
