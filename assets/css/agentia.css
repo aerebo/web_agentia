@@ -931,9 +931,6 @@ svg {
   transition-delay: 0s, 0s, 0s;
 }
 
-.revelado__indice {
-  margin-bottom: var(--e-2);
-}
 
 .revelado h2 {
   font-size: var(--t-h2);

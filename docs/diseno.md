@@ -270,6 +270,45 @@ Se mantiene `font-variant-numeric: tabular-nums` en las cotas para que los núme
 
 **Peso:** 166 KB menos. El sitio pasó de 352 a 186 KB.
 
+### 4.1.b Cuándo se permite una cota, y cuándo no
+
+**Auditadas las cinco páginas el 10 de octubre de 2026.** Agentia fue quitando los rótulos pequeños de sección uno por uno y pidió que no volvieran a aparecer.
+
+**La diferencia no la da la posición, la da el contenido.** Un rótulo pequeño encima de un titular puede ser las dos cosas:
+
+| | Ejemplo | Veredicto |
+|---|---|---|
+| **Eyebrow** | «Servicios», «Hablemos», «Por qué Agentia», «Servicio» | **Sobra.** Nombra la categoría de lo que el titular ya dice |
+| **Cota** | «Video · Cliente por confirmar», «01», «General» | **Se queda.** Lleva un dato que el titular no dice |
+
+**La regla:** si quitas el rótulo y no se pierde ninguna información, era un eyebrow.
+
+**Lo que sobrevivió a la auditoría**, y por qué:
+
+| Rótulo | Qué aporta |
+|---|---|
+| Números 01–06 | Ordenan la lista. Son la serie |
+| Turismo, Hospedaje, Gastronomía | El sector de cada cliente |
+| Video · Cliente por confirmar | Tipo de pieza y a quién pertenece |
+| General, Cotizaciones y propuestas | Para qué sirve cada buzón |
+| Huaraz · Ica · Lima | Dónde se opera |
+| Agarra el punto y gíralo | Instrucción de uso del mando |
+| Pendiente de material, avisos | Estado, y temporal |
+| Pie y sello de versión | Dato |
+
+### 4.1.c El armador avisa si vuelve a aparecer uno
+
+`armar.py` marca todo rótulo de cota que vaya pegado encima de un titular **y** que no lleve ningún dato dentro: sin cifras, sin separador de campos y de cuatro palabras o menos.
+
+```
+AVISO  trabajos: rotulo pequeno encima de un titular -> Trabajos
+       Si el titular ya dice de que va, el rotulo sobra.
+```
+
+**Avisa, no bloquea.** Es una regla de estilo, no un error, y hay casos en los que un rótulo corto encima de un titular está justificado. Pero sale en el registro del workflow al publicar, así que nadie puede decir que no se vio.
+
+**Probado en los dos sentidos:** calla con la página limpia y salta cuando se le planta un eyebrow a propósito.
+
 ### 4.2 Escala
 
 | Token | Valor | Uso |

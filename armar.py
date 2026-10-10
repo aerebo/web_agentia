@@ -126,6 +126,43 @@ def resolver_piezas(html, vueltas=5):
     return html
 
 
+# Un rotulo de cota seguido de un titular es el patron del «eyebrow»: una
+# etiqueta pequena en caja alta que nombra la categoria de lo que el
+# titular dice justo debajo. Agentia los fue quitando uno por uno el 10 de
+# octubre de 2026 y pidio que no volvieran.
+#
+# La diferencia entre un eyebrow y una cota legitima no la da la posicion,
+# la da el contenido:
+#
+#   eyebrow   «Servicios», «Hablemos», «Por que Agentia»  -> sobra
+#   cota      «Video · Cliente por confirmar», «01»        -> es un dato
+#
+# Asi que se marca solo lo que ademas de ir encima de un titular no lleva
+# ningun dato dentro: sin cifras, sin separador de campos y de cuatro
+# palabras o menos. Las piezas de Trabajos pasan la prueba porque llevan
+# el punto medio y el tipo de pieza.
+#
+# Avisa, no bloquea: es una regla de estilo, no un error. Pero sale en el
+# registro del workflow, asi que nadie puede decir que no se vio.
+EYEBROW = re.compile(
+    r'<(p|span)[^>]*class="[^"]*\bspec\b[^"]*"[^>]*>([^<]{1,48})</\1>\s*<h[1-3]')
+
+
+def avisar_de_eyebrows(html):
+    """Rotulos pequenos que nombran la categoria del titular que va debajo."""
+    sospechosos = []
+    for m in EYEBROW.finditer(html):
+        texto = m.group(2).strip()
+        if any(c.isdigit() for c in texto):
+            continue
+        if "·" in texto or "|" in texto:
+            continue
+        if len(texto.split()) > 4:
+            continue
+        sospechosos.append(texto)
+    return sospechosos
+
+
 def marcar_activo(html, ruta):
     """Senala en el menu la pagina en la que estamos.
 
@@ -142,6 +179,7 @@ def armar():
         shutil.rmtree(SALIDA)
     SALIDA.mkdir()
 
+    avisos = []
     cabeza = pieza("cabeza")
     pie = pieza("pie")
     version_css = sello("assets/css/agentia.css")
@@ -185,6 +223,10 @@ def armar():
                             "assets/js/agentia.js?v=" + version_js)
         html = marcar_activo(html, ruta)
 
+        sospechosos = avisar_de_eyebrows(html)
+        if sospechosos:
+            avisos.append((ruta or "(portada)", sospechosos))
+
         destino = SALIDA / ruta if ruta else SALIDA
         destino.mkdir(parents=True, exist_ok=True)
         (destino / "index.html").write_text(html, encoding="utf-8")
@@ -207,6 +249,11 @@ def armar():
     (SALIDA / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % DOMINIO,
         encoding="utf-8")
+
+    for ruta, rotulos in avisos:
+        print("AVISO  %s: rotulo pequeno encima de un titular -> %s"
+              % (ruta, ", ".join(rotulos)))
+        print("       Si el titular ya dice de que va, el rotulo sobra.")
 
     return [p["ruta"] or "(portada)" for p in PAGINAS]
 
