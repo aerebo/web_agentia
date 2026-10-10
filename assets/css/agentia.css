@@ -259,26 +259,6 @@ svg {
   white-space: nowrap;
 }
 
-/* cota de medida: la linea con topes que marca un ancho, como en una lamina */
-.cota {
-  display: flex;
-  align-items: center;
-  gap: var(--e-2);
-  color: var(--lapiz);
-}
-
-.cota__linea {
-  flex: 1;
-  height: var(--linea-fina);
-  background: var(--regla);
-}
-
-.cota__tope {
-  width: var(--linea-fina);
-  height: 10px;
-  background: var(--regla);
-}
-
 /* --------------------------------------------------------------------------
    5. Grano. Textura permitida, en lugar de degradados
    -------------------------------------------------------------------------- */
@@ -687,10 +667,6 @@ svg {
 .hero {
   padding-block: var(--e-5) var(--sec-amplia);
   position: relative;
-}
-
-.hero__cota {
-  margin-bottom: var(--e-5);
 }
 
 .hero__grid {
@@ -1216,15 +1192,9 @@ svg {
 
 .porque__intro--viejo { grid-column: 1 / span 6; }
 
-
-
 /* --------------------------------------------------------------------------
    11.f Proceso. Una secuencia real, por eso si va numerada
    -------------------------------------------------------------------------- */
-
-
-
-
 
 .paso:last-child { border-right: none; }
 
@@ -1238,12 +1208,6 @@ svg {
   background: var(--azul);
   border-radius: 50%;
 }
-
-
-
-
-
-
 
 /* --------------------------------------------------------------------------
    11.g Clientes
@@ -1521,13 +1485,6 @@ svg {
 /* --- el pacto de cada paso del proceso ---
    Dos filas por paso: que recibes y que te pedimos. Es lo que impide que
    el proceso vuelva a ser cuatro titulos genericos. */
-
-
-
-
-
-
-
 
 /* nota al pie de seccion, para lo que se dice en voz baja pero se dice */
 .nota {

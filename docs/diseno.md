@@ -335,6 +335,13 @@ Los ejes variables se siguen usando internamente, para la escalera de pesos y pa
 | `--margen` | `clamp(1.25rem, 5vw, 6rem)` | Margen lateral |
 | `--columnas` | `12` | Grilla base |
 
+**La cota de ancho del hero se quitó el 10 de octubre de 2026.** Era la línea con topes que anunciaba «809 PX» y se actualizaba al redimensionar. Venía de la dirección visual elegida en `docs/direcciones.md`, que proponía presentar cada sección como una lámina de manual de marca, con su cota y su ficha técnica al margen.
+
+**El recurso se cayó con el resto del lenguaje de lámina.** La página ya no se lee como un espécimen: tiene fichas con icono, tarjetas redondeadas y un logotipo tipográfico. Una cota suelta en el hero dejó de ser una señal de oficio y pasó a ser un resto de otra versión.
+
+Se quitaron con ella su JavaScript, que observaba el redimensionado, y sus cuatro reglas de CSS. **No se deja código muerto de una decisión revertida.**
+
+
 ### Ritmo vertical
 
 El error del sitio anterior era que todas las secciones tenían el mismo espaciado. Aquí hay tres, y se alternan a propósito:

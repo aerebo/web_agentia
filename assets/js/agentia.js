@@ -312,28 +312,6 @@
   }
 
   /* ------------------------------------------------------------------------
-     2. Cota de ancho del lienzo
-     La lamina declara su propia medida, y se actualiza al redimensionar.
-     ------------------------------------------------------------------------ */
-
-  var cotas = document.querySelectorAll('[data-cota-ancho]');
-
-  function actualizarCotas() {
-    Array.prototype.forEach.call(cotas, function (cota) {
-      var referencia = document.querySelector(cota.dataset.cotaAncho);
-      if (!referencia) return;
-      cota.textContent = Math.round(referencia.getBoundingClientRect().width) + ' PX';
-    });
-  }
-
-  if (cotas.length) {
-    actualizarCotas();
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(actualizarCotas).observe(document.body);
-    }
-  }
-
-  /* ------------------------------------------------------------------------
      3. Entradas escalonadas
      El retardo se calcula por posicion real en la fila, nunca por indice
      en el documento. Ese fue el error de la version anterior del sitio.
