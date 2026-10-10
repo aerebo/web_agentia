@@ -105,7 +105,12 @@ PAGINAS = [
         "ruta": "nosotros",
         "titulo": "Nosotros · Agentia",
         "descripcion": "Equipo propio de producción en Huaraz, Ica y Lima. Cómo trabajamos paso a paso, qué recibes en cada uno y para quién es esto.",
-        "piezas": ["seccion-quienes", "seccion-porque", "seccion-proceso", "seccion-publico"],
+        # Orden segun docs/benchmark-nosotros.md: proposito primero (9 de 9
+        # de los sitios medidos), las cifras debajo como respaldo, y las dos
+        # cosas que ninguno tiene —el proceso y el filtro de publico— que son
+        # justo las que una agencia de servicios si necesita.
+        "piezas": ["seccion-porque", "seccion-equipo", "seccion-proceso",
+                   "seccion-prueba", "seccion-publico"],
         "prioridad": "0.8",
     },
     {

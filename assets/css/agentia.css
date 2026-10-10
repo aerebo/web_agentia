@@ -1665,6 +1665,90 @@ svg {
   letter-spacing: -0.02em;
 }
 
+/* --- el equipo y la prueba ajena ---
+   Secciones abiertas el 10 de octubre de 2026 segun docs/benchmark-nosotros.md:
+   cinco de los nueve sitios medidos muestran a su equipo y cinco traen prueba
+   ajena. Las dos nacen con el hueco marcado, no con contenido.
+
+   El relleno se ve como relleno a proposito. Un lorem ipsum con el mismo color
+   que el texto real acaba publicado: ya ha pasado en mas de un sitio serio. */
+.lorem {
+  color: var(--humo-claro);
+}
+
+/* El distintivo sale una vez por seccion, no en cada linea: repetido en
+   cada nombre y cada rol convierte el bloque en un sarpullido y deja de
+   verse, que es justo lo contrario de lo que tiene que hacer. */
+.lorem--marca::after {
+  content: 'texto de relleno';
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.1em 0.45em;
+  border-radius: 0.3em;
+  background: var(--azul-nota);
+  color: var(--azul-fuerte);
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.equipo {
+  list-style: none;
+  margin-top: var(--e-5);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--e-3);
+}
+
+.persona__retrato {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
+  margin-bottom: var(--e-2);
+  overflow: hidden;
+}
+
+.persona__hueco {
+  text-align: center;
+  line-height: 1.6;
+  color: var(--humo-claro);
+}
+
+.persona__nombre {
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.persona__rol {
+  margin-top: var(--e-1);
+  color: var(--azul-fuerte);
+}
+
+/* La prueba ajena es una fila de huecos del alto de un logotipo. */
+.prueba {
+  list-style: none;
+  margin-top: var(--e-5);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--e-2);
+}
+
+.prueba__hueco {
+  height: 6rem;
+  display: grid;
+  place-items: center;
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
+  color: var(--humo-claro);
+}
+
 /* --- los tres tipos de trabajo ---
    Trabajos dejo de ser una sola reja: cada tipo tiene su pagina interna
    porque video, grafica y web se contratan por separado y quien busca una
@@ -2003,6 +2087,8 @@ svg {
   .publico { grid-template-columns: 1fr; gap: var(--e-4); }
   .trabajos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tipos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .equipo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prueba { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .cifras { grid-template-columns: 1fr; gap: var(--e-3); }
   .servicio--faq .servicio__cabecera { grid-template-columns: 3rem 1fr 1.5rem; }
   .resumen__fila { grid-template-columns: 3rem 1fr; row-gap: var(--e-1); }
@@ -2016,6 +2102,8 @@ svg {
      que se leen. */
   .tipos,
   .tipos--otros { grid-template-columns: 1fr; }
+  .equipo { grid-template-columns: 1fr; }
+  .prueba { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .hero__acciones .boton {
     width: 100%;
