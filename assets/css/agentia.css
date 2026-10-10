@@ -40,32 +40,19 @@
 
    Sin registrar, una custom property es texto sin tipo: el navegador no la
    puede interpolar y, peor, congela cualquier propiedad que la use y tenga
-   transicion. Registrandolas se animan solas y el giro del isotipo se
+   transicion. Registrada, --giro se anima sola y la aguja de la tuerca se
    recalcula cuadro a cuadro.
+
+   Aqui vivian tambien --gemelo, --sep y --escala, que abrian el estado de
+   codigo del isotipo anterior separando y encogiendo sus dos brazos. Con
+   la insignia no hay brazos que separar: el cuadro cambia de glifo y nada
+   mas. Se quitaron en lugar de dejarlas registradas sin uso.
    -------------------------------------------------------------------------- */
 
 @property --giro {
   syntax: '<angle>';
   inherits: true;
   initial-value: 0deg;
-}
-
-@property --gemelo {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --sep {
-  syntax: '<length>';
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --escala {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -81,17 +68,25 @@
   --regla: #D8D8DE;
   --borde: #83838F;
 
-  /* Escala tonal del violeta de marca. Un solo tono, seis profundidades.
-     No son acentos distintos: es el mismo color con distinto peso. */
-  --violeta-humo: #F3F0FE;    /* fondo de seccion, lavado casi imperceptible */
-  --violeta-nota: #E6DEFD;    /* relleno de resaltado y estado activo */
-  --violeta-claro: #A98FFF;   /* acento sobre fondo oscuro, 6.83:1 */
-  --violeta: #8665F7;         /* el del logotipo. Punto, rellenos, texto grande */
-  --violeta-fuerte: #6E48E8;  /* profundizado para cumplir AA en texto chico */
-  --violeta-tinta: #1A1330;   /* violeta llevado a negro. Banda de cierre */
+  /* Escala tonal del azul de marca. Un solo tono, seis profundidades.
+     No son acentos distintos: es el mismo color con distinto peso.
+
+     El azul sale del cuadro IA del logotipo, medido del original: los
+     pixeles limpios caen en #1540FF y la media del bloque en #1D48F4.
+
+     A diferencia del violeta que habia antes, este azul SI cumple AA en
+     texto chico sobre fondo claro, 5.99:1 contra los 3.54:1 del violeta.
+     Asi que --azul-fuerte ya no es una obligacion de contraste: queda
+     para enfasis, estados de foco y hover. */
+  --azul-humo: #EFF2FE;    /* fondo de seccion, lavado casi imperceptible */
+  --azul-nota: #DCE3FD;    /* relleno de resaltado y estado activo */
+  --azul-claro: #8FA6FF;   /* acento sobre fondo oscuro, 8.00:1 */
+  --azul: #1540F5;         /* el del cuadro IA. Rellenos y texto, 5.99:1 */
+  --azul-fuerte: #1434C8;  /* profundizado para enfasis, 7.84:1 */
+  --azul-tinta: #0D1030;   /* azul llevado a negro. Banda de cierre */
 
   /* texto sobre la banda oscura */
-  --humo-claro: #9B95B5;
+  --humo-claro: #959CBE;
 
   /* familias */
   --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
@@ -119,11 +114,8 @@
   /* peso de titulares */
   --w-titular: 340;
 
-  /* estado de la marca. Lo mueve la tuerca del hero o la seccion visible */
+  /* angulo de la aguja de la tuerca */
   --giro: 0deg;
-  --gemelo: 0;
-  --sep: 0px;
-  --escala: 1;
 
   /* espacio */
   --e-1: 0.5rem;
@@ -155,7 +147,6 @@
   --dur-larga: 720ms;
   --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-fisica: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --retardo-punto: 60ms;
 
   /* capas */
   --z-base: 0;
@@ -213,7 +204,7 @@ a {
 }
 
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: var(--linea-gruesa) solid var(--violeta);
+  outline: var(--linea-gruesa) solid var(--azul);
   outline-offset: 3px;
 }
 
@@ -310,76 +301,143 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   7. Isotipo y sus fisicas
-   Geometria original del logotipo, sin redibujar. Una sola pieza que gira
-   alrededor del punto violeta, que es el eje y nunca se mueve.
+   7. Logotipo
+   AGENT en tinta, mas IA en blanco dentro del cuadro azul.
 
-     0 grados    A      identidad
-    90 grados    >      video, grabacion y generacion
-   180 grados    V      punta de lapiz, diseno
-   270 grados    <      mas su gemelo a 90: <*>, codigo
+   Se compone con tipografia viva, no con trazados. La familia va
+   autoalojada, asi que el logo hereda el tamano de su contexto y sirve
+   igual a 17 px en la barra que a 72 px en el hero, sin exportar una
+   version por tamano. El precio es que depende de que la fuente cargue:
+   si algun dia hace falta blindarlo, se piden los trazados a quien firmo
+   la propuesta y se cambia esta regla por un SVG.
 
-   Todos los estados salen de la misma rotacion. No hay redibujo ni
-   traslacion: por eso encajan entre si.
+   Las proporciones estan medidas sobre el original entregado, en
+   multiplos de la altura de mayuscula de AGENT:
+
+     alto del cuadro                  1.853
+     ancho del cuadro                 1.765   (sale casi cuadrado)
+     hueco entre AGENT y el cuadro    0.441
+     el cuadro sube sobre la mayuscula 0.382
+     el cuadro baja bajo la linea base 0.471
+     radio de esquina                 0.19
+
+   Instrument Sans dibuja AGENT un 9% mas ancho que el original. Se
+   corrige con su eje de ancho variable al 92%, no apretando el
+   letter-spacing: apretar junta las letras sin adelgazarlas y el bloque
+   se ensucia. El tracking de -0.03em es el del original, aparte.
    -------------------------------------------------------------------------- */
 
-.marca {
-  height: 1.9rem;
-  width: auto;
-  overflow: visible;
+.logo {
+  /* altura de mayuscula de Instrument Sans, medida: 0.72 del cuerpo.
+     Todo lo demas del logotipo se expresa en multiplos de esto. */
+  --cap: 0.72em;
+
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: var(--f-cuerpo);
+  font-weight: 700;
+  font-stretch: 92%;
+  letter-spacing: -0.03em;
   color: var(--tinta);
+}
+
+.logo__ia {
+  margin-left: calc(0.441 * var(--cap));
+  /* arriba y abajo distintos a proposito: el cuadro no esta centrado en la
+     mayuscula, cuelga mas por debajo de la linea base que lo que sube */
+  padding:
+    calc(0.382 * var(--cap))
+    calc(0.25 * var(--cap))
+    calc(0.471 * var(--cap));
+  border-radius: calc(0.19 * var(--cap));
+  background: var(--azul);
+  color: var(--lamina);
+}
+
+/* Variante para la banda oscura del cierre. El azul de marca contra el
+   azul tinta da 2.72:1: el cuadro se disuelve en el fondo. Sobre oscuro
+   el cuadro se aclara y las letras se oscurecen, que es la inversion
+   normal de un logotipo, no un color nuevo. */
+.logo--claro {
+  color: var(--lamina);
+}
+
+.logo--claro .logo__ia {
+  background: var(--azul-claro);
+  color: var(--azul-tinta);
+}
+
+/* --------------------------------------------------------------------------
+   7.b La insignia IA
+   El mismo cuadro del logotipo, en grande, haciendo de simbolo. Es lo que
+   mueve la tuerca del banco de marca.
+
+   Aqui no se gira. Un cuadrado girado 90 grados es el mismo cuadrado: la
+   rotacion que tenia el isotipo anterior no se lee en esta forma. Lo que
+   cambia es lo que el cuadro muestra dentro, que ademas dice algo mas
+   claro que una silueta rotada: el modo activo se nombra en el cuadro.
+   -------------------------------------------------------------------------- */
+
+.insignia {
+  display: grid;
+  place-items: center;
+  width: clamp(7rem, 15vw, 10.5rem);
+  aspect-ratio: 1.765 / 1.853;
+  border-radius: 11%;
+  background: var(--azul);
+  color: var(--lamina);
   flex: none;
-  /* se anima la variable, no la propiedad que la usa */
+}
+
+/* las cuatro caras se apilan en la misma celda y se turnan */
+.insignia__glifo {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  width: 58%;
+  height: 58%;
+  opacity: 0;
+  transform: scale(0.82);
   transition:
-    --giro var(--dur-media) var(--ease-fisica),
-    --sep var(--dur-media) var(--ease-fisica),
-    --escala var(--dur-media) var(--ease-fisica),
-    --gemelo var(--dur-media) var(--ease-salida) var(--retardo-punto);
+    opacity var(--dur-media) var(--ease-salida),
+    transform var(--dur-media) var(--ease-fisica);
 }
 
-.marca__brazo {
-  transform-box: view-box;
-  /* Eje de giro: el centro exacto del punto violeta, en coordenadas de
-     usuario del SVG original. Se escriben absolutas y no relativas a la
-     esquina del viewBox porque los navegadores no coinciden en como
-     resuelven transform-origin con transform-box: view-box.
-
-     El viewBox es cuadrado de 336 porque la union de las cuatro rotaciones
-     alrededor del punto es un circulo de radio 165.6, que es la distancia
-     del punto al vertice. Con una caja mas baja, los brazos se salen. */
-  transform-origin: 550.19px 480.64px;
+.insignia__glifo svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
 }
 
-/* El escalado ocurre alrededor del punto, asi que los brazos se encogen
-   hacia el eje mientras se separan. La traslacion es en sentido opuesto
-   para cada brazo: el que apunta a la izquierda se va a la izquierda. */
-.marca__brazo--a {
-  transform: translateX(calc(-1 * var(--sep))) rotate(var(--giro)) scale(var(--escala));
-}
-
-.marca__brazo--b {
-  transform: translateX(var(--sep)) rotate(calc(var(--giro) - 180deg)) scale(var(--escala));
-  opacity: var(--gemelo);
-}
-
-.marca__trazo {
+.insignia__glifo--relleno svg {
   fill: currentColor;
+  stroke: none;
 }
 
-.marca__punto {
-  fill: var(--violeta);
+/* el texto IA se compone con la misma receta que el logotipo */
+.insignia__texto {
+  font-family: var(--f-cuerpo);
+  font-weight: 700;
+  font-stretch: 92%;
+  letter-spacing: -0.03em;
+  font-size: clamp(2.6rem, 5.6vw, 4rem);
+  line-height: 1;
 }
 
-.marca[data-estado='marca'] { --giro: 0deg;   --gemelo: 0; --sep: 0px;  --escala: 1; }
-.marca[data-estado='play']  { --giro: 90deg;  --gemelo: 0; --sep: 0px;  --escala: 1; }
-.marca[data-estado='lapiz'] { --giro: 180deg; --gemelo: 0; --sep: 0px;  --escala: 1; }
-
-/* Code es el unico estado con dos brazos a la vez. Con rotacion pura se
-   cruzarian formando un rombo, porque cada brazo se mete 44.95 unidades
-   mas alla del eje. Se separan 60 y se encogen a 0.62 para que quede el
-   <*> del manual, con el punto respirando en medio y todo dentro de la
-   caja de 336. */
-.marca[data-estado='code']  { --giro: 270deg; --gemelo: 1; --sep: 60px; --escala: 0.62; }
+.insignia[data-estado='marca'] .insignia__glifo[data-glifo='marca'],
+.insignia[data-estado='play']  .insignia__glifo[data-glifo='play'],
+.insignia[data-estado='lapiz'] .insignia__glifo[data-glifo='lapiz'],
+.insignia[data-estado='code']  .insignia__glifo[data-glifo='code'] {
+  opacity: 1;
+  transform: scale(1);
+}
 
 /* --------------------------------------------------------------------------
    8. Navegacion
@@ -403,16 +461,10 @@ svg {
 }
 
 .nav__marca {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--e-2);
   text-decoration: none;
-  font-family: var(--f-display);
-  font-variation-settings: 'wght' var(--w-medio), 'wdth' var(--wd-normal);
   font-size: 1.0625rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  line-height: 1;
 }
 
 .nav__acciones {
@@ -443,7 +495,7 @@ svg {
   bottom: 0;
   width: 100%;
   height: var(--linea-gruesa);
-  background: var(--violeta);
+  background: var(--azul);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-rapida) var(--ease-salida);
@@ -524,7 +576,7 @@ svg {
 }
 
 .menu__lista a:hover {
-  color: var(--violeta-fuerte);
+  color: var(--azul-fuerte);
 }
 
 .menu__cerrar {
@@ -577,7 +629,7 @@ svg {
 .boton--lleno {
   /* violeta profundo, no el de marca: con el de marca el texto daba 3.86:1
      y hace falta 4.5:1 para texto pequeno */
-  background: var(--violeta-fuerte);
+  background: var(--azul-fuerte);
   color: var(--lamina);
 }
 
@@ -625,21 +677,8 @@ svg {
   margin-bottom: var(--e-4);
 }
 
-.hero__marca .marca {
-  height: clamp(2.8rem, 5.6vw, 4.5rem);
-  /* La caja cuadrada esta centrada en el punto, no en el chevron: el
-     vertice sube 165.6 unidades sobre el punto y las patas solo bajan
-     44.95. Eso deja la A pegada al techo de su caja. Se compensa bajando
-     el SVG 60.3 de 336, que es la distancia entre el centro optico del
-     chevron y el centro de la caja. */
-  transform: translateY(17.95%);
-}
-
-.hero__wordmark {
-  height: clamp(1.1rem, 2.2vw, 1.75rem);
-  width: auto;
-  fill: currentColor;
-  flex: none;
+.hero__marca .logo {
+  font-size: clamp(1.75rem, 4.2vw, 3.25rem);
 }
 
 .hero__titular {
@@ -653,13 +692,19 @@ svg {
 
 .hero__titular em {
   font-style: normal;
-  color: var(--violeta);
+  color: var(--azul);
 }
 
 /* --------------------------------------------------------------------------
    10.b Campo de piezas
-   Las mismas piezas del isotipo, cada una girando sobre su propio punto.
-   En reposo miran todas al mismo sitio: un sistema, no un enjambre suelto.
+   El mismo cuadro del logotipo, repetido y girando sobre su centro.
+
+   Aqui la rotacion si se lee, al reves que en la insignia: las piezas
+   giran a angulos libres, y un cuadrado inclinado 30 grados se distingue
+   perfectamente de uno recto. Lo que no se leeria son los multiplos de
+   90, que es justo lo que hacia la tuerca.
+
+   En reposo miran todas a cero: un sistema, no un enjambre suelto.
    -------------------------------------------------------------------------- */
 
 .hero__campo {
@@ -681,18 +726,9 @@ svg {
   transition: fill var(--dur-larga) var(--ease-salida);
 }
 
-.campo__pieza .campo__punto {
-  fill: var(--violeta-nota);
-  transition: fill var(--dur-larga) var(--ease-salida);
-}
-
 /* la pieza despierta cuando el puntero la alcanza */
 .campo__pieza[data-despierta='true'] {
-  fill: var(--borde);
-}
-
-.campo__pieza[data-despierta='true'] .campo__punto {
-  fill: var(--violeta);
+  fill: var(--azul);
 }
 
 .hero__pie {
@@ -755,9 +791,7 @@ svg {
   border: var(--linea-fina) solid var(--regla);
 }
 
-.marca--panel {
-  height: clamp(5rem, 11vw, 8rem);
-}
+
 
 .tuerca {
   display: grid;
@@ -821,7 +855,7 @@ svg {
   width: var(--linea-gruesa);
   height: 2.6rem;
   margin-left: -1px;
-  background: var(--violeta);
+  background: var(--azul);
 }
 
 /* el punto de la marca: eje, centro y parte del agarre */
@@ -832,7 +866,7 @@ svg {
   width: 1.5rem;
   height: 1.5rem;
   margin: -0.75rem 0 0 -0.75rem;
-  background: var(--violeta);
+  background: var(--azul);
   border-radius: 50%;
   cursor: grab;
   transition: transform var(--dur-rapida) var(--ease-fisica);
@@ -847,9 +881,8 @@ svg {
   cursor: grabbing;
 }
 
-/* mientras se arrastra, la marca sigue al dedo sin suavizado */
-.tuerca--arrastrando,
-.marca--siguiendo {
+/* mientras se arrastra, la aguja sigue al dedo sin suavizado */
+.tuerca--arrastrando {
   transition: none;
 }
 
@@ -864,7 +897,7 @@ svg {
 }
 
 .tuerca__control:focus-visible ~ .tuerca__pista {
-  outline: var(--linea-gruesa) solid var(--violeta);
+  outline: var(--linea-gruesa) solid var(--azul);
   outline-offset: 4px;
 }
 
@@ -941,7 +974,7 @@ svg {
   width: 0.875rem;
   height: var(--linea-gruesa);
   margin-top: 0.72em;
-  background: var(--violeta);
+  background: var(--azul);
 }
 
 .revelado__enlace {
@@ -950,14 +983,14 @@ svg {
   gap: var(--e-1);
   font-size: var(--t-corto);
   font-weight: var(--w-fuerte);
-  color: var(--violeta-fuerte);
+  color: var(--azul-fuerte);
   text-decoration: none;
   border-bottom: var(--linea-gruesa) solid transparent;
   transition: border-color var(--dur-rapida) var(--ease-salida);
 }
 
 .revelado__enlace:hover {
-  border-bottom-color: var(--violeta-fuerte);
+  border-bottom-color: var(--azul-fuerte);
 }
 
 .revelado__enlace:hover .boton__flecha {
@@ -977,10 +1010,10 @@ svg {
 }
 
 .seccion--corta { padding-block: var(--sec-corta); }
-.seccion--humo  { background: var(--violeta-humo); border-top-color: var(--violeta-nota); }
+.seccion--humo  { background: var(--azul-humo); border-top-color: var(--azul-nota); }
 
 .seccion--tinta {
-  background: var(--violeta-tinta);
+  background: var(--azul-tinta);
   color: var(--papel);
   border-top: none;
   padding-block: var(--sec-amplia);
@@ -1057,7 +1090,7 @@ svg {
   transition: color var(--dur-rapida) var(--ease-salida);
 }
 
-.servicio__cabecera:hover { color: var(--violeta-fuerte); }
+.servicio__cabecera:hover { color: var(--azul-fuerte); }
 
 .servicio__numero { align-self: center; }
 
@@ -1133,7 +1166,7 @@ svg {
   width: 0.875rem;
   height: var(--linea-gruesa);
   margin-top: 0.72em;
-  background: var(--violeta);
+  background: var(--azul);
 }
 
 /* --------------------------------------------------------------------------
@@ -1152,7 +1185,7 @@ svg {
   grid-column: 7 / span 6;
   display: grid;
   gap: 0;
-  border-top: var(--linea-fina) solid var(--violeta-nota);
+  border-top: var(--linea-fina) solid var(--azul-nota);
 }
 
 .pilar {
@@ -1160,7 +1193,7 @@ svg {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   gap: var(--e-3);
   padding-block: var(--e-3);
-  border-bottom: var(--linea-fina) solid var(--violeta-nota);
+  border-bottom: var(--linea-fina) solid var(--azul-nota);
 }
 
 .pilar dt {
@@ -1203,7 +1236,7 @@ svg {
   left: 0;
   width: 0.5rem;
   height: 0.5rem;
-  background: var(--violeta);
+  background: var(--azul);
   border-radius: 50%;
 }
 
@@ -1231,15 +1264,15 @@ svg {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
   gap: var(--linea-fina);
   margin-top: var(--e-5);
-  background: var(--violeta-nota);
-  border: var(--linea-fina) solid var(--violeta-nota);
+  background: var(--azul-nota);
+  border: var(--linea-fina) solid var(--azul-nota);
 }
 
 .cliente {
   display: grid;
   gap: var(--e-1);
   padding: var(--e-3);
-  background: var(--violeta-humo);
+  background: var(--azul-humo);
   font-family: var(--f-display);
   font-weight: var(--w-medio);
   font-size: 1.0625rem;
@@ -1254,7 +1287,7 @@ svg {
 .aviso {
   margin-top: var(--e-3);
   padding-left: var(--e-3);
-  border-left: var(--linea-gruesa) solid var(--violeta);
+  border-left: var(--linea-gruesa) solid var(--azul);
   max-width: 62ch;
   text-transform: none;
   letter-spacing: 0.02em;
@@ -1300,8 +1333,8 @@ svg {
 }
 
 .correos a:hover {
-  color: var(--violeta-claro);
-  border-bottom-color: var(--violeta-claro);
+  color: var(--azul-claro);
+  border-bottom-color: var(--azul-claro);
 }
 
 .contacto__lugares { margin-top: var(--e-4); }
@@ -1338,7 +1371,7 @@ svg {
 
 .campo input:hover,
 .campo select:hover,
-.campo textarea:hover { border-color: var(--violeta-claro); }
+.campo textarea:hover { border-color: var(--azul-claro); }
 
 .campo textarea { resize: vertical; min-height: 6rem; }
 
@@ -1360,7 +1393,7 @@ svg {
 }
 
 .seccion--tinta .aviso {
-  border-left-color: var(--violeta-claro);
+  border-left-color: var(--azul-claro);
   color: var(--humo-claro);
 }
 
@@ -1369,7 +1402,7 @@ svg {
    -------------------------------------------------------------------------- */
 
 .pie {
-  background: var(--violeta-tinta);
+  background: var(--azul-tinta);
   color: var(--papel);
   padding-bottom: var(--e-5);
 }
@@ -1384,8 +1417,8 @@ svg {
   border-top: var(--linea-fina) solid rgba(255, 255, 255, 0.14);
 }
 
-.pie__marca { color: var(--papel); }
-.pie__marca .marca { height: 1.75rem; }
+.pie__marca { text-decoration: none; }
+.pie__marca .logo { font-size: 1.0625rem; }
 .pie .spec { color: var(--humo-claro); }
 
 /* --------------------------------------------------------------------------

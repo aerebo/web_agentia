@@ -80,44 +80,48 @@ entregue lo real.
 
 Cada una de estas costó encontrarla. Si las "simplificas", algo se rompe.
 
-### 4.1 Las variables del isotipo están registradas con `@property` a propósito
+### 4.1 `--giro` está registrada con `@property` a propósito
 
 ```css
-@property --giro   { syntax: '<angle>';  inherits: true; initial-value: 0deg; }
-@property --gemelo { syntax: '<number>'; inherits: true; initial-value: 0; }
-@property --sep    { syntax: '<length>'; inherits: true; initial-value: 0px; }
-@property --escala { syntax: '<number>'; inherits: true; initial-value: 1; }
+@property --giro { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
 ```
 
 Sin registrar, una custom property es texto sin tipo: el navegador no la puede
-interpolar y **congela** cualquier propiedad que la use y tenga transición. El
-isotipo se queda clavado sin dar ningún error en consola.
+interpolar y **congela** cualquier propiedad que la use y tenga transición. La
+aguja de la tuerca se queda clavada sin dar ningún error en consola.
 
 Por eso además **se anima la variable, no la propiedad**. La transición va sobre
-`--giro` en `.marca`, y el `transform: rotate(var(--giro))` del brazo no lleva
+`--giro` en `.tuerca`, y el `transform: rotate(var(--giro))` del agarre no lleva
 transición propia.
 
 Soporte: Chrome 85+, Safari 16.4+, Firefox 128+.
 
-### 4.2 El eje de giro va en coordenadas absolutas
+> Aquí vivían también `--gemelo`, `--sep` y `--escala`, que abrían el estado de
+> código del isotipo anterior. Con la insignia no hay brazos que separar y se
+> quitaron. Si aparecen en algún sitio, es código muerto.
 
-```css
-transform-origin: 550.19px 480.64px;   /* el centro exacto del punto violeta */
-```
+### 4.2 La insignia no gira, y eso no es un olvido
 
-No son coordenadas relativas a la esquina del `viewBox`. Los navegadores **no
-coinciden** en cómo las resuelven junto con `transform-box: view-box`: Chrome mide
-desde el origen del espacio de usuario, no desde `min-x`/`min-y`. En absolutas no
-hay ambigüedad.
+**Un cuadrado girado 90 grados es el mismo cuadrado.** El isotipo anterior tenía
+cuatro estados que eran cuatro rotaciones de 90 grados; con el cuadro IA esa
+rotación no se leería y el mando parecería roto.
 
-### 4.3 El `viewBox` del isotipo tiene que seguir siendo cuadrado
+Por eso la insignia cambia de **glifo**, no de ángulo: `IA`, triángulo de
+reproducción, lápiz, `< >`. Los cuatro se apilan en la misma celda de grilla y
+se turnan con opacidad y escala.
 
-`viewBox="382.19 312.64 336 336"`
+La aguja de la tuerca **sí** gira, porque una aguja es la forma a la que la
+rotación le sienta. Si alguien "arregla" esto haciendo girar la insignia, el
+mando deja de comunicar nada.
 
-La unión de las cuatro rotaciones alrededor del punto es un círculo de radio
-165.6, que es la distancia del punto al vértice. Con una caja más baja, los brazos
-girados se salen del marco. Y al ser fija, la marca no cambia de tamaño al girar,
-así que no provoca desplazamiento de layout.
+### 4.3 En el campo del hero la rotación sí se lee
+
+Las 29 piezas son el mismo cuadro y **sí** giran, hacia el puntero. La diferencia
+con la insignia es que aquí los ángulos son libres: un cuadro inclinado 30 grados
+se distingue perfectamente de uno recto.
+
+La regla no es "los cuadrados no giran". Es **los cuadrados no giran en múltiplos
+de 90**.
 
 ### 4.4 El contenido es visible por defecto
 
@@ -148,11 +152,18 @@ hay puntero.
 alto al 100%, lo que convertía el input de Nombre en una caja gigante. No vuelvas
 a juntarlos.
 
-### 4.7 El estado `code` es la única excepción a la rotación pura
+### 4.7 El logotipo depende de que la fuente cargue
 
-Los otros tres estados del isotipo son rotación y nada más. En `code` hacen falta
-`--sep: 60px` y `--escala: 0.62`, porque cada brazo se mete 44.95 unidades más allá
-del eje y dos brazos opuestos se solaparían formando un rombo en vez de `< · >`.
+Se compone con **Instrument Sans 700 al 92% de ancho**, no con trazados. Eso lo
+hace escalar a cualquier tamaño sin exportar versiones, pero si la tipografía no
+carga, el logotipo se dibuja con la fuente del sistema y deja de ser el logotipo.
+
+La fuente va autoalojada y precargada, que es el escenario en el que esto falla
+menos. Si hace falta blindarlo del todo, se piden los trazados a quien firmó la
+propuesta y se cambia la regla `.logo` por un SVG.
+
+El 92% no se toca con `letter-spacing`: apretar junta las letras sin adelgazarlas
+y el bloque se ensucia. Es el eje de ancho variable de la familia.
 
 ---
 
@@ -160,10 +171,11 @@ del eje y dos brazos opuestos se solaparían formando un rombo en vez de `< · >
 
 Todo esto está medido en navegador, no estimado.
 
-**Contraste.** Mínimo 5.21:1 sobre fondos claros y 6.24:1 sobre la banda oscura.
-Todo AA. Ojo: el violeta de marca `#8665F7` da 3.54:1 sobre papel, así que **no
-sirve para texto pequeño**; para eso está `--violeta-fuerte` `#6E48E8`. Sobre fondo
-oscuro va `--violeta-claro` `#A98FFF`.
+**Contraste.** Mínimo 5.21:1 sobre fondos claros y 6.86:1 sobre la banda oscura.
+Todo AA. El azul de marca `#1540F5` da 5.99:1 sobre papel, así que **sí sirve para
+texto pequeño**, al revés que el violeta anterior, que daba 3.54:1 y estaba
+prohibido. Sobre la banda oscura el azul de marca **no** se usa: da 2.72:1. Ahí va
+`--azul-claro` `#8FA6FF`, y por eso el logotipo del pie se invierte.
 
 **Teclado.** Enlace de salto al contenido, anillo de foco visible en todo elemento
 interactivo, la tuerca operable con flechas, el acordeón con botones reales, y el
@@ -185,7 +197,7 @@ entradas se desactivan.
 | Pendiente | Bloqueado por |
 |---|---|
 | Conectar el formulario | Decidir entre `contact.php` propio o servicio externo |
-| `favicon` | Nada. Se puede hacer ya, a partir de `agentia-isotipo.svg` |
+| `favicon` | Nada. Se puede hacer ya, a partir del cuadro IA |
 | Imagen OG 1200×630 | Nada. Se puede hacer ya |
 | `sitemap.xml` y `robots.txt` | Nada. Se puede hacer ya |
 | `.cpanel.yml` | Falta el usuario real de cPanel |
@@ -262,6 +274,8 @@ viajar con los archivos** si el sitio se copia a otro lado.
 Solo se incluye el subconjunto latino, que cubre el español completo con acentos,
 eñe y signos de apertura.
 
-El logotipo **no es tipografía**: `assets/img/agentia-wordmark.svg` son trazados
-extraídos del archivo original de Illustrator. No lo recompongas con una fuente, la
-A sin travesaño y el tracking son propios de la marca.
+El logotipo **sí es tipografía**, desde el cambio de marca del 9 de octubre de
+2026: Instrument Sans 700 al 92% de ancho. Esto invierte la regla anterior, que
+exigía trazados, y el motivo es que la marca cambió de naturaleza. Los SVG del
+logotipo viejo siguen en `assets/img/` pero ya no se usan en la página. Ver la
+sección 2 de `docs/diseno.md`.

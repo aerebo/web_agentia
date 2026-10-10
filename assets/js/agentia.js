@@ -12,23 +12,20 @@
 
   /* ------------------------------------------------------------------------
      1. La tuerca
-     Cuatro detenciones, una cada 90 grados. Cada una es la misma pieza del
-     isotipo girada sobre el punto violeta, que es el eje y nunca se mueve.
+     Cuatro detenciones, una cada 90 grados. La aguja si gira, porque es
+     una aguja. La insignia no: un cuadrado girado 90 grados es el mismo
+     cuadrado. Lo que cambia en cada detencion es el glifo de dentro.
      ------------------------------------------------------------------------ */
 
   var ESTADOS = ['marca', 'play', 'lapiz', 'code'];
   var NOMBRES = ['Identidad', 'Video', 'Diseño', 'Código'];
-
-  /* separacion y escala del estado code, en las mismas unidades que el CSS */
-  var SEP_CODE = 60;
-  var ESCALA_CODE = 0.62;
 
   var control = document.getElementById('tuerca');
 
   if (control) {
     var tuerca = control.closest('.tuerca');
     var mando = control.closest('.tuerca__mando');
-    var marcaPanel = document.querySelector('[data-marca-panel]');
+    var insignia = document.querySelector('[data-insignia]');
     var salidaModo = document.getElementById('modo-activo');
     var revelados = document.querySelectorAll('.revelado');
 
@@ -41,17 +38,12 @@
       return ((Math.round(a / 90) % 4) + 4) % 4;
     }
 
-    /* Durante el arrastre libre, el estado code se abre de forma gradual:
-       cuanto mas cerca de los 270 grados, mas separados y mas pequenos los
-       brazos. Asi no hay salto al soltar. */
-    function proximidadACode(a) {
-      var d = Math.abs((((a - 270) % 360) + 540) % 360 - 180);
-      return Math.max(0, Math.min(1, 1 - d / 45));
-    }
-
     function pintarModo(paso) {
       if (salidaModo) salidaModo.textContent = NOMBRES[paso];
       control.setAttribute('aria-valuetext', NOMBRES[paso]);
+      /* la insignia cambia de cara en cuanto se cruza la detencion, aunque
+         el dedo siga arrastrando: asi el cuadro va con la aguja */
+      if (insignia) insignia.dataset.estado = ESTADOS[paso];
 
       Array.prototype.forEach.call(revelados, function (ficha) {
         if (Number(ficha.dataset.modo) === paso) {
@@ -62,30 +54,8 @@
       });
     }
 
-    /* estado libre: se escribe angulo crudo, sin pasar por data-estado */
-    function pintarAnguloLibre(a) {
-      var t = proximidadACode(a);
-      [tuerca, marcaPanel].forEach(function (el) {
-        if (!el) return;
-        el.style.setProperty('--giro', a + 'deg');
-        el.style.setProperty('--gemelo', t);
-        el.style.setProperty('--sep', SEP_CODE * t + 'px');
-        el.style.setProperty('--escala', 1 - (1 - ESCALA_CODE) * t);
-      });
-    }
-
-    /* estado en reposo: manda el data-estado y el CSS pone los valores */
     function asentar(paso) {
-      [tuerca, marcaPanel].forEach(function (el) {
-        if (!el) return;
-        el.style.removeProperty('--gemelo');
-        el.style.removeProperty('--sep');
-        el.style.removeProperty('--escala');
-      });
-      if (marcaPanel) marcaPanel.dataset.estado = ESTADOS[paso];
-      /* la tuerca no tiene data-estado, asi que conserva el angulo continuo */
       if (tuerca) tuerca.style.setProperty('--giro', anguloContinuo + 'deg');
-      if (marcaPanel) marcaPanel.style.setProperty('--giro', anguloContinuo + 'deg');
       pintarModo(paso);
     }
 
@@ -118,7 +88,7 @@
       var crudo = anguloDelPuntero(evento);
       var delta = (((crudo - anguloContinuo) % 360) + 540) % 360 - 180;
       anguloContinuo += delta;
-      pintarAnguloLibre(anguloContinuo);
+      if (tuerca) tuerca.style.setProperty('--giro', anguloContinuo + 'deg');
       pintarModo(pasoDesdeAngulo(anguloContinuo));
     }
 
@@ -126,7 +96,6 @@
       if (!arrastrando) return;
       arrastrando = false;
       tuerca.classList.remove('tuerca--arrastrando');
-      if (marcaPanel) marcaPanel.classList.remove('marca--siguiendo');
       if (evento.pointerId !== undefined && mando.releasePointerCapture) {
         try { mando.releasePointerCapture(evento.pointerId); } catch (e) {}
       }
@@ -138,7 +107,6 @@
         evento.preventDefault();
         arrastrando = true;
         tuerca.classList.add('tuerca--arrastrando');
-        if (marcaPanel) marcaPanel.classList.add('marca--siguiendo');
         control.focus({ preventScroll: true });
         if (mando.setPointerCapture) {
           try { mando.setPointerCapture(evento.pointerId); } catch (e) {}
@@ -158,9 +126,13 @@
   /* ------------------------------------------------------------------------
      1.b Campo de piezas del hero
 
-     Cada pieza es el isotipo girando sobre su punto. En reposo miran todas
-     a cero: un sistema. Al pasar el puntero, las cercanas se orientan hacia
-     el, con muelle amortiguado, y vuelven solas.
+     Cada pieza es el cuadro del logotipo girando sobre su centro. En reposo
+     miran todas a cero: un sistema. Al pasar el puntero, las cercanas se
+     inclinan hacia el, con muelle amortiguado, y vuelven solas.
+
+     Aqui la rotacion si se lee, al reves que en la insignia: los angulos
+     son libres y un cuadro inclinado se distingue de uno recto. Lo que no
+     se leeria son los multiplos de 90.
 
      El bucle solo corre cuando queda movimiento pendiente y la seccion esta
      a la vista. No hay animacion infinita de fondo.
@@ -497,12 +469,16 @@
   }
 
   /* ------------------------------------------------------------------------
-     5. Seccion visible: marca el enlace del nav y cambia el estado del isotipo
-     Cada seccion declara que estado de marca le corresponde con data-marca.
+     5. Seccion visible: marca el enlace del nav
+     Cada seccion vigilada se declara con data-vigia.
+
+     Aqui el isotipo anterior tambien cambiaba de estado al pasar de una
+     seccion a otra. Con un logotipo tipografico eso ya no aplica: un
+     logotipo no se transforma mientras se hace scroll. La insignia que
+     si cambia esta en el banco de marca, y la mueve el usuario.
      ------------------------------------------------------------------------ */
 
-  var marcaNav = document.querySelector('[data-marca-viva]');
-  var secciones = document.querySelectorAll('[data-marca]');
+  var secciones = document.querySelectorAll('[data-vigia]');
   var enlaces = document.querySelectorAll('.nav__enlaces a[href^="#"]');
 
   function activarEnlace(id) {
@@ -536,9 +512,6 @@
 
         if (!mejor) return;
 
-        if (marcaNav) {
-          marcaNav.dataset.estado = mejor.dataset.marca;
-        }
         if (mejor.id) {
           activarEnlace(mejor.id);
         }
