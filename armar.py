@@ -105,8 +105,15 @@ PAGINAS = [
         "ruta": "nosotros",
         "titulo": "Nosotros · Agentia",
         "descripcion": "Por qué Agentia, nuestro proceso paso a paso y qué recibes en cada uno. Operamos entre Huaraz, Ica y Lima.",
-        "piezas": ["seccion-porque", "seccion-proceso", "seccion-quienes", "seccion-preguntas"],
+        "piezas": ["seccion-porque", "seccion-proceso", "seccion-quienes"],
         "prioridad": "0.8",
+    },
+    {
+        "ruta": "preguntas",
+        "titulo": "Preguntas frecuentes · Agentia",
+        "descripcion": "Si la IA reemplaza al diseñador, si respetamos tu manual de marca, si trabajamos fuera de Lima, cómo se mide el resultado y cómo se cotiza.",
+        "piezas": ["seccion-preguntas"],
+        "prioridad": "0.7",
     },
     {
         "ruta": "contacto",

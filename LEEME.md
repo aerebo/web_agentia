@@ -34,7 +34,7 @@ Si solo quieres servir lo ya armado: `python3 armar.py && python3 -m http.server
 armar.py                        el armador. Lee partes/ y escribe _sitio/
 comprobar.py                    enlaces, anclas y encabezados del sitio armado
 armar-captura.py                copias autocontenidas para subir a Figma
-partes/cabeza.html              head, barra y menú móvil. Los comparten las ocho
+partes/cabeza.html              head, barra y menú móvil. Los comparten las nueve
 partes/pie.html                 el pie, idem
 partes/hero.html                el hero de la portada
 partes/seccion-*.html           una pieza por sección
@@ -54,7 +54,7 @@ agentia-historial.bundle        el repositorio git completo, 13 commits
 
 Peso de lo que se despliega: **328 KB**, de los cuales 222 KB son las tres tipografías.
 
-### Las ocho páginas
+### Las nueve páginas
 
 | Ruta | Qué lleva |
 |---|---|
@@ -64,7 +64,8 @@ Peso de lo que se despliega: **328 KB**, de los cuales 222 KB son las tres tipog
 | `/trabajos/video/` | Qué entra en video. Sin galería todavía |
 | `/trabajos/grafica/` | Qué entra en gráfica. Sin galería todavía |
 | `/trabajos/web/` | Qué entra en web. Sin galería todavía |
-| `/nosotros/` | Por qué Agentia · cómo trabajamos · dónde operamos · preguntas |
+| `/nosotros/` | Por qué Agentia · cómo trabajamos · dónde operamos |
+| `/preguntas/` | Las cinco preguntas frecuentes. Salió de Nosotros el 10 de octubre |
 | `/agentia/` | Página de salto a `/nosotros/`. La ruta cambió el 10 de octubre |
 | `/contacto/` | Los tres correos. **Sin formulario**: ese vive en la portada |
 
@@ -73,9 +74,14 @@ es añadir una entrada ahí y una pieza en `partes/`. La ruta puede llevar barra
 `trabajos/video` se arma en `_sitio/trabajos/video/` y el armador le calcula
 solos los `../../` que necesita para llegar a los assets.
 
-**Las internas no van en el menú.** El menú sigue teniendo cinco entradas; a las
-tres de Trabajos se llega desde su índice y se vuelve con la miga. Estando en una
-de ellas el menú señala Trabajos.
+**Las internas no van en el menú.** El menú tiene seis entradas —Inicio,
+Servicios, Trabajos, Nosotros, Preguntas, Contacto—; a las tres de Trabajos se
+llega desde su índice y se vuelve con la miga. Estando en una de ellas el menú
+señala Trabajos.
+
+Seis entradas más el botón Agendar caben hasta los 900 px, que es el ancho más
+estrecho antes de que el menú pase a ser el panel móvil (860 px). Una séptima ya
+no: comprobado midiendo, no a ojo.
 
 ### Comprobar antes de publicar
 
