@@ -64,7 +64,7 @@ Peso de lo que se despliega: **328 KB**, de los cuales 222 KB son las tres tipog
 | `/trabajos/video/` | Qué entra en video. Sin galería todavía |
 | `/trabajos/grafica/` | Qué entra en gráfica. Sin galería todavía |
 | `/trabajos/web/` | Qué entra en web. Sin galería todavía |
-| `/nosotros/` | Por qué Agentia · cómo trabajamos · dónde operamos |
+| `/nosotros/` | Quiénes somos · por qué · cómo trabajamos · para quién es |
 | `/preguntas/` | Las cinco preguntas frecuentes. Salió de Nosotros el 10 de octubre |
 | `/agentia/` | Página de salto a `/nosotros/`. La ruta cambió el 10 de octubre |
 | `/contacto/` | Los tres correos. **Sin formulario**: ese vive en la portada |

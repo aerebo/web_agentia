@@ -29,17 +29,49 @@ Lo que esto significa a la hora de decidir:
 - **Ante la duda, fuera.** Es más fácil volver a poner algo que descubrir que estorbaba.
 - **El texto que no se lee, resta.** No es neutro: ocupa altura, corta el recorrido y obliga al ojo a decidir si le interesa.
 
-**Cómo se mide.** Contando. Estado tras la poda del 10 de octubre:
+**Cómo se mide.** Contando. Estado al 10 de octubre de 2026:
 
 | Página | Titulares | Rótulos pequeños |
 |---|---|---|
 | Portada | 3 | 6 |
 | `/servicios/` | 5 | 7 |
 | `/trabajos/` | 7 | 13 |
-| `/agentia/` | 14 | 20 |
+| `/trabajos/video/`, `/grafica/`, `/web/` | 1 | 1 |
+| `/nosotros/` | 10 | 4 |
+| `/preguntas/` | 1 | 5 |
 | `/contacto/` | 1 | 5 |
 
-**`/nosotros/` es la que más carga**, y no es casual: reúne cuatro secciones que antes eran cuatro páginas de scroll. Sus titulares son nombres de ficha, que son el contenido mismo y no se pueden quitar. Si alguna vez hay que adelgazar algo, es ahí donde hay que mirar primero, y la salida sería separar de nuevo alguna sección, no borrar titulares.
+`/nosotros/` llegó a tener 14 titulares y 20 rótulos. Bajó a 10 y 4 en dos movimientos: las preguntas frecuentes salieron a su propia página, y la sección se replanteó entera (ver 1.0.b). De los 10 titulares que quedan, 8 son nombres de ficha o de columna, que son el contenido mismo.
+
+### 1.0.b Nada se dice dos veces en la misma página
+
+**10 de octubre de 2026, al replantear `/nosotros/` a pedido de Agentia:** «siento que la información no está priorizada y jerarquizada».
+
+Lo que había era una duplicación exacta. Cuatro fichas de «por qué Agentia» y cuatro pasos del proceso decían lo mismo, una a una:
+
+| Ficha (afirmación) | Paso (compromiso) |
+|---|---|
+| Sale medido, no a ojo | 04 Medición · analítica conectada y reporte |
+| Sale del sistema, no de la improvisación | 02 Sistema · color, tipografía, tono, plantillas |
+| Volumen sin repetir el trabajo a mano | 03 Producción · generamos a escala dentro del sistema |
+| La IA produce, la decisión es humana | 03 Producción · con revisión humana |
+
+**Se quedaron los pasos y se fueron las fichas.** No por contar menos, sino porque un paso dice *qué recibes y qué te pedimos*, y una ficha solo afirma. Entre una promesa y un compromiso que dicen lo mismo, gana el compromiso. El detalle que solo vivía en las fichas —Core Web Vitals, «ningún lote sale sin revisión», «no una por una desde cero»— se mudó al paso que le corresponde, así que no se perdió un solo dato.
+
+**La regla, para lo que venga:** si dos bloques de una misma página se pueden emparejar uno a uno, no son dos bloques: es uno escrito dos veces. Se queda el que obliga a algo.
+
+**Y el orden ahora responde preguntas, no las adelanta:**
+
+| Sección | Pregunta que contesta |
+|---|---|
+| Equipo propio, en tres ciudades | ¿Quiénes son? |
+| La IA no es el producto | ¿Por qué ustedes? |
+| Cuatro pasos, siempre en este orden | ¿Cómo trabajan? |
+| Para quién trabajamos, y para quién no | ¿Soy yo? |
+
+La identidad estaba al final, en el peor sitio de la página, formateada como tabla de datos. El filtro de público estaba enterrado como cola de la sección de «por qué», con el mismo peso visual que una ficha, cuando es lo último que lee alguien antes de decidir si escribe. Ahora abre y cierra la página respectivamente.
+
+**Resultado medido:** la página pasó de 4938 px a 3670 px de alto. Un 26% menos, sin perder un dato.
 
 ### 1.1 El sitio son nueve páginas
 

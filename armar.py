@@ -104,8 +104,8 @@ PAGINAS = [
     {
         "ruta": "nosotros",
         "titulo": "Nosotros · Agentia",
-        "descripcion": "Por qué Agentia, nuestro proceso paso a paso y qué recibes en cada uno. Operamos entre Huaraz, Ica y Lima.",
-        "piezas": ["seccion-porque", "seccion-proceso", "seccion-quienes"],
+        "descripcion": "Equipo propio de producción en Huaraz, Ica y Lima. Cómo trabajamos paso a paso, qué recibes en cada uno y para quién es esto.",
+        "piezas": ["seccion-quienes", "seccion-porque", "seccion-proceso", "seccion-publico"],
         "prioridad": "0.8",
     },
     {

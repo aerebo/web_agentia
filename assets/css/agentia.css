@@ -1028,6 +1028,11 @@ svg {
   max-width: 58ch;
 }
 
+/* Cuando una seccion lleva dos parrafos de entrada, sin esto se leen como
+   uno solo: el interlineado del lede es amplio y el salto de parrafo
+   desaparece dentro de el. */
+.seccion__entrada + .seccion__entrada { margin-top: var(--e-2); }
+
 /* declaracion de posicionamiento: una sola frase, mucho aire */
 .declara {
   display: grid;
