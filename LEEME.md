@@ -105,6 +105,31 @@ igual» mirando una versión anterior. En el lienzo ese ciclo no existe.
   en el pie afecta a todas, no solo a la página que tocaste. Pasó ya una vez:
   se cambió el menú y en Figma quedaron cuatro capturas con el menú viejo.
 
+### Cómo se recaptura
+
+```
+python3 armar.py                       # primero el sitio
+python3 armar-captura.py               # las cinco, a _capturas/
+python3 armar-captura.py nosotros      # o solo una
+```
+
+`armar-captura.py` deja una copia autocontenida de cada página: el CSS en
+línea, la fuente en base64, sin JavaScript y con las piezas ya reveladas. Eso
+hace falta porque **el convertidor de Figma no descarga nada ni ejecuta nada**:
+lo que no esté dentro del archivo, no existe en el lienzo.
+
+Ese archivo se sube con `html_to_figma` y el nodo que devuelve se coloca en el
+tablero. `_capturas/` no se versiona: se regenera.
+
+**Tres cosas que el convertidor no perdona**, y que ya costaron tiempo:
+
+- **No resuelve los escapes unicode del CSS.** Un `content: '\00d7'` lo dibuja
+  literal. La herramienta los sustituye por el carácter antes de subir.
+- **No ejecuta JavaScript.** Sin el apaño, todo lo que el observador revela al
+  bajar queda invisible.
+- **Descarta las formas SVG sin relleno.** Los iconos de línea no sobreviven.
+  Por eso, entre otras razones, ya no hay (sección 6.4 del documento de diseño).
+
 ---
 
 ## 3. Dos documentos que mandan sobre el código

@@ -36,6 +36,7 @@ temp/
 dist/
 build/
 _sitio/
+_capturas/
 
 # herramientas locales
 .mcp.json
