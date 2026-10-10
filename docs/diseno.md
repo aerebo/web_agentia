@@ -278,6 +278,11 @@ Las tres licencias están en `assets/fonts/OFL-*.txt` y deben viajar con los arc
 | `--t-cuerpo` | `clamp(1rem, 1.1vw, 1.0625rem)` | Texto corrido |
 | `--t-corto` | `0.875rem` | Viñetas, pies, metadatos |
 | `--t-spec` | `0.6875rem` | Mono: cotas, hex, medidas |
+| `--t-indice` | `clamp(1.5rem, 2.2vw, 2rem)` | Mono: los números de las listas numeradas |
+
+**`--t-indice`** es el cuerpo de los números de las listas numeradas, añadido el 10 de octubre de 2026. Antes salían del cuerpo de cota, 11 px, y a ese tamaño no pesaban nada: la columna de la izquierda quedaba vacía y la lista se leía como párrafos sueltos en vez de como una serie.
+
+**El número no es una cota más**: es lo que ordena la lista y lo primero que el ojo usa para contar. Va alineado con la primera línea del nombre y no centrado en la fila, porque centrado flota cuando la entrada ocupa dos líneas.
 
 El nivel `--t-lede` es el peldaño que faltaba en el sitio anterior, donde el salto del H2 al cuerpo era de 3.4x sin nada en medio.
 

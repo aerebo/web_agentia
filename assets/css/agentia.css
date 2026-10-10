@@ -102,6 +102,10 @@
   --t-cuerpo: clamp(1rem, 1.1vw, 1.0625rem);
   --t-corto: 0.875rem;
   --t-spec: 0.6875rem;
+  /* Los numeros de las listas de servicios. Salen del cuerpo de cota,
+     que a 11 px no pesaba nada y dejaba la columna de la izquierda
+     vacia. Como ordenan la lectura, se ganan tamano propio. */
+  --t-indice: clamp(1.5rem, 2.2vw, 2rem);
 
   /* peso y ancho */
   --w-fino: 200;
@@ -1102,7 +1106,7 @@ svg {
 
 .servicio__cabecera {
   display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 1.1fr) 2rem;
+  grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.1fr) 2rem;
   align-items: baseline;
   gap: var(--e-3);
   width: 100%;
@@ -1118,7 +1122,16 @@ svg {
 
 .servicio__cabecera:hover { color: var(--azul-fuerte); }
 
-.servicio__numero { align-self: center; }
+/* El numero no es una cota mas: es lo que ordena la lista y lo primero
+   que el ojo usa para contar. Va en el cuerpo de indice y alineado con la
+   primera linea del nombre, no centrado en toda la fila, porque centrado
+   flota cuando la entrada ocupa dos lineas. */
+.servicio__numero {
+  font-size: var(--t-indice);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--borde);
+}
 
 .servicio__nombre {
   font-family: var(--f-display);
@@ -1173,7 +1186,7 @@ svg {
   list-style: none;
   display: grid;
   gap: var(--e-2);
-  padding-left: calc(3.5rem + var(--e-3));
+  padding-left: calc(4.5rem + var(--e-3));
 }
 
 .servicio[data-abierto='true'] .servicio__lista { padding-bottom: var(--e-4); }
@@ -1588,12 +1601,12 @@ svg {
    Reutilizan el acordeon de servicios. Solo cambia que no llevan la
    columna de entrada, asi que la cabecera pasa de cuatro a tres columnas. */
 .servicio--faq .servicio__cabecera {
-  grid-template-columns: 3.5rem minmax(0, 1fr) 2rem;
+  grid-template-columns: 4.5rem minmax(0, 1fr) 2rem;
 }
 
 .servicio__respuesta {
   overflow: hidden;
-  padding-left: calc(3.5rem + var(--e-3));
+  padding-left: calc(4.5rem + var(--e-3));
 }
 
 .servicio__respuesta p {
@@ -1753,14 +1766,19 @@ svg {
 
 .resumen__fila {
   display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.1fr);
   align-items: baseline;
   gap: var(--e-3);
   padding-block: var(--e-3);
   border-bottom: var(--linea-fina) solid var(--regla);
 }
 
-.resumen__numero { align-self: center; }
+.resumen__numero {
+  font-size: var(--t-indice);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--borde);
+}
 
 .resumen__nombre {
   font-family: var(--f-display);
