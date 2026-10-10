@@ -78,6 +78,35 @@ comparar.
 
 ---
 
+## 2.b El diseño se trabaja en Figma
+
+**Desde el 10 de octubre de 2026**, por decisión de Agentia: los cambios de
+diseño se hacen primero en el lienzo, no editando el CSS.
+
+**Archivo:** `Agentia · Mapa del sitio`
+https://www.figma.com/design/mi9HmucUhbd0rcMBNntq9I
+
+Una página, un tablero, las cinco pantallas colocadas como mapa del sitio, con
+sus rutas y sus conectores. Son capas editables capturadas del sitio publicado,
+no imágenes.
+
+**El motivo fue el ciclo.** Cada retoque obligaba a publicar, esperar el
+despliegue y pelear con la caché del navegador. Varias veces se reportó «sigue
+igual» mirando una versión anterior. En el lienzo ese ciclo no existe.
+
+**Lo que esto implica para quien toque este repositorio:**
+
+- **El sitio publicado queda congelado** donde está hasta que Agentia pida bajar
+  lo de Figma al código. Si lo editas por tu cuenta, los dos se separan y
+  reconciliarlos después cuesta más que hacerlo bien ahora.
+- **Rutas, formulario, rendimiento y accesibilidad siguen siendo del código.**
+  Figma no los resuelve. Eso se pregunta antes de tocar nada.
+- **Al recapturar pantallas, se recapturan las cinco.** Un cambio en la barra o
+  en el pie afecta a todas, no solo a la página que tocaste. Pasó ya una vez:
+  se cambió el menú y en Figma quedaron cuatro capturas con el menú viejo.
+
+---
+
 ## 3. Dos documentos que mandan sobre el código
 
 **`docs/diseno.md` es la ley del proyecto.** Ningún color, tamaño, espaciado ni
