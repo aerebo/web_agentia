@@ -53,7 +53,22 @@ En `/agentia/` el orden es: por qué Agentia, cómo trabajamos, quiénes somos, 
 - **Dos llamadas a la acción intermedias como máximo**, y solo donde el visitante acaba de recibir un argumento completo.
 - **El oscuro aparece una sola vez por página y al final.** Ver la sección 3.4.
 
-### 1.4 El sitio se arma, ya no se edita a mano
+### 1.4 El sitio tiene dos llamadas a la acción, y solo dos
+
+Fijado el 10 de octubre de 2026. Antes había **siete etiquetas distintas** en los botones, y tres de ellas —«Cotizar», «Pedir diagnóstico» y «Conversemos»— llevaban las tres al mismo sitio. El visitante no tenía forma de saber si iban a destinos diferentes.
+
+| Etiqueta | Lleva a | Dónde |
+|---|---|---|
+| **Agendar** | El formulario | La principal. Barra, hero, y al cerrar «Cómo trabajamos» |
+| **Contactar** | Los tres correos | La alternativa de quien prefiere escribir directo. Al cerrar «Quiénes somos» |
+
+**Agendar va en relleno y Contactar en línea.** No compiten: una es la principal y la otra es la salida de quien no quiere llenar campos.
+
+**Van por el camino corto.** Los marcadores `{{AGENDAR}}` y `{{CONTACTAR}}` los resuelve `armar.py` según la página: si esa página ya trae el formulario o los correos, baja a ellos con un ancla; si no, va a `/contacto/`. Antes la portada mandaba a recargar otra página para llegar a un formulario que estaba justo debajo.
+
+**«Ver servicios» no es una llamada a la acción**, es navegación, y por eso convive con las dos. Pero una sola vez por página: estaba en el hero y otra vez en el resumen de servicios, a un scroll de distancia.
+
+### 1.5 El sitio se arma, ya no se edita a mano
 
 `armar.py` lee `partes/` y escribe `_sitio/`. La cabecera, el menú y el pie son los mismos en las cinco páginas: sin armador habría que editarlos cinco veces y el día que a alguien se le pase uno, el menú queda distinto según la página.
 
