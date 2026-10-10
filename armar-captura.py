@@ -7,13 +7,17 @@ en linea, la fuente como data: URI, quita el JS (el convertidor no lo ejecuta y
 las piezas con `rv` se quedarian invisibles) y deja la pagina quieta en su
 estado final.
 
-Uso:  python3 armar-captura.py nosotros  ->  _capturas/nosotros.html
+Uso:  python3 armar-captura.py nosotros        -> _capturas/nosotros.html
+      python3 armar-captura.py trabajos/video -> _capturas/trabajos-video.html
+      python3 armar-captura.py                -> las ocho
 """
 
 import base64
 import pathlib
 import re
 import sys
+
+import armar as armador
 
 RAIZ = pathlib.Path(__file__).parent
 SITIO = RAIZ / "_sitio"
@@ -49,7 +53,7 @@ def resolver_escapes(css: str) -> str:
     )
 
 
-def armar(ruta: str) -> pathlib.Path:
+def armar_captura(ruta: str) -> pathlib.Path:
     carpeta = SITIO if ruta in ("", "/") else SITIO / ruta
     origen = carpeta / "index.html"
     if not origen.exists():
@@ -95,12 +99,18 @@ def armar(ruta: str) -> pathlib.Path:
 </style>""", 1)
 
     SALIDA.mkdir(exist_ok=True)
-    destino = SALIDA / f"{ruta or 'portada'}.html"
+    # Una ruta puede tener barra, como trabajos/video. El archivo se llama
+    # trabajos-video.html y queda todo plano: son capturas para subir una a
+    # una, no un sitio, y asi se ven juntas al listar la carpeta.
+    destino = SALIDA / (ruta.replace("/", "-") + ".html" if ruta else "portada.html")
     destino.write_text(h, encoding="utf-8")
     return destino
 
 
 if __name__ == "__main__":
-    for ruta in sys.argv[1:] or ["", "servicios", "trabajos", "nosotros", "contacto"]:
-        d = armar(ruta)
+    # Sin argumentos, las que diga el armador: asi no hay dos listas de
+    # paginas que puedan quedar desparejas.
+    todas = [p["ruta"] for p in armador.PAGINAS]
+    for ruta in sys.argv[1:] or todas:
+        d = armar_captura(ruta)
         print(f"{d.name}  {d.stat().st_size // 1024} KB")
