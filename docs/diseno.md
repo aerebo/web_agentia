@@ -18,29 +18,36 @@ Esa es la prueba del argumento comercial que ya está en el contenido aprobado: 
 
 ### 1.1 Orden de la página
 
-Reordenada el 10 de octubre de 2026. **El orden no es estético: es el orden en que un cliente potencial hace las preguntas.** Cada sección contesta una y solo una.
+Reordenada el 10 de octubre de 2026 y **condensada el mismo día**, de doce secciones a ocho, después del benchmark de `docs/benchmark.md`.
+
+**El orden no es estético: es el orden en que un cliente potencial hace las preguntas.** Cada sección contesta una y solo una.
 
 | # | Sección | La pregunta que contesta |
 |---|---|---|
 | 1 | Hero | ¿Qué hacen? |
-| 2 | Posicionamiento | ¿Por qué ustedes y no cualquier agencia con IA? |
-| 3 | Servicios | ¿Qué puedo contratar? |
-| 4 | Proceso | ¿Cómo se trabaja y qué me van a pedir? |
-| 5 | Diferencial | ¿Qué me llevo exactamente? |
-| 6 | Para quién es | ¿Esto es para mí? |
-| 7 | Clientes | ¿A quién le han hecho esto antes? |
-| 8 | Preguntas frecuentes | ¿Qué duda me queda? |
-| 9 | Contacto | ¿Cómo empiezo? |
+| 2 | Servicios | ¿Qué puedo contratar? |
+| 3 | Trabajos | ¿Puedo ver algo? |
+| 4 | Cómo trabajamos | ¿Cómo se trabaja y qué me van a pedir? |
+| 5 | Por qué Agentia | ¿Por qué ustedes, y es para mí? |
+| 6 | Quiénes somos | ¿Quién está detrás y a quién le han hecho esto? |
+| 7 | Preguntas frecuentes | ¿Qué duda me queda? |
+| 8 | Contacto | ¿Cómo empiezo? |
 
-**El banco de marca dejó de ser sección propia.** Era una demostración de cuatro servicios colocada justo antes de la lista de los seis: dos secciones contando lo mismo con distinta ropa. Ahora encabeza Servicios y el acordeón queda debajo como lista completa.
+**Las dos fusiones.** Había tres secciones contestando «por qué nosotros»: posicionamiento, el diferencial y para quién es. Ningún sitio del benchmark tiene más de una. Ahora son la 5, que cierra con el «esto no es para ti si», que es el mejor final posible para ese argumento.
 
-Eso además cierra una decisión que llevaba meses abierta: la tuerca tiene cuatro posiciones y los servicios son seis, así que Personajes de Marca y Pauta Publicitaria quedaban fuera sin explicación. Dentro de la misma sección ya no hay contradicción: **la tuerca muestra cuatro en detalle, la lista los enumera los seis.**
+Y clientes se juntó con trayectoria, cifras y equipo en la 6. Esa sección ya decía «operamos entre Huaraz, Ica y Lima» y hablaba del equipo propio: **estaba hablando de nosotros, no de ellos.** Estaba mal etiquetada.
+
+**Los id de ancla no cambian aunque cambie el rótulo.** `#diferencial` sigue siendo `#diferencial` y `#clientes` sigue siendo `#clientes`. Ver la sección 10.
+
+**Trabajos va en la 3, no en la 2.** Lo estándar es poner la prueba arriba del todo: barrel pone los logos justo debajo del hero y thoughtbot abre con un caso. Aquí no, por una razón concreta: el material disponible son entre tres y siete piezas, y **una galería corta en lo primero que se ve expone la escasez.** Detrás de Servicios se lee como respaldo de lo que se acaba de prometer, no como catálogo. Si algún día hay ocho piezas o más, sube.
+
+**Trabajos no es lo mismo que Casos.** Trabajos es la galería: pieza, cliente, servicio. Casos es reto, qué hicimos y resultado medible. No son dos secciones: es la misma con más profundidad, y cada pieza puede crecer a caso cuando haya números. Ver la sección 8 de `contenido-agentia.md`.
 
 **Reglas del orden:**
 
-- **La prueba social no se adelanta con nombres sueltos.** Lo estándar es poner logos de clientes justo debajo del hero. Aquí no se hizo: no hay permiso de uso de logo todavía, y una fila de nombres en texto plano no es prueba, es relleno. Cuando lleguen los permisos, se reevalúa.
-- **Decir para quién NO es va antes de los clientes.** Calificar al visitante antes de enseñarle la lista evita la consulta que no iba a ningún lado.
-- **Las preguntas frecuentes van pegadas al contacto.** Son las últimas objeciones antes del formulario; más arriba interrumpen el argumento.
+- **La prueba social no se adelanta con nombres sueltos.** No hay permiso de uso de logo todavía, y una fila de nombres en texto plano no es prueba, es relleno. Cuando lleguen los permisos, se reevalúa.
+- **Decir para quién NO es cierra el argumento**, no lo abre. Por eso va al final de la 5 y no en sección propia.
+- **Las preguntas frecuentes van pegadas al contacto.** Son las últimas objeciones antes del formulario.
 - **El oscuro sigue apareciendo una sola vez y al final.** Ver la sección 3.4.
 
 ---

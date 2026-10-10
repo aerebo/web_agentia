@@ -263,14 +263,20 @@ No son tareas técnicas: necesitan respuesta de Agentia antes de tocarse.
    marca del grupo. Hoy aparecen como texto, con el aviso puesto.
 5. **Material real de casos.** Sin piezas reales, la sección de casos no se publica.
 6. **Teléfono, WhatsApp y handles de redes.**
-7. **Cifras de trayectoria.** No se publican hasta contarlas.
-8. **Entregables del proceso.** Las lineas de «recibes» y «te pedimos» de cada
+7. **Cifras de trayectoria.** No se publican hasta contarlas. En la pagina solo
+   van las tres confirmadas: ciudades, sectores y produccion propia.
+8. **Material para Trabajos.** Seis huecos esperando pieza real. Por cada una
+   hace falta imagen o video, tipo, cliente con permiso y titulo. Ver la
+   seccion 8.a de `docs/contenido-agentia.md`.
+9. **Testimonios.** Aparcados por Agentia el 10 de octubre de 2026. Se suben
+   despues. No volver a proponerlos.
+10. **Entregables del proceso.** Las lineas de «recibes» y «te pedimos» de cada
    paso son redaccion propuesta, derivada de lo que ya decia cada paso, pero
    comprometen entregables. Confirmar antes de publicar.
-9. **Las tres puertas que cierra «para quien no es».** Pieza suelta, precio mas
+11. **Las tres puertas que cierra «para quien no es».** Pieza suelta, precio mas
    bajo, e IA sin revision humana. Son tres clientes que Agentia rechaza por
    escrito. Confirmar las tres.
-10. **Cinco preguntas frecuentes sin respuesta.** Contratar un solo servicio,
+12. **Cinco preguntas frecuentes sin respuesta.** Contratar un solo servicio,
    que pasa si ya hay agencia, permanencia minima, de quien son los archivos al
    terminar, y si se publican rangos de precio. Estan listadas en la seccion 8.c
    de `docs/contenido-agentia.md` y no se publican hasta tener respuesta. La de

@@ -1576,6 +1576,103 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
+   12.c Trabajos, cifras y la fusion de secciones
+   10 de octubre de 2026. La pagina paso de doce secciones a ocho.
+
+   Tres bloques contestaban «por que nosotros»: posicionamiento, el
+   diferencial y para quien es. Ahora son uno. Y clientes se junto con la
+   trayectoria y el equipo, porque esa seccion ya hablaba de nosotros, no
+   de ellos: estaba mal etiquetada.
+
+   Los id de ancla NO cambian aunque cambie el rotulo. #diferencial sigue
+   siendo #diferencial y #clientes sigue siendo #clientes, porque son los
+   que manda conservar la seccion 10 del sistema de diseno y pueden estar
+   compartidos por ahi.
+   -------------------------------------------------------------------------- */
+
+.trabajos {
+  list-style: none;
+  margin-top: var(--e-5);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-4) var(--e-3);
+}
+
+.trabajo__marco {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+  margin-bottom: var(--e-2);
+  overflow: hidden;
+}
+
+/* El hueco se ve como hueco a proposito. Un marco gris sin marca se lee
+   como una imagen que no cargo; con el rotulo dentro se lee como lo que
+   es, un sitio reservado. */
+.trabajo__hueco {
+  color: var(--borde);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.trabajo__marco img,
+.trabajo__marco video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trabajo__meta {
+  color: var(--lapiz);
+  margin-bottom: var(--e-1);
+}
+
+.trabajo__tipo { color: var(--azul-fuerte); }
+
+.trabajo__nombre {
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* --- cifras de quienes somos ---
+   Solo van las confirmadas. Anos operando y proyectos entregados siguen
+   sin contarse, y un numero inventado en la web es justo el detalle que
+   un cliente verifica. */
+.cifras {
+  margin-top: var(--e-5);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-3);
+  border-top: var(--linea-gruesa) solid var(--tinta);
+  padding-top: var(--e-3);
+}
+
+.cifra dt {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul-fuerte);
+  margin-bottom: var(--e-1);
+}
+
+.cifra dd {
+  font-size: var(--t-cuerpo);
+  max-width: 32ch;
+}
+
+.clientes__titulo {
+  margin-top: var(--e-5);
+  margin-bottom: var(--e-2);
+  font-size: var(--t-h3);
+  color: var(--lapiz);
+}
+
+/* --------------------------------------------------------------------------
    13. Respuesta movil
    -------------------------------------------------------------------------- */
 
@@ -1627,6 +1724,8 @@ svg {
 
   .pilar { grid-template-columns: 1fr; gap: var(--e-1); }
   .publico { grid-template-columns: 1fr; gap: var(--e-4); }
+  .trabajos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cifras { grid-template-columns: 1fr; gap: var(--e-3); }
   .servicio--faq .servicio__cabecera { grid-template-columns: 3rem 1fr 1.5rem; }
   .servicio__respuesta { padding-left: calc(3rem + var(--e-3)); }
 }
@@ -1647,6 +1746,7 @@ svg {
   }
 
   .pasos { grid-template-columns: 1fr; }
+  .trabajos { grid-template-columns: 1fr; }
   .paso { border-right: none; border-bottom: var(--linea-fina) solid var(--regla); padding-bottom: var(--e-3); }
   .paso:last-child { border-bottom: none; }
 

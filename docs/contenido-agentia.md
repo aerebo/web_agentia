@@ -189,7 +189,33 @@ Operamos entre Huaraz, Ica y Lima, con equipo propio de producción audiovisual 
 
 ---
 
-## 8. Casos `[PENDIENTE]`
+## 8. Trabajos y casos
+
+**Sección creada el 10 de octubre de 2026**, a pedido de Agentia, para enseñar lo que se hace sin esperar a tener métricas.
+
+**Trabajos** es la galería y **Casos** es su versión profunda. No son dos secciones: cada pieza de la galería puede crecer a caso cuando haya números que publicar.
+
+### 8.a Trabajos `[PENDIENTE DE MATERIAL]`
+
+**Eyebrow:** Trabajos · **Titular:** Lo que sale de aquí.
+
+Hay seis huecos preparados en la página, dos por tipo. Material disponible según Agentia: video, piezas gráficas y webs o landings, entre tres y siete piezas en total.
+
+Por cada pieza hace falta:
+
+| Dato | Nota |
+|---|---|
+| Imagen o video | Para video, además una imagen de portada: el presupuesto de la primera vista es 800 KB y un video autoreproducido se lo come entero |
+| Tipo | Video, Gráfica o Web |
+| Cliente | Con su permiso, igual que los logos |
+| Título de la pieza | Una línea |
+| Enlace | Solo para web, y solo si el sitio sigue en línea |
+
+> **No se publica una pieza sin permiso del cliente.** Misma regla que los logos de la sección 7.
+
+### 8.b Casos `[PENDIENTE]`
+
+Estructura por caso, tres casos mínimo:
 
 Estructura por caso, tres casos mínimo:
 
@@ -200,6 +226,8 @@ Estructura por caso, tres casos mínimo:
 - **Material** — video o imágenes reales del trabajo
 
 Sin material audiovisual real, esta sección no se publica. Un portafolio con mockups genéricos resta más de lo que suma.
+
+Los siete sitios del benchmark tienen casos, sin excepción, y netguru mete el número en el titular del caso. Ver `docs/benchmark.md`.
 
 ---
 
