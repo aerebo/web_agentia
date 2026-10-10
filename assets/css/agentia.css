@@ -769,20 +769,6 @@ svg {
   border-top: var(--linea-fina) solid var(--regla);
 }
 
-.banco__cabecera {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--e-2);
-  padding-bottom: var(--e-1);
-  border-bottom: var(--linea-fina) solid var(--regla);
-  margin-bottom: var(--e-5);
-}
-
-.banco__modo {
-  color: var(--tinta);
-}
-
 .banco__grid {
   display: grid;
   grid-template-columns: 2fr 3fr;

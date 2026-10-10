@@ -5,10 +5,15 @@
     </div>
     <div class="lienzo banco banco--dentro">
 
-      <p class="banco__cabecera rv">
-        <span class="spec">Modo de marca</span>
-        <output class="spec banco__modo" id="modo-activo" for="tuerca">Identidad</output>
-      </p>
+      <!-- El rotulo «Modo de marca / Identidad» se quito de la vista: la
+           ficha de al lado ya dice que servicio esta activo, asi que la
+           barra repetia la informacion y se comia una pantalla de alto.
+
+           El <output> se queda, oculto a la vista pero presente en el
+           arbol de accesibilidad: es a quien apunta el aria-describedby
+           del mando y es lo que anuncia el modo a un lector de pantalla
+           cada vez que se gira. Borrarlo dejaria el mando sin voz. -->
+      <output class="oculto-visual" id="modo-activo" for="tuerca">Identidad</output>
 
       <div class="banco__grid">
 

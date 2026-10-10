@@ -466,7 +466,8 @@ Nada de `z-index: 9999`.
 - **La tuerca es un `<input type="range">` real**, invisible por encima del mando. Funciona con flechas del teclado, tiene `aria-label` y actualiza `aria-valuetext` al nombre del modo en español, no al número. El dibujo del mando lleva `aria-hidden`.
 - La tuerca es un adorno funcional: si el visitante no la toca, la página se lee igual. Nunca es requisito para acceder a información.
 - `aria-current="true"` en el enlace de navegación de la sección visible.
-- La insignia y sus cuatro glifos son decorativos: llevan `aria-hidden="true"` y quien anuncia el modo es el `output` de la tuerca, con el nombre en español, no un número. El logotipo del hero lleva `role="img"` y `aria-label="Agentia"`; el de la barra y el del pie van ocultos del árbol y el nombre lo da su texto alternativo.
+- La insignia y sus cuatro glifos son decorativos: llevan `aria-hidden="true"` y quien anuncia el modo es el `output` de la tuerca, con el nombre en español, no un número.
+- **Ese `output` dejó de verse el 10 de octubre de 2026, pero sigue ahí.** El rótulo «Modo de marca / Identidad» se quitó de la vista porque repetía lo que ya dice la ficha de al lado y se comía una pantalla de alto. El elemento se conserva con `.oculto-visual`: es a quien apunta el `aria-describedby` del mando y es lo que anuncia el cambio a un lector de pantalla. **Borrarlo dejaría el mando sin voz**, que es el tipo de regresión que no se nota mirando la página. El logotipo del hero lleva `role="img"` y `aria-label="Agentia"`; el de la barra y el del pie van ocultos del árbol y el nombre lo da su texto alternativo.
 - **El contenido es visible por defecto.** Solo se esconde para revelarlo cuando el script confirma que puede, con red de seguridad a los 2.5 segundos. Un fallo de JavaScript nunca deja la página en blanco.
 
 ---
