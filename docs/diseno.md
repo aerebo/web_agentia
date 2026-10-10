@@ -319,19 +319,49 @@ Secuencia definida para la página: hero, amplia, normal, corta, normal, amplia,
 
 ## 6. Forma
 
-**Bloqueo de forma:** todo el sitio es de esquina viva, radio 0. Sin excepciones en tarjetas, campos, botones ni imágenes.
+**Cambiado el 10 de octubre de 2026**, a petición de Agentia sobre una referencia visual. Hasta entonces el sitio era de esquina viva sin una sola excepción.
 
-**La esquina redondeada pertenece a la marca, y a nada más.** El cuadro IA lleva radio 0.19 de la altura de mayúscula, y la insignia y las piezas del hero lo heredan en proporción. Ese es el motivo de que el resto del sitio sea de esquina viva: si nada más se redondea, el cuadro se lee como lo que es. Redondear una tarjeta o un botón le quita al logotipo su única seña de forma.
+### 6.1 La regla nueva
 
-**La única forma circular del sitio es la tuerca**, con su eje y su aguja. Se permite porque no compite con el cuadro: es un mecanismo, no una pieza de identidad. Antes esa excepción se justificaba por el punto del isotipo, que ya no existe.
+| Token | Valor | Dónde |
+|---|---|---|
+| `--r-0` | `0` | Botones, campos de formulario, láminas, el acordeón |
+| `--r-tarjeta` | `0.875rem` | Fichas, marcos de trabajos, columnas de «para quién es» |
+| `--r-circulo` | `50%` | El número de cada ficha, el eje de la tuerca |
+| El cuadro IA | `0.24` de la mayúscula | Solo el logotipo y la insignia |
+
+**El cuadro de marca sube su radio de 0.19 a 0.24.** Esa es la compensación, y conviene entender por qué:
+
+0.19 era el radio **medido del original entregado**. Mientras el sitio era de esquina viva, ese radio bastaba para que el cuadro fuera lo único redondeado y se leyera como marca. Con tarjetas redondeadas por todas partes, 0.19 lo convertía en una tarjeta pequeña más. Se sube a 0.24 para que siga siendo, con diferencia, **lo más redondeado de la página**.
+
+Es decir: el valor ya no sale de la medición, sale de mantener una jerarquía. Si algún día se quitan las tarjetas, vuelve a 0.19.
+
+### 6.2 Lo que esto costó, dicho claro
+
+La regla anterior decía: *«la esquina redondeada pertenece a la marca, y a nada más. Redondear una tarjeta o un botón le quita al logotipo su única seña de forma.»*
+
+**Eso sigue siendo verdad.** El logotipo perdió exclusividad sobre el redondeo y ahora solo conserva ventaja de grado, no de tipo. Se aceptó a cambio de lo que ganan las fichas: cada punto se lee como una unidad cerrada, y el número pasa de ser una cota a ser una etiqueta.
+
+Queda escrito para que nadie lo redescubra dentro de seis meses y lo trate como un descuido.
+
+### 6.3 Lo que no cambió
+
+- **Los botones y los campos siguen en radio 0.** Si todo se redondea, no queda contraste de forma en ninguna parte.
+- **Sigue sin haber sombras.** La elevación se comunica con `--lamina` sobre `--papel` y con líneas, nunca con `box-shadow`. Una ficha es una lámina con borde, no una tarjeta flotante.
+- **La tuerca sigue siendo el único mecanismo circular**, y ahora comparte lo redondo con los números de ficha, que son etiquetas y no mecanismos.
 
 | Token | Valor |
 |---|---|
-| `--r-0` | `0` |
 | `--linea-fina` | `1px` |
 | `--linea-gruesa` | `2px` |
 
-Sin sombras. La elevación se comunica con `--lamina` sobre `--papel` y con líneas, nunca con `box-shadow`. Una lámina de espécimen no tiene sombra.
+### 6.4 Iconos
+
+Ocho iconos de línea, dibujados a mano como SVG en línea dentro de las piezas: cuatro para el proceso y cuatro para los pilares. Mismo trazo que los glifos de la insignia: sin relleno, `stroke-width: 7` sobre un `viewBox` de 100, puntas y uniones redondeadas.
+
+**No hay librería de iconos ni CDN**, y no la va a haber: es la regla de cero dependencias de la sección 10. Si hace falta un icono nuevo, se dibuja con esos mismos parámetros o desentona.
+
+Van en `--azul` y con `aria-hidden="true"`: son refuerzo visual del título, no información.
 
 ---
 

@@ -203,7 +203,19 @@ subdirectorio, y una ruta absoluta se iría a la raíz del dominio y daría 404.
 Funcionaría en el dominio propio y fallaría en la vista previa, que es la peor
 combinación posible: se rompe justo donde lo revisa el equipo.
 
-### 4.9 La página activa se marca al armar, no con JavaScript
+### 4.9 El radio del cuadro IA ya no es el medido
+
+El original entregado tenía radio 0.19 de la altura de mayúscula. En el código
+dice 0.24, y no es un error de transcripción.
+
+Desde que la página tiene tarjetas redondeadas (10 de octubre de 2026), 0.19
+convertía al cuadro de marca en una tarjeta pequeña más. Se subió a 0.24 para
+que siga siendo lo más redondeado de la página.
+
+**Si algún día se quitan las tarjetas, vuelve a 0.19.** Ver la sección 6 de
+`docs/diseno.md`.
+
+### 4.10 La página activa se marca al armar, no con JavaScript
 
 `armar.py` le pone `aria-current="page"` al enlace de la página en la que estás.
 Se hace al armar a propósito: si dependiera del script, un fallo de JS dejaría el

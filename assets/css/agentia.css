@@ -138,6 +138,12 @@
 
   /* forma */
   --r-0: 0;
+  /* Radios, desde el 10 de octubre de 2026. Antes el sitio era de esquina
+     viva sin excepciones. Ver la seccion 6 del sistema de diseno: el
+     cuadro de marca mantiene el radio mas grande para seguir siendo lo
+     mas redondeado de la pagina. */
+  --r-tarjeta: 0.875rem;
+  --r-circulo: 50%;
   --linea-fina: 1px;
   --linea-gruesa: 2px;
 
@@ -351,7 +357,10 @@ svg {
     calc(0.382 * var(--cap))
     calc(0.25 * var(--cap))
     calc(0.471 * var(--cap));
-  border-radius: calc(0.19 * var(--cap));
+  /* 0.19 era el radio medido del original. Desde que la pagina tiene
+     tarjetas redondeadas se sube a 0.24 para que el cuadro siga siendo
+     lo mas redondeado de la pagina y no se confunda con una tarjeta. */
+  border-radius: calc(0.24 * var(--cap));
   background: var(--azul);
   color: var(--lamina);
 }
@@ -385,7 +394,7 @@ svg {
   place-items: center;
   width: clamp(7rem, 15vw, 10.5rem);
   aspect-ratio: 1.765 / 1.853;
-  border-radius: 11%;
+  border-radius: 14%;
   background: var(--azul);
   color: var(--lamina);
   flex: none;
@@ -791,8 +800,6 @@ svg {
   border: var(--linea-fina) solid var(--regla);
 }
 
-
-
 .tuerca {
   display: grid;
   justify-items: center;
@@ -1173,59 +1180,19 @@ svg {
    11.e Diferencial
    -------------------------------------------------------------------------- */
 
-.diferencial {
-  display: grid;
-  grid-template-columns: repeat(var(--columnas), 1fr);
-  gap: var(--e-5) var(--e-3);
-}
+.porque__intro { max-width: 58ch; }
 
-.diferencial__intro { grid-column: 1 / span 6; }
+.porque__intro--viejo { grid-column: 1 / span 6; }
 
-.pilares {
-  grid-column: 7 / span 6;
-  display: grid;
-  gap: 0;
-  border-top: var(--linea-fina) solid var(--azul-nota);
-}
 
-.pilar {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: var(--e-3);
-  padding-block: var(--e-3);
-  border-bottom: var(--linea-fina) solid var(--azul-nota);
-}
-
-.pilar dt {
-  font-family: var(--f-display);
-  font-weight: var(--w-fuerte);
-  font-size: var(--t-h3);
-  letter-spacing: -0.02em;
-}
-
-.pilar dd {
-  font-size: var(--t-corto);
-  color: var(--lapiz);
-}
 
 /* --------------------------------------------------------------------------
    11.f Proceso. Una secuencia real, por eso si va numerada
    -------------------------------------------------------------------------- */
 
-.pasos {
-  list-style: none;
-  margin-top: var(--e-5);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: var(--linea-gruesa) solid var(--tinta);
-}
 
-.paso {
-  padding: var(--e-3) var(--e-3) var(--e-5) 0;
-  border-right: var(--linea-fina) solid var(--regla);
-  position: relative;
-}
+
+
 
 .paso:last-child { border-right: none; }
 
@@ -1240,17 +1207,11 @@ svg {
   border-radius: 50%;
 }
 
-.paso__numero { display: block; margin-bottom: var(--e-3); }
 
-.paso__nombre {
-  font-size: var(--t-h3);
-  margin-bottom: var(--e-1);
-}
 
-.paso__texto {
-  font-size: var(--t-corto);
-  color: var(--lapiz);
-}
+
+
+
 
 /* --------------------------------------------------------------------------
    11.g Clientes
@@ -1474,29 +1435,13 @@ svg {
 /* --- el pacto de cada paso del proceso ---
    Dos filas por paso: que recibes y que te pedimos. Es lo que impide que
    el proceso vuelva a ser cuatro titulos genericos. */
-.paso__pacto {
-  margin-top: var(--e-3);
-  padding-top: var(--e-2);
-  border-top: var(--linea-fina) solid var(--regla);
-  display: grid;
-  gap: var(--e-1);
-}
 
-.paso__pacto dt {
-  font-family: var(--f-spec);
-  font-size: var(--t-spec);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--azul-fuerte);
-}
 
-.paso__pacto dd {
-  font-size: var(--t-corto);
-  color: var(--lapiz);
-  margin-bottom: var(--e-2);
-}
 
-.paso__pacto dd:last-child { margin-bottom: 0; }
+
+
+
+
 
 /* nota al pie de seccion, para lo que se dice en voz baja pero se dice */
 .nota {
@@ -1513,6 +1458,13 @@ svg {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--e-5) var(--e-4);
+}
+
+.publico__col {
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
+  padding: var(--e-3);
 }
 
 .publico__titulo {
@@ -1607,6 +1559,7 @@ svg {
   place-items: center;
   background: var(--lamina);
   border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
   margin-bottom: var(--e-2);
   overflow: hidden;
 }
@@ -1757,6 +1710,120 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
+   12.f Fichas: tarjeta, numero en circulo e icono
+   10 de octubre de 2026, a peticion de Agentia sobre una referencia.
+
+   Sustituye la reticula de celdas separadas por lineas que tenian el
+   proceso y los pilares. Lo que gana: cada punto se lee como una unidad
+   cerrada y el numero deja de ser una cota para pasar a ser una etiqueta.
+   Lo que cuesta esta anotado en la seccion 6 del sistema de diseno.
+   -------------------------------------------------------------------------- */
+
+.fichas {
+  list-style: none;
+  margin-top: var(--e-5);
+  display: grid;
+  grid-template-columns: repeat(var(--fichas-columnas, 4), minmax(0, 1fr));
+  gap: var(--e-3);
+}
+
+/* Dos columnas en vez de cuatro. Va como clase y NO como estilo en linea:
+   un estilo en linea le gana a la consulta de medios y el movil se queda
+   con dos columnas estrechas, que es justo lo que paso la primera vez. */
+.fichas--dos { --fichas-columnas: 2; }
+
+.ficha {
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
+  padding: var(--e-3);
+  display: grid;
+  align-content: start;
+  gap: var(--e-2);
+  transition: border-color var(--dur-rapida) var(--ease-salida);
+}
+
+.ficha:hover { border-color: var(--azul); }
+
+.ficha__cabeza {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+/* el numero en circulo. Es lo unico redondo del sitio junto a la tuerca y
+   al cuadro de marca, asi que se gana el sitio: ordena la secuencia */
+.ficha__numero {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-circulo);
+  background: var(--tinta);
+  color: var(--lamina);
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  line-height: 1;
+}
+
+.ficha__icono {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--azul);
+}
+
+.ficha__icono svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+
+.ficha__titulo {
+  font-family: var(--f-display);
+  font-weight: var(--w-fuerte);
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ficha__texto {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+}
+
+/* el pacto de cada paso, dentro de la ficha */
+.ficha__pacto {
+  margin-top: var(--e-1);
+  padding-top: var(--e-2);
+  border-top: var(--linea-fina) solid var(--regla);
+  display: grid;
+  gap: var(--e-1);
+}
+
+.ficha__pacto dt {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul-fuerte);
+}
+
+.ficha__pacto dd {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+  margin-bottom: var(--e-2);
+}
+
+.ficha__pacto dd:last-child { margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
    13. Respuesta movil
    -------------------------------------------------------------------------- */
 
@@ -1785,18 +1852,12 @@ svg {
 
   .declara__titular,
   .declara__cuerpo,
-  .diferencial__intro,
-  .pilares,
   .contacto__lado,
   .formulario {
     grid-column: 1 / -1;
   }
 
   .declara__cuerpo { padding-top: var(--e-3); }
-
-  .pasos { grid-template-columns: repeat(2, 1fr); }
-  .paso:nth-child(2) { border-right: none; }
-  .paso:nth-child(-n+2) { border-bottom: var(--linea-fina) solid var(--regla); }
 
   .servicio__cabecera {
     grid-template-columns: 3rem 1fr 1.5rem;
@@ -1806,7 +1867,7 @@ svg {
   .servicio__entrada { grid-column: 2 / span 1; }
   .servicio__lista { padding-left: calc(3rem + var(--e-3)); }
 
-  .pilar { grid-template-columns: 1fr; gap: var(--e-1); }
+  .fichas { --fichas-columnas: 2; }
   .publico { grid-template-columns: 1fr; gap: var(--e-4); }
   .trabajos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cifras { grid-template-columns: 1fr; gap: var(--e-3); }
@@ -1831,10 +1892,10 @@ svg {
     grid-template-columns: 1.25rem 1fr;
   }
 
-  .pasos { grid-template-columns: 1fr; }
   .trabajos { grid-template-columns: 1fr; }
+  .fichas { --fichas-columnas: 1; }
   .llamada { flex-direction: column; align-items: flex-start; }
-  .paso { border-right: none; border-bottom: var(--linea-fina) solid var(--regla); padding-bottom: var(--e-3); }
+  
   .paso:last-child { border-bottom: none; }
 
   .servicio__lista { padding-left: 0; }
