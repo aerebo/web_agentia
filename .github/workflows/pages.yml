@@ -1,0 +1,43 @@
+# Publica el sitio en GitHub Pages en cada push a main.
+# Sube solo lo publico: index.html y assets/. docs/ y servidor-local.py se quedan fuera.
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Armar la carpeta publica
+        run: |
+          mkdir -p _sitio
+          cp index.html _sitio/
+          cp -R assets _sitio/
+          # Pages no necesita el procesado de Jekyll
+          touch _sitio/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _sitio
+
+      - id: despliegue
+        uses: actions/deploy-pages@v4
