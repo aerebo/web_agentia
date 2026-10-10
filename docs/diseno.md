@@ -71,7 +71,17 @@ Lo que había era una duplicación exacta. Cuatro fichas de «por qué Agentia»
 
 La identidad estaba al final, en el peor sitio de la página, formateada como tabla de datos. El filtro de público estaba enterrado como cola de la sección de «por qué», con el mismo peso visual que una ficha, cuando es lo último que lee alguien antes de decidir si escribe. Ahora abre y cierra la página respectivamente.
 
-**Resultado medido:** la página pasó de 4938 px a 3670 px de alto. Un 26% menos, sin perder un dato.
+**Resultado medido, y conviene no confundirlo.** El alto de la página:
+
+| Momento | Alto |
+|---|---|
+| Antes de nada | 4938 px |
+| Tras sacar las preguntas a su página | 3570 px |
+| Tras este replanteo | 3583 px |
+
+**El replanteo no acortó la página: la redistribuyó.** Se fueron cuatro fichas, y entraron a cambio el titular, la entrada y el cierre que la sección de público necesitaba al volverse autónoma. El 26% que se ganó fue por separar las preguntas, que es otra decisión.
+
+Decirlo así importa porque la tentación es vender un rediseño con el número más bonito que haya a mano. Lo que se ganó aquí no es alto: es que cada bloque conteste una pregunta distinta.
 
 ### 1.1 El sitio son nueve páginas
 
