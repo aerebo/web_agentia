@@ -83,6 +83,35 @@ La identidad estaba al final, en el peor sitio de la página, formateada como ta
 
 Decirlo así importa porque la tentación es vender un rediseño con el número más bonito que haya a mano. Lo que se ganó aquí no es alto: es que cada bloque conteste una pregunta distinta.
 
+### 1.0.c La IA es cómo trabajamos, no qué vendemos
+
+**10 de octubre de 2026, por decisión de Agentia:** *«la IA es una herramienta que me ayuda a mejorar los resultados, en ningún escenario es un resultado como tal»*.
+
+Esto no era un retoque de un titular. Era una posición de marca, y la web la contradecía en varios sitios a la vez:
+
+| Dónde | Qué decía | Por qué chirriaba |
+|---|---|---|
+| Titular de posicionamiento | «La IA no es el producto. El resultado sí.» | Oposición falsa. Para negar que la IA sea el producto hay que ponerla de sujeto |
+| Servicio 01 | «Desarrollo Web con IA» | Nombra la herramienta, no el entregable |
+| Servicio 03 | «Producción de Video e IA Audiovisual» | Igual, y además es el único nombre con dos conectores |
+| Entrada del 01 | «diseñados y optimizados con IA» | Vende el instrumento |
+| Entrada del 03 | «Videos generados con IA» | Dice cómo se hace, no qué recibes |
+| Viñeta de video | «modelos generativos de última generación» | Presume de la herramienta |
+| Lede del hero | «tecnologías de vanguardia» | Lo mismo, y es un adjetivo vacío |
+
+**La prueba que lo deja claro:** de los seis servicios, cuatro se llamaban por lo que entregan —Identidad, Personajes de Marca, Diseño Gráfico, Pauta— y dos por la herramienta. En la misma lista, a la vista.
+
+**Y hay un argumento de marca encima:** el logotipo es AGENT + **IA**. El nombre ya lleva la herramienta dentro. Cada «con IA» en un nombre de servicio repetía la marca y no añadía nada, que además es la sección 1.0.
+
+**La regla:**
+
+- **La IA se nombra como medio, nunca como entregable ni como resultado.** «Usamos IA para producir mejor» sí. «Video con IA» no.
+- **Ningún nombre de servicio lleva la herramienta.** El nombre dice qué recibe el cliente.
+- **Nada de adjetivos de folleto sobre la tecnología:** «de vanguardia», «de última generación», «inteligente». Si se quita el adjetivo y la frase sigue diciendo lo mismo, el adjetivo sobraba.
+- **No se defiende lo que no se ha puesto en el escaparate.** La pregunta «¿la IA reemplaza al diseñador?» se queda, porque es una duda real del mercado, pero se contesta sin conceder la premisa: no es un sustituto, es una herramienta.
+
+Lo que **no** cambió, y por qué: el `title` y la meta descripción conservan «con IA» y «asistida por IA». Ahí no son un argumento de venta sino términos de búsqueda, y la sección 10 de `docs/contenido-agentia.md` los fija como objetivo. Un buscador no lee tono de marca; una persona sí.
+
 ### 1.1 El sitio son nueve páginas
 
 **Partido el 10 de octubre de 2026.** Hasta entonces era una sola página con todo dentro. El benchmark de `docs/benchmark.md` mostró que **los siete sitios del sector son multipágina**, y el sitio se alineó con eso.

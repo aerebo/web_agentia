@@ -50,10 +50,16 @@ Convertimos tecnologías de vanguardia en métricas de negocio: sitios web que c
 
 **Eyebrow:** Por qué Agentia
 
-**Titular:** La IA no es el producto. El resultado sí.
+**Titular:** Producir mucho lo hace cualquiera. Que sirva, no.
 
 **Cuerpo:**
-Muchas agencias usan inteligencia artificial para producir más rápido. Nosotros la usamos para producir mejor y medirlo. Cada pieza que entregamos nace dentro de un sistema de marca definido y sale con analítica conectada, así que sabes qué funcionó y por qué.
+Muchas agencias usan inteligencia artificial para producir más rápido. Nosotros la usamos para producir mejor, y para medirlo.
+
+La herramienta resuelve el volumen. Lo que no resuelve sola es que todas las piezas hablen igual ni que sepas cuál funcionó: eso es criterio, y el criterio es el trabajo. Por eso cada pieza nace dentro de un sistema de marca definido y sale con analítica conectada.
+
+> **Titular cambiado el 10 de octubre de 2026, a pedido de Agentia.** Decía «La IA no es el producto. El resultado sí.», y el reparo fue exacto: *«la IA es una herramienta que me ayuda a mejorar los resultados, en ningún escenario es un resultado como tal»*.
+>
+> La frase montaba una oposición falsa. «El producto» y «el resultado» no son términos contrarios, y nadie había pensado nunca que la IA fuera el producto, así que negarlo no informaba de nada. Peor: para negarlo había que poner la IA de sujeto, que es justo lo contrario de lo que Agentia cree. El titular nuevo no la nombra; el cuerpo la nombra una vez, y como instrumento.
 
 ---
 
@@ -64,8 +70,8 @@ Muchas agencias usan inteligencia artificial para producir más rápido. Nosotro
 
 > **Nota importante:** en el deck original, las viñetas de los servicios 05 y 06 están duplicadas desde los servicios 03 y 04. Abajo van redactadas correctamente. **Revisa y corrige el deck también.**
 
-### Desarrollo Web con IA
-Landing pages y sitios de alto impacto visual, diseñados y optimizados con IA.
+### Desarrollo Web
+Landing pages y sitios de alto impacto visual, con analítica integrada antes de publicar.
 - Tracking y analítica integrados desde el primer día
 - Optimización continua basada en datos de comportamiento
 - Rendimiento medido en Core Web Vitals, no en percepción
@@ -76,8 +82,8 @@ Mantenimiento fiel de la identidad visual en colores, tipografía y tono.
 - Consistencia entre canales sin producción artesanal repetida
 - Manual de marca vivo, aplicado en cada entrega
 
-### Producción de Video e IA Audiovisual
-Videos generados con IA que preservan la identidad del vocero de marca.
+### Producción de Video
+Reels y cortometrajes donde el vocero de marca no cambia de cara entre escenas.
 - Reels cortos y cortometrajes con modelos generativos de última generación
 - Uniformidad del personaje en múltiples escenas y contextos
 - Dirección de arte humana sobre producción asistida
@@ -102,7 +108,9 @@ Campañas de búsqueda y display estructuradas para captación medible.
 
 ---
 
-## 4. Diferencial — qué te llevas `[VERIFICAR redaccion]`
+## 4. Diferencial — qué te llevas `[RETIRADO DE LA WEB]`
+
+> **Los cuatro pilares se retiraron el 10 de octubre de 2026.** Decían lo mismo que los cuatro pasos del proceso, uno a uno. Ver la sección 1.0.b de `docs/diseno.md`. El texto se conserva aquí porque sirve para propuestas y para el deck; lo que no vuelve es a la web, al menos no junto al proceso.
 
 **Eyebrow:** Qué te llevas
 
