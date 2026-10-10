@@ -129,6 +129,12 @@ tablero. `_capturas/` no se versiona: se regenera.
   bajar queda invisible.
 - **Descarta las formas SVG sin relleno.** Los iconos de línea no sobreviven.
   Por eso, entre otras razones, ya no hay (sección 6.4 del documento de diseño).
+- **Dibuja lo que está oculto.** El panel del menú móvil lleva `hidden` y
+  `display: none`, y aun así lo pintaba encima de media página. La herramienta
+  lo saca del documento.
+- **No respeta `aspect-ratio`.** Los marcos del portafolio se aplastaban y la
+  grilla se descuadraba. La herramienta les pone alto fijo: 276 px, que es lo
+  que miden a 1280, el ancho al que renderiza el convertidor.
 
 ---
 

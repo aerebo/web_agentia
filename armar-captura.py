@@ -75,12 +75,23 @@ def armar(ruta: str) -> pathlib.Path:
     h = re.sub(r'<script src="[^"]*agentia\.js[^"]*"[^>]*></script>', "", h)
     h = re.sub(r'<link rel="preload"[^>]*>', "", h)
 
+    # El panel del menu movil esta oculto con [hidden] y display:none, pero el
+    # convertidor lo dibuja igual y se come media pagina. Fuera del documento.
+    h = re.sub(r'<div class="menu"[^>]*\bhidden\b[^>]*>.*?</div>\s*(?=<main|<header|<section)',
+               "", h, flags=re.S)
+
     # El convertidor no corre JS, asi que las piezas que el observador revela
-    # al bajar nunca se revelarian. Se dejan ya reveladas.
+    # al bajar nunca se revelarian. Se dejan ya reveladas. Y `aspect-ratio` no
+    # lo respeta: los marcos del portafolio se aplastan y la grilla se
+    # descuadra, asi que se les da alto fijo. 276 px es lo que miden a 1280,
+    # que es el ancho al que renderiza el convertidor.
     h = h.replace("</style>", """
 /* --- solo para la captura de Figma --- */
 .rv, .rv.rv--visible { opacity: 1 !important; transform: none !important; }
 * { animation: none !important; transition: none !important; }
+.trabajo__marco { aspect-ratio: auto; height: 276px; }
+.insignia { aspect-ratio: auto; height: 176px; }
+.menu { display: none !important; }
 </style>""", 1)
 
     SALIDA.mkdir(exist_ok=True)
