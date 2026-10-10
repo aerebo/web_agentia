@@ -545,7 +545,11 @@ Nada de `z-index: 9999`.
 ## 10. Lo que no se toca
 
 - **El contenido sale de `docs/contenido-agentia.md` y no se reescribe.**
-- **Los IDs de ancla se conservan:** `#servicios`, `#diferencial`, `#proceso`, `#clientes`, `#contacto`.
+- **Los IDs de ancla se conservan:** `#servicios`, `#diferencial`, `#proceso`, `#contacto`.
+  `#clientes` pasó a `#operacion` el 10 de octubre de 2026: la grilla de clientes se
+  mudó a Trabajos y lo que queda en esa sección es dónde opera Agentia, no a quién
+  atiende. Nada del sitio enlazaba a ese ancla, así que el cambio no rompe nada; se
+  renombra porque un ID que miente es una trampa para el siguiente que lea el marcado.
 - **Nada de contenido de negocio inventado.** Ni clientes, ni cifras, ni testimonios, ni años de experiencia. Los marcadores provisionales se quedan marcados como provisionales.
 - **Sin dependencias de terceros en tiempo de ejecución.** Ni GSAP, ni Lenis, ni iconos por CDN. Todo es CSS y JavaScript propio.
 - **El corte AGENT + IA no se aplica a ninguna otra palabra.** Ver la sección 2.1.

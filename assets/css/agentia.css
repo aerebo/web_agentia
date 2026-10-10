@@ -1267,32 +1267,6 @@ svg {
 
 .clientes__intro { max-width: 62ch; }
 
-.clientes {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  gap: var(--linea-fina);
-  margin-top: var(--e-5);
-  background: var(--azul-nota);
-  border: var(--linea-fina) solid var(--azul-nota);
-}
-
-.cliente {
-  display: grid;
-  gap: var(--e-1);
-  padding: var(--e-3);
-  background: var(--azul-humo);
-  font-family: var(--f-display);
-  font-weight: var(--w-medio);
-  font-size: 1.0625rem;
-  letter-spacing: -0.01em;
-  transition: background var(--dur-rapida) var(--ease-salida);
-}
-
-.cliente:hover { background: var(--lamina); }
-
-.cliente__sector { font-weight: 400; }
-
 .aviso {
   margin-top: var(--e-3);
   padding-left: var(--e-3);
