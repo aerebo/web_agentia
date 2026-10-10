@@ -13,49 +13,7 @@
           <p class="contacto__otro spec">¿Prefieres el correo? <a href="{{RAIZ}}contacto/">Mira las tres direcciones</a></p>
         </div>
 
-        <!-- El formulario esta completo pero todavia no envia: falta decidir
-             entre contact.php propio o servicio externo. Fase 6. -->
-        <form class="formulario rv" novalidate>
-          <p class="campo">
-            <label for="f-nombre">Nombre</label>
-            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
-          </p>
-          <p class="campo">
-            <label for="f-empresa">Empresa</label>
-            <input id="f-empresa" name="empresa" type="text" autocomplete="organization">
-          </p>
-          <p class="campo">
-            <label for="f-correo">Correo</label>
-            <input id="f-correo" name="correo" type="email" autocomplete="email" required>
-          </p>
-          <p class="campo">
-            <label for="f-servicio">Servicio de interés</label>
-            <select id="f-servicio" name="servicio">
-              <option>Desarrollo web con IA</option>
-              <option>Gestión de identidad y contenido</option>
-              <option>Producción de video e IA audiovisual</option>
-              <option>Creación de personajes de marca</option>
-              <option>Diseño gráfico integral</option>
-              <option>Pauta publicitaria</option>
-            </select>
-          </p>
-          <p class="campo">
-            <label for="f-mensaje">Mensaje</label>
-            <textarea id="f-mensaje" name="mensaje" rows="4" required></textarea>
-          </p>
-
-          <p class="trampa" aria-hidden="true">
-            <label for="f-web">No rellenes este campo</label>
-            <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off">
-          </p>
-
-          <button class="boton boton--lleno formulario__enviar" type="submit" disabled>
-            Enviar mensaje
-            <span class="boton__flecha" aria-hidden="true">&rarr;</span>
-          </button>
-
-          <p class="aviso spec">Pendiente de conectar. Mientras tanto, escríbenos a comercial@agentia.com.pe</p>
-        </form>
+        {{PIEZA:formulario}}
       </div>
     </div>
   </section>

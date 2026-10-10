@@ -33,8 +33,8 @@ publica en GitHub Pages, así que no se pueden usar rutas absolutas que
 empiecen por barra: romperían fuera de la raíz del dominio.
 """
 
-import os
 import pathlib
+import re
 import shutil
 
 RAIZ = pathlib.Path(__file__).resolve().parent
@@ -53,6 +53,7 @@ PAGINAS = [
         "descripcion": "Sitios web que convierten, contenido a escala y campañas medibles. Producción creativa asistida por IA en Huaraz, Ica y Lima.",
         "piezas": ["hero", "seccion-servicios-resumen", "seccion-contacto-breve"],
         "prioridad": "1.0",
+        "aviso_envio": "El envío todavía no está conectado. Mientras tanto, escríbenos: las tres direcciones están en Contacto.",
     },
     {
         "ruta": "servicios",
@@ -81,12 +82,34 @@ PAGINAS = [
         "descripcion": "Cuéntanos qué necesitas resolver. Cotizaciones y propuestas en comercial@agentia.com.pe.",
         "piezas": ["seccion-contacto"],
         "prioridad": "0.7",
+        "aviso_envio": "El envío todavía no está conectado. Mientras tanto, usa cualquiera de los tres correos de aquí al lado.",
     },
 ]
 
 
 def pieza(nombre):
     return (PARTES / (nombre + ".html")).read_text(encoding="utf-8")
+
+
+def resolver_piezas(html, vueltas=5):
+    """Sustituye los {{PIEZA:nombre}} que una pieza tenga dentro.
+
+    Existe porque el formulario aparece en dos sitios, la portada y
+    /contacto/, y tenerlo copiado dos veces es pedir que alguien arregle
+    un campo en uno y se olvide del otro. Es el mismo motivo por el que
+    existe el armador entero.
+
+    Con tope de vueltas: si dos piezas se incluyen entre si, para en vez
+    de colgarse.
+    """
+    for _ in range(vueltas):
+        if "{{PIEZA:" not in html:
+            return html
+        for nombre in set(re.findall(r"\{\{PIEZA:([a-z0-9-]+)\}\}", html)):
+            html = html.replace("{{PIEZA:%s}}" % nombre, pieza(nombre))
+    if "{{PIEZA:" in html:
+        raise RuntimeError("piezas anidadas sin fin, revisa partes/")
+    return html
 
 
 def marcar_activo(html, ruta):
@@ -115,12 +138,13 @@ def armar():
         raiz = "" if not ruta else "../"
         url = DOMINIO + "/" + (ruta + "/" if ruta else "")
 
-        cuerpo = "\n\n".join(pieza(p) for p in pagina["piezas"])
+        cuerpo = resolver_piezas("\n\n".join(pieza(p) for p in pagina["piezas"]))
         html = cabeza + "\n\n" + cuerpo + "\n\n" + pie
         html = (html
                 .replace("{{TITULO}}", pagina["titulo"])
                 .replace("{{DESCRIPCION}}", pagina["descripcion"])
                 .replace("{{URL}}", url)
+                .replace("{{AVISO_ENVIO}}", pagina.get("aviso_envio", ""))
                 .replace("{{RAIZ}}", raiz))
         html = marcar_activo(html, ruta)
 
