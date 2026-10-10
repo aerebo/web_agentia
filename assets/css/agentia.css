@@ -137,6 +137,13 @@
   --columnas: 12;
 
   /* forma */
+  /* Alto unico de todo control pulsable. Sin esto, dos botones con
+     tipografias de distinto cuerpo salen con alturas distintas aunque
+     lleven el mismo relleno, y pegados en la barra eso se lee como un
+     error de maquetacion. 56 px ademas supera el minimo de 44 que piden
+     las pautas de accesibilidad para una diana tactil. */
+  --alto-control: 3.5rem;
+
   --r-0: 0;
   /* Radios, desde el 10 de octubre de 2026. Antes el sitio era de esquina
      viva sin excepciones. Ver la seccion 6 del sistema de diseno: el
@@ -520,9 +527,20 @@ svg {
   transform: scaleX(1);
 }
 
+/* Mismo alto y mismo relleno que .boton: los dos viven uno al lado del
+   otro en la barra y antes median 31 px contra 56. Dos botones pegados
+   con alturas distintas no se leen como un par, se leen como un error de
+   maquetacion.
+
+   Conserva su tipografia de cota en mayusculas, que es lo que lo
+   distingue de una llamada a la accion: el relleno lo iguala, el estilo
+   lo separa. */
 .nav__toggle {
   display: none;
-  padding: var(--e-1) var(--e-2);
+  align-items: center;
+  justify-content: center;
+  min-height: var(--alto-control);
+  padding: var(--e-2) var(--e-3);
   background: transparent;
   border: var(--linea-fina) solid var(--borde);
   color: var(--tinta);
@@ -541,7 +559,7 @@ svg {
 
 @media (max-width: 860px) {
   .nav__enlaces { display: none; }
-  .nav__toggle { display: block; }
+  .nav__toggle { display: inline-flex; }
 }
 
 /* --------------------------------------------------------------------------
@@ -611,6 +629,7 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: var(--e-1);
+  min-height: var(--alto-control);
   padding: var(--e-2) var(--e-3);
   font-family: var(--f-cuerpo);
   font-size: var(--t-corto);

@@ -381,6 +381,13 @@ Queda escrito para que nadie lo redescubra dentro de seis meses y lo trate como 
 |---|---|
 | `--linea-fina` | `1px` |
 | `--linea-gruesa` | `2px` |
+| `--alto-control` | `3.5rem` |
+
+**`--alto-control` es el alto de todo lo pulsable**, añadido el 10 de octubre de 2026. Botones, botón de menú y botón de envío miden lo mismo aunque lleven tipografías de distinto cuerpo.
+
+Sin él, el botón de menú salía a 31 px contra los 56 del botón de al lado: mismo relleno declarado, distinto cuerpo de letra, distinta altura resultante. **Dos botones pegados con alturas distintas no se leen como un par, se leen como un error de maquetación.**
+
+Los 56 px además superan los 44 que piden las pautas de accesibilidad para una diana táctil.
 
 ### 6.4 Iconos
 
