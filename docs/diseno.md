@@ -16,41 +16,50 @@ Esa es la prueba del argumento comercial que ya está en el contenido aprobado: 
 
 ---
 
-### 1.1 Orden de la página
+### 1.1 El sitio son cinco páginas
 
-Reordenada el 10 de octubre de 2026 y **condensada el mismo día**, de doce secciones a ocho, después del benchmark de `docs/benchmark.md`.
+**Partido el 10 de octubre de 2026.** Hasta entonces era una sola página con todo dentro. El benchmark de `docs/benchmark.md` mostró que **los siete sitios del sector son multipágina**, y el sitio se alineó con eso.
 
-**El orden no es estético: es el orden en que un cliente potencial hace las preguntas.** Cada sección contesta una y solo una.
+| Ruta | Qué contesta |
+|---|---|
+| `/` | ¿Qué hacen, qué puedo contratar, y cómo los contacto? |
+| `/servicios/` | ¿Qué incluye cada frente? |
+| `/trabajos/` | ¿Puedo ver algo? |
+| `/agentia/` | ¿Por qué ustedes, cómo trabajan, quiénes son, qué dudas quedan? |
+| `/contacto/` | ¿Cómo empiezo? |
 
-| # | Sección | La pregunta que contesta |
-|---|---|---|
-| 1 | Hero | ¿Qué hacen? |
-| 2 | Servicios | ¿Qué puedo contratar? |
-| 3 | Trabajos | ¿Puedo ver algo? |
-| 4 | Cómo trabajamos | ¿Cómo se trabaja y qué me van a pedir? |
-| 5 | Por qué Agentia | ¿Por qué ustedes, y es para mí? |
-| 6 | Quiénes somos | ¿Quién está detrás y a quién le han hecho esto? |
-| 7 | Preguntas frecuentes | ¿Qué duda me queda? |
-| 8 | Contacto | ¿Cómo empiezo? |
+### 1.2 La portada es corta a propósito, y es una decisión suya
 
-**Las dos fusiones.** Había tres secciones contestando «por qué nosotros»: posicionamiento, el diferencial y para quién es. Ningún sitio del benchmark tiene más de una. Ahora son la 5, que cierra con el «esto no es para ti si», que es el mejor final posible para ese argumento.
+Los siete sitios del benchmark son multipágina **y además tienen portadas largas**: thoughtbot 10 secciones, netguru 9, barrel 11, kom.pe 8. El patrón del mercado es portada que resume todo con enlaces, no portada mínima.
 
-Y clientes se juntó con trayectoria, cifras y equipo en la 6. Esa sección ya decía «operamos entre Huaraz, Ica y Lima» y hablaba del equipo propio: **estaba hablando de nosotros, no de ellos.** Estaba mal etiquetada.
+**Agentia eligió la portada corta**: hero, los seis servicios en resumen, y el formulario. Se le advirtió de las dos consecuencias y decidió igual, que es su derecho:
 
-**Los id de ancla no cambian aunque cambie el rótulo.** `#diferencial` sigue siendo `#diferencial` y `#clientes` sigue siendo `#clientes`. Ver la sección 10.
+1. **Le pide el contacto a alguien que todavía no sabe mucho.** El formulario es el final de un argumento; sin argumento delante, la conversión baja.
+2. **La portada es la que posiciona en Google.** Es la que rankearía por «agencia de marketing con IA Perú». Con tres bloques tiene menos con qué hacerlo.
 
-**Trabajos va en la 3, no en la 2.** Lo estándar es poner la prueba arriba del todo: barrel pone los logos justo debajo del hero y thoughtbot abre con un caso. Aquí no, por una razón concreta: el material disponible son entre tres y siete piezas, y **una galería corta en lo primero que se ve expone la escasez.** Detrás de Servicios se lee como respaldo de lo que se acaba de prometer, no como catálogo. Si algún día hay ocho piezas o más, sube.
+Queda escrito para que, si algún día los números decepcionan, se sepa dónde mirar primero y no se busque la causa en otro sitio.
 
-**Trabajos no es lo mismo que Casos.** Trabajos es la galería: pieza, cliente, servicio. Casos es reto, qué hicimos y resultado medible. No son dos secciones: es la misma con más profundidad, y cada pieza puede crecer a caso cuando haya números. Ver la sección 8 de `contenido-agentia.md`.
+### 1.3 El orden dentro de cada página
 
-**Reglas del orden:**
+**No es estético: es el orden en que un cliente potencial hace las preguntas.**
 
-- **La prueba social no se adelanta con nombres sueltos.** No hay permiso de uso de logo todavía, y una fila de nombres en texto plano no es prueba, es relleno. Cuando lleguen los permisos, se reevalúa.
-- **Decir para quién NO es cierra el argumento**, no lo abre. Por eso va al final de la 5 y no en sección propia.
-- **Las preguntas frecuentes van pegadas al contacto.** Son las últimas objeciones antes del formulario.
-- **El oscuro sigue apareciendo una sola vez y al final.** Ver la sección 3.4.
-- **Dos llamadas a la acción intermedias, ni una más.** Van al cerrar «Cómo trabajamos» y al cerrar «Quiénes somos», que son los dos puntos donde el visitante acaba de recibir un argumento completo. Seis de los siete sitios del benchmark repiten la llamada; aquí solo estaba en el hero y en el formulario, con media página en medio sin salida hacia el contacto. Una tercera dentro de la misma pantalla convertiría la página en un anuncio.
-- **La llamada hereda el fondo de su sección.** No es una banda de color: es una línea y una frase. La página tiene un solo bloque de color y es el del cierre.
+En `/agentia/` el orden es: por qué Agentia, cómo trabajamos, quiénes somos, preguntas frecuentes. El argumento primero, la mecánica después, las credenciales al final y las objeciones pegadas a la salida.
+
+**Reglas que sobreviven al corte:**
+
+- **La prueba social no se adelanta con nombres sueltos.** No hay permiso de uso de logo todavía, y una fila de nombres en texto plano no es prueba, es relleno.
+- **Decir para quién NO es cierra el argumento**, no lo abre. Va al final del bloque «por qué», no en sección propia.
+- **Las preguntas frecuentes van las últimas** de `/agentia/`. Son las últimas objeciones antes de mandar a contacto.
+- **Dos llamadas a la acción intermedias como máximo**, y solo donde el visitante acaba de recibir un argumento completo.
+- **El oscuro aparece una sola vez por página y al final.** Ver la sección 3.4.
+
+### 1.4 El sitio se arma, ya no se edita a mano
+
+`armar.py` lee `partes/` y escribe `_sitio/`. La cabecera, el menú y el pie son los mismos en las cinco páginas: sin armador habría que editarlos cinco veces y el día que a alguien se le pase uno, el menú queda distinto según la página.
+
+No es un framework y no trae dependencias: lee archivos, sustituye cuatro marcadores y escribe HTML, con biblioteca estándar de Python. La regla de **cero dependencias en tiempo de ejecución** sigue intacta: lo que llega al navegador es HTML, CSS y JavaScript propio.
+
+**`{{RAIZ}}` y por qué no hay rutas absolutas:** ver la sección 4.8 del LEEME.
 
 ---
 

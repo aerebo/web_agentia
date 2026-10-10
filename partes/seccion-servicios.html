@@ -1,0 +1,217 @@
+<section class="seccion" id="servicios" data-vigia>
+    <div class="lienzo">
+      <h2 class="seccion__titular rv">Seis frentes, un mismo estándar de dirección de arte.</h2>
+      <p class="seccion__entrada rv">Gira el mando para ver cuatro de ellos en detalle. La lista completa está debajo.</p>
+    </div>
+    <div class="lienzo banco banco--dentro">
+
+      <p class="banco__cabecera rv">
+        <span class="spec">Modo de marca</span>
+        <output class="spec banco__modo" id="modo-activo" for="tuerca">Identidad</output>
+      </p>
+
+      <div class="banco__grid">
+
+        <div class="banco__mando rv">
+          <span class="insignia" data-insignia data-estado="marca" aria-hidden="true">
+            <span class="insignia__glifo" data-glifo="marca">
+              <span class="insignia__texto">IA</span>
+            </span>
+            <span class="insignia__glifo insignia__glifo--relleno" data-glifo="play">
+              <svg viewBox="0 0 100 100" focusable="false"><path d="M24 14 L84 50 L24 86 Z"/></svg>
+            </span>
+            <span class="insignia__glifo" data-glifo="lapiz">
+              <svg viewBox="0 0 100 100" focusable="false"><path d="M14 86 L22 60 L66 16 L84 34 L40 78 Z"/><path d="M60 22 L78 40"/></svg>
+            </span>
+            <span class="insignia__glifo" data-glifo="code">
+              <svg viewBox="0 0 100 100" focusable="false"><path d="M34 24 L8 50 L34 76"/><path d="M66 24 L92 50 L66 76"/></svg>
+            </span>
+          </span>
+
+          <div class="tuerca">
+            <span class="tuerca__mando">
+              <input
+                class="tuerca__control"
+                id="tuerca"
+                type="range"
+                autocomplete="off"
+                min="0"
+                max="3"
+                step="1"
+                value="0"
+                aria-label="Modo de marca"
+                aria-describedby="modo-activo">
+              <span class="tuerca__pista" aria-hidden="true">
+                <span class="tuerca__muesca" style="--angulo:0deg"></span>
+                <span class="tuerca__muesca" style="--angulo:90deg"></span>
+                <span class="tuerca__muesca" style="--angulo:180deg"></span>
+                <span class="tuerca__muesca" style="--angulo:270deg"></span>
+              </span>
+              <span class="tuerca__agarre" aria-hidden="true">
+                <span class="tuerca__tirador" data-agarre>
+                  <span class="tuerca__aguja"></span>
+                </span>
+              </span>
+              <span class="tuerca__eje" data-agarre aria-hidden="true"></span>
+            </span>
+            <p class="tuerca__pie spec">Agarra el punto y gíralo</p>
+          </div>
+        </div>
+
+        <div class="banco__revelado rv">
+
+          <article class="revelado" data-modo="0" data-activo="true">
+            <p class="spec revelado__indice">Servicio</p>
+            <h2>Gestión de Identidad y Contenido</h2>
+            <p class="revelado__entrada">Mantenimiento fiel de la identidad visual en colores, tipografía y tono.</p>
+            <ul class="revelado__lista">
+              <li>Generación masiva y sistematizada de piezas para redes</li>
+              <li>Consistencia entre canales sin producción artesanal repetida</li>
+              <li>Manual de marca vivo, aplicado en cada entrega</li>
+            </ul>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="revelado" data-modo="1">
+            <p class="spec revelado__indice">Servicio</p>
+            <h2>Producción de Video e IA Audiovisual</h2>
+            <p class="revelado__entrada">Videos generados con IA que preservan la identidad del vocero de marca.</p>
+            <ul class="revelado__lista">
+              <li>Reels cortos y cortometrajes con modelos generativos de última generación</li>
+              <li>Uniformidad del personaje en múltiples escenas y contextos</li>
+              <li>Dirección de arte humana sobre producción asistida</li>
+            </ul>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="revelado" data-modo="2">
+            <p class="spec revelado__indice">Servicio</p>
+            <h2>Diseño Gráfico Integral</h2>
+            <p class="revelado__entrada">Sistemas gráficos completos para campaña, punto de venta y digital.</p>
+            <ul class="revelado__lista">
+              <li>Piezas para redes, impresos y formatos publicitarios</li>
+              <li>Adaptación multiformato desde un solo sistema visual</li>
+              <li>Entrega con archivos editables y guía de uso</li>
+            </ul>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="revelado" data-modo="3">
+            <p class="spec revelado__indice">Servicio</p>
+            <h2>Desarrollo Web con IA</h2>
+            <p class="revelado__entrada">Landing pages y sitios de alto impacto visual, diseñados y optimizados con IA.</p>
+            <ul class="revelado__lista">
+              <li>Tracking y analítica integrados desde el primer día</li>
+              <li>Optimización continua basada en datos de comportamiento</li>
+              <li>Rendimiento medido en Core Web Vitals, no en percepción</li>
+            </ul>
+            <a class="revelado__enlace" href="#lista-servicios">Ver los seis servicios <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="lienzo">
+
+      <h3 class="servicios__titulo rv">Los seis frentes, uno por uno</h3>
+
+      <div class="servicios" id="lista-servicios">
+        <article class="servicio rv" data-abierto="true">
+          <button class="servicio__cabecera" type="button" aria-expanded="true" aria-controls="svc-1">
+            <span class="servicio__numero spec">01</span>
+            <span class="servicio__nombre">Desarrollo Web con IA</span>
+            <span class="servicio__entrada">Landing pages y sitios de alto impacto visual, diseñados y optimizados con IA.</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="svc-1">
+            <ul class="servicio__lista">
+              <li>Tracking y analítica integrados desde el primer día</li>
+              <li>Optimización continua basada en datos de comportamiento</li>
+              <li>Rendimiento medido en Core Web Vitals, no en percepción</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="servicio rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="svc-2">
+            <span class="servicio__numero spec">02</span>
+            <span class="servicio__nombre">Gestión de Identidad y Contenido</span>
+            <span class="servicio__entrada">Mantenimiento fiel de la identidad visual en colores, tipografía y tono.</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="svc-2">
+            <ul class="servicio__lista">
+              <li>Generación masiva y sistematizada de piezas para redes</li>
+              <li>Consistencia entre canales sin producción artesanal repetida</li>
+              <li>Manual de marca vivo, aplicado en cada entrega</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="servicio rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="svc-3">
+            <span class="servicio__numero spec">03</span>
+            <span class="servicio__nombre">Producción de Video e IA Audiovisual</span>
+            <span class="servicio__entrada">Videos generados con IA que preservan la identidad del vocero de marca.</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="svc-3">
+            <ul class="servicio__lista">
+              <li>Reels cortos y cortometrajes con modelos generativos de última generación</li>
+              <li>Uniformidad del personaje en múltiples escenas y contextos</li>
+              <li>Dirección de arte humana sobre producción asistida</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="servicio rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="svc-4">
+            <span class="servicio__numero spec">04</span>
+            <span class="servicio__nombre">Creación de Personajes de Marca</span>
+            <span class="servicio__entrada">Brand characters diseñados a medida mediante storytelling: origen, historia y tipo de voz.</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="svc-4">
+            <ul class="servicio__lista">
+              <li>Personajes interactivos, listos para operar como asistentes virtuales o bots de atención</li>
+              <li>Consistencia visual garantizada en cualquier formato</li>
+              <li>Activos de marca propios, no licenciados</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="servicio rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="svc-5">
+            <span class="servicio__numero spec">05</span>
+            <span class="servicio__nombre">Diseño Gráfico Integral</span>
+            <span class="servicio__entrada">Sistemas gráficos completos para campaña, punto de venta y digital.</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="svc-5">
+            <ul class="servicio__lista">
+              <li>Piezas para redes, impresos y formatos publicitarios</li>
+              <li>Adaptación multiformato desde un solo sistema visual</li>
+              <li>Entrega con archivos editables y guía de uso</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="servicio rv">
+          <button class="servicio__cabecera" type="button" aria-expanded="false" aria-controls="svc-6">
+            <span class="servicio__numero spec">06</span>
+            <span class="servicio__nombre">Pauta Publicitaria</span>
+            <span class="servicio__entrada">Campañas de búsqueda y display estructuradas para captación medible.</span>
+            <span class="servicio__signo" aria-hidden="true"></span>
+          </button>
+          <div class="servicio__cuerpo" id="svc-6">
+            <ul class="servicio__lista">
+              <li>Configuración de conversiones y seguimiento antes de invertir</li>
+              <li>Optimización semanal por costo por resultado</li>
+              <li>Reporte claro, sin métricas de vanidad</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>

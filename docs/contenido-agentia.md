@@ -3,6 +3,8 @@
 Documento fuente para la construcción de agentia.com.pe.
 Todo lo marcado `[VERIFICAR]` o `[PROVISIONAL]` debe confirmarse antes de publicar.
 
+**El sitio son cinco páginas desde el 10 de octubre de 2026.** Qué contenido cae en cuál está en la sección 1.1 de `docs/diseno.md`. Las secciones de este documento no cambiaron de numeración con el corte: una sección de contenido puede aparecer en una página o en dos.
+
 ---
 
 ## 0. Identidad

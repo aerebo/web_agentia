@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITULO}}</title>
+<meta name="description" content="{{DESCRIPCION}}">
+
+<meta property="og:title" content="{{TITULO}}">
+<meta property="og:description" content="{{DESCRIPCION}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{URL}}">
+<link rel="canonical" href="{{URL}}">
+<meta property="og:locale" content="es_PE">
+
+<link rel="preload" href="{{RAIZ}}assets/fonts/bricolage-grotesque-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{RAIZ}}assets/css/agentia.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Agentia",
+  "url": "https://agentia.com.pe",
+  "slogan": "Optimizamos tus procesos",
+  "email": "hola@agentia.com.pe",
+  "areaServed": ["Huaraz", "Ica", "Lima"],
+  "address": { "@type": "PostalAddress", "addressCountry": "PE" }
+}
+</script>
+</head>
+<body>
+
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<div class="grano" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="nav__in lienzo">
+    <a class="nav__marca" href="{{RAIZ}}">
+      <span class="logo" aria-hidden="true"><span>AGENT</span><span class="logo__ia">IA</span></span>
+      <span class="oculto-visual">Agentia</span>
+    </a>
+
+    <ul class="nav__enlaces">
+      <li><a href="{{RAIZ}}servicios/">Servicios</a></li>
+      <li><a href="{{RAIZ}}trabajos/">Trabajos</a></li>
+      <li><a href="{{RAIZ}}agentia/">Agentia</a></li>
+      <li><a href="{{RAIZ}}contacto/">Contacto</a></li>
+    </ul>
+
+    <div class="nav__acciones">
+      <a class="boton boton--lleno" href="{{RAIZ}}contacto/">
+        Cotizar
+        <span class="boton__flecha" aria-hidden="true">&rarr;</span>
+      </a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    </div>
+  </div>
+</nav>
+
+<div class="menu" id="menu" hidden>
+  <button class="menu__cerrar" type="button" data-cerrar-menu>Cerrar</button>
+  <nav aria-label="Secciones del sitio">
+    <ul class="menu__lista">
+      <li><a href="{{RAIZ}}servicios/">Servicios</a></li>
+      <li><a href="{{RAIZ}}trabajos/">Trabajos</a></li>
+      <li><a href="{{RAIZ}}agentia/">Agentia</a></li>
+      <li><a href="{{RAIZ}}contacto/">Contacto</a></li>
+    </ul>
+  </nav>
+</div>
+
+<main id="contenido">

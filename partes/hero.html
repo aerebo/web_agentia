@@ -1,0 +1,53 @@
+<header class="hero" id="inicio" data-vigia>
+    <div class="lienzo" id="lienzo-hero">
+
+      <p class="cota spec hero__cota">
+        <span class="cota__tope"></span>
+        <span class="cota__linea"></span>
+        <span data-cota-ancho="#lienzo-hero">Lienzo</span>
+        <span class="cota__linea"></span>
+        <span class="cota__tope"></span>
+      </p>
+
+      <div class="hero__grid">
+
+        <p class="hero__marca">
+          <!-- El logotipo no se transforma nunca. La insignia que cambia
+               vive dentro del banco de especimen, mas abajo. -->
+          <span class="logo" role="img" aria-label="Agentia"><span aria-hidden="true">AGENT</span><span class="logo__ia" aria-hidden="true">IA</span></span>
+        </p>
+
+        <h1 class="hero__titular rv">Optimizamos tus <em>procesos</em></h1>
+
+        <!-- Campo de piezas. Cada una es el isotipo girando sobre su punto,
+             igual que el banco de marca de mas abajo. Es decorativo: se
+             genera con JavaScript y no lleva informacion. -->
+        <div class="hero__campo" aria-hidden="true">
+          <svg class="campo-piezas" viewBox="0 0 600 760" preserveAspectRatio="xMidYMid meet" focusable="false">
+            <defs>
+              <g id="pieza">
+                <!-- cuadro centrado en el origen, para que gire sobre si
+                     mismo igual que lo hacia el isotipo sobre su punto -->
+                <rect x="-140" y="-140" width="280" height="280" rx="31"/>
+              </g>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="hero__pie rv">
+          <p class="hero__lede">Convertimos tecnologías de vanguardia en métricas de negocio: sitios web que convierten, contenido a escala y campañas de alto rendimiento.</p>
+          <div class="hero__acciones">
+            <a class="boton boton--lleno" href="{{RAIZ}}contacto/">
+              Conversemos tu proyecto
+              <span class="boton__flecha" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="boton boton--linea" href="{{RAIZ}}servicios/">
+              Ver servicios
+              <span class="boton__flecha" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>

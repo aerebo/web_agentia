@@ -1,40 +1,42 @@
 # AGENTIA · agentia.com.pe
 
-Sitio estático de una sola página. **Sin build, sin dependencias, sin framework.**
-Se abre, se edita y se sube tal cual.
+Sitio estático de **cinco páginas**. Sin dependencias y sin framework, pero
+**con un armador propio** de 150 líneas en Python puro.
 
-Paquete preparado el 9 de octubre de 2026.
+Paquete preparado el 9 de octubre de 2026. Partido en cinco páginas el 10.
 
 ---
 
 ## 1. Arranque en treinta segundos
 
-No hay `npm install`. No hay nada que compilar. Solo hace falta un servidor estático,
-porque abrir `index.html` con doble clic rompe la carga de tipografías por CORS.
-
-Con Python:
+No hay `npm install`. Solo Python, que ya viene en cualquier Mac o Linux:
 
 ```
-python -m http.server 5173 --directory .
+python3 servidor-local.py
 ```
 
-O usa `servidor-local.py`, incluido en este paquete, que además manda cabeceras
-anti caché para que los cambios se vean al instante:
+Y abre `http://localhost:5173`.
 
-```
-python servidor-local.py
-```
+Ese comando hace dos cosas: **arma el sitio** con `armar.py` y lo sirve sin
+caché. Rearma en cada página que pides, así que editas una pieza de `partes/`,
+recargas, y lo ves. No hay paso manual que olvidar.
 
-Luego abre `http://localhost:5173`.
+**Ya no existe `index.html` en el repositorio: se genera.** Si lo buscas para
+editarlo, lo que quieres está en `partes/`.
 
-Con Node, si lo prefieres: `npx serve .` o `npx http-server -p 5173`.
+Si solo quieres servir lo ya armado: `python3 armar.py && python3 -m http.server 5173 --directory _sitio`.
 
 ---
 
 ## 2. Qué hay dentro
 
 ```
-index.html                      la página entera
+armar.py                        el armador. Lee partes/ y escribe _sitio/
+partes/cabeza.html              head, barra y menú móvil. Los comparten las cinco
+partes/pie.html                 el pie, idem
+partes/hero.html                el hero de la portada
+partes/seccion-*.html           una pieza por sección
+_sitio/                         lo que se publica. Se genera, no se versiona
 assets/css/agentia.css          todo el CSS, con los tokens en :root
 assets/js/agentia.js            todo el JS, sin librerías
 assets/fonts/*.woff2            tres tipografías variables autoalojadas
@@ -49,6 +51,19 @@ agentia-historial.bundle        el repositorio git completo, 13 commits
 ```
 
 Peso de lo que se despliega: **328 KB**, de los cuales 222 KB son las tres tipografías.
+
+### Las cinco páginas
+
+| Ruta | Qué lleva |
+|---|---|
+| `/` | Hero · los seis servicios en resumen · formulario |
+| `/servicios/` | El mando que gira y los seis en detalle |
+| `/trabajos/` | La galería. Seis huecos esperando material |
+| `/agentia/` | Por qué Agentia · cómo trabajamos · quiénes somos · preguntas |
+| `/contacto/` | El formulario con los correos |
+
+Quién lleva qué lo decide la lista `PAGINAS` de `armar.py`. Añadir una página
+es añadir una entrada ahí y una pieza en `partes/`.
 
 ### Recuperar el historial de git
 
@@ -172,6 +187,28 @@ propuesta y se cambia la regla `.logo` por un SVG.
 El 92% no se toca con `letter-spacing`: apretar junta las letras sin adelgazarlas
 y el bloque se ensucia. Es el eje de ancho variable de la familia.
 
+### 4.8 Nada de rutas que empiecen por barra
+
+En `partes/` las rutas se escriben con `{{RAIZ}}` delante:
+
+```html
+<link rel="stylesheet" href="{{RAIZ}}assets/css/agentia.css">
+<a href="{{RAIZ}}servicios/">Servicios</a>
+```
+
+`{{RAIZ}}` vale `""` en la portada y `"../"` en las internas. **No se puede usar
+`/assets/...`**: el sitio vive en `aerebo.github.io/web_agentia/`, o sea en un
+subdirectorio, y una ruta absoluta se iría a la raíz del dominio y daría 404.
+
+Funcionaría en el dominio propio y fallaría en la vista previa, que es la peor
+combinación posible: se rompe justo donde lo revisa el equipo.
+
+### 4.9 La página activa se marca al armar, no con JavaScript
+
+`armar.py` le pone `aria-current="page"` al enlace de la página en la que estás.
+Se hace al armar a propósito: si dependiera del script, un fallo de JS dejaría el
+menú sin indicar dónde está el visitante, y eso es orientación, no adorno.
+
 ---
 
 ## 5. Lo que ya cumple. No lo rompas
@@ -234,8 +271,15 @@ pero **el trace no se ha corrido**. No des por hecho que cumple hasta medirlo.
 
 ## 7. Despliegue en Verpex
 
-Es un sitio estático: basta con subir `index.html` y `assets/` a `public_html`.
-`docs/`, `servidor-local.py` y el bundle de git **no se suben**.
+Es un sitio estático, pero **hay que armarlo antes de subirlo**:
+
+```
+python3 armar.py
+```
+
+Y se sube el contenido de `_sitio/` a `public_html`. `partes/`, `docs/`,
+`armar.py`, `servidor-local.py` y el bundle de git **no se suben**: son el
+código fuente, no el sitio.
 
 Si se hace por git desde cPanel, la regla importante: **el repositorio nunca se
 clona dentro de `public_html`**. Va fuera de la raíz web, por ejemplo en

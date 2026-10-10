@@ -25,24 +25,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Armar la carpeta publica
+      - name: Armar el sitio
         run: |
-          mkdir -p _sitio
-          cp index.html _sitio/
-          cp -R assets _sitio/
-          # Pages no necesita el procesado de Jekyll
-          touch _sitio/.nojekyll
-          # si algun dia hay dominio propio, el CNAME tiene que viajar al sitio
-          if [ -f CNAME ]; then cp CNAME _sitio/; fi
+          python3 armar.py
 
-          # Sello de version en el pie. Sin esto no hay forma de saber si lo
-          # que ves es lo ultimo o lo que guardo tu navegador: Pages manda la
-          # pagina con cache de 10 minutos y no se pueden cambiar sus
-          # cabeceras. Con la fecha a la vista, cualquiera del equipo
+          # Sello de version en el pie de cada pagina. Sin esto no hay forma
+          # de saber si lo que ves es lo ultimo o lo que guardo tu navegador:
+          # Pages manda las paginas con cache de 10 minutos y no deja tocar
+          # sus cabeceras. Con la fecha a la vista, cualquiera del equipo
           # compara y sale de dudas sin recargar a ciegas.
           SELLO="$(TZ=America/Lima date '+%d/%m/%Y %H:%M') · ${GITHUB_SHA:0:7}"
-          sed -i "s|<span data-version>en desarrollo</span>|<span data-version>$SELLO</span>|" _sitio/index.html
+          find _sitio -name 'index.html' -exec \
+            sed -i "s|<span data-version>en desarrollo</span>|<span data-version>$SELLO</span>|" {} +
           echo "publicando version $SELLO"
+          echo "paginas:" && find _sitio -name 'index.html' | sort
 
       - uses: actions/configure-pages@v5
 
