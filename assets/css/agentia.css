@@ -1698,8 +1698,15 @@ svg {
   list-style: none;
   margin-top: var(--e-5);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--equipo-columnas, 4), minmax(0, 1fr));
   gap: var(--e-3);
+}
+
+/* Agentia son dos. Cuatro columnas con dos fichas dejaban media fila
+   vacia, que se lee como «aqui falta gente». */
+.equipo--dos {
+  --equipo-columnas: 2;
+  max-width: 46rem;
 }
 
 .persona__retrato {
