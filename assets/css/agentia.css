@@ -1677,6 +1677,96 @@ svg {
   letter-spacing: -0.02em;
 }
 
+/* --- marquesina de clientes ---
+   Patron de mindcircus.agency. La diferencia en un telefono es grande: seis
+   nombres apilados ocupan tres lineas y hay que leerlos; en marquesina
+   ocupan una franja de alto fijo y se reconocen sin leer, que es lo que de
+   verdad hace una lista de clientes.
+
+   Sin libreria: una animacion que desplaza la pista media anchura. La lista
+   va duplicada en el marcado, asi que al volver a cero la segunda copia esta
+   justo donde estaba la primera y la costura no se ve. */
+.marquesina {
+  overflow: hidden;
+  border-block: var(--linea-fina) solid var(--regla);
+  padding-block: var(--e-3);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquesina__pista {
+  list-style: none;
+  display: flex;
+  width: max-content;
+  gap: var(--e-4);
+  animation: desfile 32s linear infinite;
+}
+
+.marquesina:hover .marquesina__pista { animation-play-state: paused; }
+
+.marquesina__nombre {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+  white-space: nowrap;
+}
+
+@keyframes desfile {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* --- carrusel de trabajos ---
+   Tambien de mindcircus. En rejilla, tres piezas en un telefono son tres
+   pantallas de scroll vertical; en carrusel son una, y se pasan con el
+   pulgar. Scroll nativo con anclaje, sin una linea de JavaScript. */
+.trabajos--carrusel {
+  display: flex;
+  gap: var(--e-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--margen);
+  padding-bottom: var(--e-2);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.trabajos--carrusel > .trabajo {
+  flex: 0 0 min(78vw, 22rem);
+  scroll-snap-align: start;
+}
+
+/* --- contacto flotante ---
+   No es un tercer CTA: es Agendar, el mismo, al alcance del pulgar en una
+   pagina larga. Se esconde al imprimir y respeta el area segura del
+   telefono, que en los que tienen barra inferior se come el boton. */
+.flotante {
+  position: fixed;
+  right: var(--margen);
+  bottom: calc(var(--margen) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-overlay);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  height: var(--alto-control);
+  padding-inline: var(--e-3);
+  border-radius: 999px;
+  background: var(--azul);
+  color: var(--lamina);
+  text-decoration: none;
+  font-size: var(--t-corto);
+  font-weight: var(--w-fuerte);
+  box-shadow: 0 0.5rem 1.5rem rgba(13, 16, 48, 0.25);
+  transition: transform var(--dur-rapida) var(--ease-salida),
+              background var(--dur-rapida) var(--ease-salida);
+}
+
+.flotante:hover {
+  background: var(--azul-fuerte);
+  transform: translateY(-2px);
+}
+
+@media print { .flotante { display: none; } }
+
 /* --- la franja de clientes de la portada ---
    Bloque 2, el unico patron que cumplen los nueve sitios de
    docs/benchmark-home.md sin excepcion. Va justo bajo el hero.
@@ -2189,6 +2279,27 @@ svg {
 
   .franja__nombre { white-space: normal; }
 
+  /* El flotante se reduce a circulo. Con texto tapaba el boton «Ver todos»
+     del carrusel, que en movil ocupa todo el ancho: un CTA que esconde otro
+     enlace es peor que no tenerlo. Es ademas lo que hace la referencia. */
+  .flotante {
+    width: var(--alto-control);
+    padding-inline: 0;
+    justify-content: center;
+    border-radius: var(--r-circulo);
+  }
+
+  .flotante__texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .flotante__flecha { font-size: 1.25rem; }
+
   .banco__mando {
     padding: var(--e-3);
   }
@@ -2212,6 +2323,11 @@ svg {
    -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
+  /* La marquesina deja de desfilar y se convierte en una lista que se
+     desplaza a mano. Sigue siendo util; deja de moverse sola. */
+  .marquesina__pista { animation: none; }
+  .marquesina { overflow-x: auto; }
+
   *,
   *::before,
   *::after {

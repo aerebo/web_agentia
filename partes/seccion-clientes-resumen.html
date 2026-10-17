@@ -1,14 +1,29 @@
 <section class="seccion seccion--franja" id="clientes" data-vigia>
     <div class="lienzo">
       <p class="franja__lead spec lorem lorem--marca">Lorem ipsum dolor sit amet</p>
-      <ul class="franja">
-        <li class="franja__nombre rv">KM Travel Agency</li>
-        <li class="franja__nombre rv">Lhotse Hostel</li>
-        <li class="franja__nombre rv">Cevichería El Pajarito</li>
-        <li class="franja__nombre rv">Daniana Massage</li>
-        <li class="franja__nombre rv">Valdelomar</li>
-        <li class="franja__nombre rv">La Casa de las Tejas</li>
+    </div>
+
+    <!-- Marquesina. La lista va dos veces: la animacion desplaza media
+         anchura y al llegar vuelve a cero, asi que la segunda copia tapa
+         la costura y el giro no se nota. -->
+    <div class="marquesina" aria-label="Clientes de Agentia">
+      <ul class="marquesina__pista">
+        <li class="marquesina__nombre">KM Travel Agency</li>
+        <li class="marquesina__nombre">Lhotse Hostel</li>
+        <li class="marquesina__nombre">Cevichería El Pajarito</li>
+        <li class="marquesina__nombre">Daniana Massage</li>
+        <li class="marquesina__nombre">Valdelomar</li>
+        <li class="marquesina__nombre">La Casa de las Tejas</li>
+        <li class="marquesina__nombre" aria-hidden="true">KM Travel Agency</li>
+        <li class="marquesina__nombre" aria-hidden="true">Lhotse Hostel</li>
+        <li class="marquesina__nombre" aria-hidden="true">Cevichería El Pajarito</li>
+        <li class="marquesina__nombre" aria-hidden="true">Daniana Massage</li>
+        <li class="marquesina__nombre" aria-hidden="true">Valdelomar</li>
+        <li class="marquesina__nombre" aria-hidden="true">La Casa de las Tejas</li>
       </ul>
-      <p class="aviso spec rv">Bloque 2 de la portada. Nueve de los nueve sitios del benchmark ponen la prueba social justo aquí, bajo el hero y antes de explicar nada. Los seis nombres son los que ya viven en Trabajos; falta la línea que los encabeza y decidir si van como texto o como logotipo, que depende del permiso de cada cliente.</p>
+    </div>
+
+    <div class="lienzo">
+      <p class="aviso spec rv">Bloque 2 de la portada. Patrón tomado de mindcircus.agency: los logotipos de cliente van en marquesina horizontal, no apilados. Ocupa una franja de alto fijo en vez de tres líneas de texto, y se lee de un vistazo sin leer. Los seis nombres son los que ya viven en Trabajos; falta la línea que los encabeza y decidir si van como texto o como logotipo.</p>
     </div>
   </section>
