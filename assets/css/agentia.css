@@ -550,6 +550,18 @@ svg {
 @media (max-width: 860px) {
   .nav__enlaces { display: none; }
   .nav__toggle { display: inline-flex; }
+
+  /* El boton Agendar sale de la barra y entra en el menu. En un telefono
+     se comia un tercio del ancho de la barra, y ademas repetia el CTA que
+     el hero tiene cuatrocientos pixeles mas abajo: el visitante veia
+     «Agendar» dos veces sin haber hecho scroll. */
+  .nav__acciones .boton { display: none; }
+}
+
+/* El CTA dentro del panel del menu. En escritorio el panel no existe. */
+.menu__cta {
+  margin-top: var(--e-3);
+  justify-content: space-between;
 }
 
 /* --------------------------------------------------------------------------
@@ -2103,6 +2115,17 @@ svg {
      bateria en el dispositivo con menos potencia. Fuera. */
   .hero__campo { display: none; }
 
+  /* Con el campo fuera, el relleno inferior del hero se quedaba sosteniendo
+     un hueco de trescientos pixeles de nada entre el boton y la seccion
+     siguiente. En escritorio ese aire lo ocupa el campo; en movil no hay
+     nada que ocupar. */
+  .hero { padding-block: var(--e-3) var(--sec-corta); }
+
+  /* El logotipo ya esta en la barra, cien pixeles mas arriba. Repetirlo a
+     tamaño grande gastaba un tercio de la primera pantalla del telefono en
+     decir dos veces lo mismo. */
+  .hero__marca { display: none; }
+
   .banco__grid {
     grid-template-columns: 1fr;
     gap: var(--e-5);
@@ -2148,10 +2171,23 @@ svg {
   .franja { gap: var(--e-1) var(--e-3); }
   .prueba { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-  .hero__acciones .boton {
+  .hero__acciones .boton,
+  .formulario .boton,
+  .llamada .boton {
     width: 100%;
     justify-content: space-between;
   }
+
+  /* Los seis nombres en dos columnas alineadas. En flujo libre caian en
+     tres lineas desiguales y se leian como una frase rota, no como una
+     lista de clientes. */
+  .franja {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e-2);
+  }
+
+  .franja__nombre { white-space: normal; }
 
   .banco__mando {
     padding: var(--e-3);

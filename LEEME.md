@@ -161,9 +161,23 @@ Quedan escritas:
 
 ```
 python3 armar.py                       # primero el sitio
-python3 armar-captura.py               # las cinco, a _capturas/
+python3 armar-captura.py               # las nueve, a _capturas/
 python3 armar-captura.py nosotros      # o solo una
+python3 armar-captura.py --movil       # y la versión de 375 px
 ```
+
+**El modo `--movil` no es un cambio de ancho y ya.** El convertidor renderiza
+siempre en una ventana de 1280 px aunque el cuerpo mida 375, así que hay que
+engañarlo en tres frentes a la vez, y los tres se descubrieron midiendo:
+
+| Qué | Por qué | Sin el apaño |
+|---|---|---|
+| Resolver los `clamp(…, Nvw, …)` al valor de 375 px | Una unidad `vw` sigue valiendo 12,8 px | El titular del hero salía a 115 px en vez de 48, y la página entera entre un 20 y un 77% más alta |
+| Sacar del documento lo que el móvil oculta | El convertidor ignora `display: none` | Aparecían el logotipo del hero, el campo de piezas, el menú de escritorio y el botón de la barra |
+| Desenvolver las consultas `max-width` y pegarlas al final | Nunca se activan a 1280 | La captura salía en escritorio estrechada a 375 |
+
+Con los tres, la captura cuadra con la página real **dentro de un 4%**. Comprobado
+bloque a bloque contra el navegador a 375 px.
 
 `armar-captura.py` deja una copia autocontenida de cada página: el CSS en
 línea, la fuente en base64, sin JavaScript y con las piezas ya reveladas. Eso
