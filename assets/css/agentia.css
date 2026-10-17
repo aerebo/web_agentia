@@ -1798,6 +1798,129 @@ svg {
   border-radius: var(--r-tarjeta);
 }
 
+/* --------------------------------------------------------------------------
+   Selector de servicios y de trabajos, 17 de octubre de 2026
+   Agentia: «que sea un slider, al seleccionar una foto el contenido cambia,
+   de esa manera me evito tener paginas tan extensas».
+
+   Sin una linea de JavaScript: seis radios ocultos y el panel que se ve es
+   el hermano del que esta marcado. Funciona con el teclado —son radios de
+   verdad, se recorren con las flechas— y sin JS, que es la regla de cero
+   dependencias del sitio.
+
+   Lo que ahorra: seis bloques apilados eran seis pantallas de telefono;
+   el selector es una fila de miniaturas y un panel.
+   -------------------------------------------------------------------------- */
+
+.selector { margin-top: var(--e-3); }
+
+.selector__radio {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.selector__pestanas {
+  list-style: none;
+  display: flex;
+  gap: var(--e-2);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: var(--e-2);
+}
+
+.selector__pestana {
+  flex: 0 0 auto;
+  width: 8.5rem;
+  display: grid;
+  gap: var(--e-1);
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.selector__miniatura {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-tarjeta);
+  background: var(--lamina);
+  border: var(--linea-gruesa) solid var(--regla);
+  color: var(--humo-claro);
+  transition: border-color var(--dur-rapida) var(--ease-salida),
+              transform var(--dur-rapida) var(--ease-salida);
+}
+
+.selector__nombre {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+}
+
+.selector__pestana:hover .selector__miniatura { transform: translateY(-2px); }
+
+/* El panel visible es el que corresponde al radio marcado. Se escribe una
+   vez por posicion porque CSS no sabe contar hermanos hacia delante. */
+.selector__panel { display: none; }
+
+.selector__radio:nth-of-type(1):checked ~ .selector__paneles > .selector__panel:nth-child(1),
+.selector__radio:nth-of-type(2):checked ~ .selector__paneles > .selector__panel:nth-child(2),
+.selector__radio:nth-of-type(3):checked ~ .selector__paneles > .selector__panel:nth-child(3),
+.selector__radio:nth-of-type(4):checked ~ .selector__paneles > .selector__panel:nth-child(4),
+.selector__radio:nth-of-type(5):checked ~ .selector__paneles > .selector__panel:nth-child(5),
+.selector__radio:nth-of-type(6):checked ~ .selector__paneles > .selector__panel:nth-child(6) {
+  display: grid;
+}
+
+.selector__radio:nth-of-type(1):checked ~ .selector__pestanas li:nth-child(1) .selector__miniatura,
+.selector__radio:nth-of-type(2):checked ~ .selector__pestanas li:nth-child(2) .selector__miniatura,
+.selector__radio:nth-of-type(3):checked ~ .selector__pestanas li:nth-child(3) .selector__miniatura,
+.selector__radio:nth-of-type(4):checked ~ .selector__pestanas li:nth-child(4) .selector__miniatura,
+.selector__radio:nth-of-type(5):checked ~ .selector__pestanas li:nth-child(5) .selector__miniatura,
+.selector__radio:nth-of-type(6):checked ~ .selector__pestanas li:nth-child(6) .selector__miniatura {
+  border-color: var(--azul);
+}
+
+/* El foco del teclado tiene que verse: el radio esta oculto, asi que el
+   anillo lo lleva la miniatura de su etiqueta. */
+.selector__radio:nth-of-type(1):focus-visible ~ .selector__pestanas li:nth-child(1) .selector__miniatura,
+.selector__radio:nth-of-type(2):focus-visible ~ .selector__pestanas li:nth-child(2) .selector__miniatura,
+.selector__radio:nth-of-type(3):focus-visible ~ .selector__pestanas li:nth-child(3) .selector__miniatura,
+.selector__radio:nth-of-type(4):focus-visible ~ .selector__pestanas li:nth-child(4) .selector__miniatura,
+.selector__radio:nth-of-type(5):focus-visible ~ .selector__pestanas li:nth-child(5) .selector__miniatura,
+.selector__radio:nth-of-type(6):focus-visible ~ .selector__pestanas li:nth-child(6) .selector__miniatura {
+  outline: var(--linea-gruesa) solid var(--azul);
+  outline-offset: 3px;
+}
+
+.selector__paneles { margin-top: var(--e-3); }
+
+.selector__panel {
+  grid-template-columns: 1fr 1fr;
+  gap: var(--e-3);
+  align-items: start;
+}
+
+.selector__marco {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
+}
+
+.selector__titulo {
+  font-size: var(--t-h2);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.selector__texto {
+  margin-top: var(--e-1);
+  margin-bottom: var(--e-2);
+  color: var(--lapiz);
+}
+
 /* --- marquesina de clientes ---
    Patron de mindcircus.agency. La diferencia en un telefono es grande: seis
    nombres apilados ocupan tres lineas y hay que leerlos; en marquesina
@@ -2362,6 +2485,7 @@ svg {
   .trabajos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tipos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tipos--seis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .selector__panel { grid-template-columns: 1fr; }
   .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .trabajos--tres { grid-template-columns: repeat(2, minmax(0, 1fr)); }

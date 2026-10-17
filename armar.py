@@ -68,7 +68,7 @@ PAGINAS = [
         "titulo": "Agentia · Agencia de marketing con IA en Perú",
         "descripcion": "Estructura en pruebas. Contenido pendiente.",
         "piezas": ["hero", "seccion-intro", "seccion-servicios-rejilla",
-                   "seccion-clientes-resumen", "seccion-frase", "seccion-equipo",
+                   "seccion-clientes-resumen", "seccion-frase",
                    "seccion-trabajos-resumen", "seccion-herramientas",
                    "seccion-cifras", "seccion-formulario", "seccion-cta-final"],
         "prioridad": "1.0",
@@ -79,7 +79,7 @@ PAGINAS = [
         "ruta": "servicios",
         "titulo": "Servicios · Agentia",
         "descripcion": "Estructura en pruebas. Contenido pendiente.",
-        "piezas": ["seccion-servicios-rejilla", "seccion-cta-final"],
+        "piezas": ["seccion-servicios-selector", "seccion-cta-final"],
         "prioridad": "0.9",
     },
     {
@@ -130,7 +130,7 @@ PAGINAS = [
         "ruta": "trabajos",
         "titulo": "Trabajos · Agentia",
         "descripcion": "Estructura en pruebas. Contenido pendiente.",
-        "piezas": ["seccion-trabajos-indice", "seccion-cta-final"],
+        "piezas": ["seccion-trabajos-selector", "seccion-cta-final"],
         "prioridad": "0.9",
     },
 
@@ -149,7 +149,7 @@ PAGINAS = [
         "titulo": "Nosotros · Agentia",
         "descripcion": "Estructura en pruebas. Contenido pendiente.",
         "piezas": ["seccion-equipo", "seccion-cifras", "seccion-nosotros-historia",
-                   "seccion-servicios-rejilla", "seccion-cta-final"],
+                   "seccion-puertas", "seccion-cta-final"],
         "prioridad": "0.8",
     },
 
