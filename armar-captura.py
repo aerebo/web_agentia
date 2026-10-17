@@ -213,6 +213,15 @@ def armar_captura(ruta: str, movil: bool = False) -> pathlib.Path:
 .rv, .rv.rv--visible { opacity: 1 !important; transform: none !important; }
 * { animation: none !important; transition: none !important; }
 .trabajo__marco { aspect-ratio: auto; height: 276px; }
+/* El convertidor no resuelve la tipografia y mide mal: partia «Optimiza-mos»
+   a media palabra, el titular se iba a tres lineas y chocaba con el nodo de
+   abajo, que esta posicionado en absoluto. En la web real no pasa. */
+.hero__titular, .seccion__titular {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+.hero__titular { grid-column: 1 / -1; max-width: none; }
 .insignia { aspect-ratio: auto; height: 176px; }
 .menu { display: none !important; }
 </style>""", 1)
