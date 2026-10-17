@@ -60,16 +60,23 @@ Lo que había era una duplicación exacta. Cuatro fichas de «por qué Agentia»
 
 **La regla, para lo que venga:** si dos bloques de una misma página se pueden emparejar uno a uno, no son dos bloques: es uno escrito dos veces. Se queda el que obliga a algo.
 
-**Y el orden ahora responde preguntas, no las adelanta:**
+**Y el orden responde preguntas, no las adelanta:**
 
-| Sección | Pregunta que contesta |
-|---|---|
-| Equipo propio, en tres ciudades | ¿Quiénes son? |
-| La IA no es el producto | ¿Por qué ustedes? |
-| Cuatro pasos, siempre en este orden | ¿Cómo trabajan? |
-| Para quién trabajamos, y para quién no | ¿Soy yo? |
+| # | Sección | Pregunta que contesta |
+|---|---|---|
+| 1 | Las dos personas | ¿Quiénes son? |
+| 2 | Producir mucho lo hace cualquiera | ¿Por qué ustedes? |
+| 3 | Cuatro pasos, siempre en este orden | ¿Cómo trabajan? |
+| 4 | Prueba ajena | ¿Quién lo dice además de ustedes? |
+| 5 | Para quién trabajamos, y para quién no | ¿Soy yo? |
 
-La identidad estaba al final, en el peor sitio de la página, formateada como tabla de datos. El filtro de público estaba enterrado como cola de la sección de «por qué», con el mismo peso visual que una ficha, cuando es lo último que lee alguien antes de decidir si escribe. Ahora abre y cierra la página respectivamente.
+El filtro de público estaba enterrado como cola de la sección de «por qué», con el mismo peso visual que una ficha, cuando es lo último que lee alguien antes de decidir si escribe. Ahora cierra la página.
+
+**Qué abre la página, y por qué se decidió dos veces.** El 10 de octubre la identidad subió al principio. El benchmark de `docs/benchmark-nosotros.md` la mandó al segundo puesto: nueve de nueve abren con propósito y cero con logística. Se aplicó.
+
+El 17 de octubre Agentia la devolvió al primero, y la decisión es suya y es buena por un motivo que el benchmark no podía dar: **lo que abría en octubre era una tabla de cifras de operación, y lo que abre ahora son las dos personas que hacen el trabajo.** No es lo mismo. Las nueve del benchmark son empresas de cientos o miles de empleados, donde quién trabaja ahí no es el argumento de compra. En un estudio de dos, sí lo es.
+
+La regla que queda: **lo que no puede abrir esta página es una tabla de datos.** Abrir con personas es legítimo; abrir con «Ciudades · Sectores · Producción» no.
 
 **Resultado medido, y conviene no confundirlo.** El alto de la página:
 

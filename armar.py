@@ -109,7 +109,7 @@ PAGINAS = [
         # de los sitios medidos), las cifras debajo como respaldo, y las dos
         # cosas que ninguno tiene —el proceso y el filtro de publico— que son
         # justo las que una agencia de servicios si necesita.
-        "piezas": ["seccion-porque", "seccion-equipo", "seccion-proceso",
+        "piezas": ["seccion-equipo", "seccion-porque", "seccion-proceso",
                    "seccion-prueba", "seccion-publico"],
         "prioridad": "0.8",
     },
