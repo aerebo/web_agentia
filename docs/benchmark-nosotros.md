@@ -38,6 +38,28 @@ Cinco de nueve usan números. GitHub los mete *dentro* del hero, Linear *dentro*
 
 **5. Los valores explícitos son minoría: tres de nueve** (Anthropic, Atlassian, 37signals). Y los tres los escriben como órdenes, no como sustantivos sueltos: «Do the simple thing that works», «Err on the side of do», «Put the mission first». Nadie pone «Innovación · Compromiso · Excelencia».
 
+**5.b En qué voz están escritas. Esto se me pasó en la primera vuelta.**
+
+El 17 de octubre Agentia preguntó por qué el benchmark no hablaba de las personas. La primera versión midió *si se enseña al equipo* —cinco de nueve— pero no *en qué voz habla la página*, que es otra cosa. Comprobado después en cinco de las nueve:
+
+| Sitio | Voz | Fundadores nombrados | Relato de origen |
+|---|---|---|---|
+| Stripe | 1.ª del plural (abre en 3.ª) | No | No |
+| Linear | 1.ª del plural | **Sí.** Tres, con foto, cargo y enlace | No |
+| Cloudflare | 1.ª del plural | No | Sí, breve e impersonal |
+| Notion | 1.ª del plural | No, ni firma | **Sí**, y explica el porqué |
+| Anthropic | 1.ª del plural | Solo el consejo, en gobernanza | No |
+
+**Cinco de cinco hablan en primera persona del plural.** Ninguna se refiere a sí misma en tercera de principio a fin. Stripe abre con «Stripe is a technology company…» y a la segunda frase ya está en «we build».
+
+**Pero fundadores nombrados: uno de cinco.** Y aquí está la trampa de leer este benchmark sin corregir la escala. Stripe, Cloudflare, Anthropic y Notion no nombran a sus fundadores porque son empresas de cientos o miles de personas: nombrar a dos sería mentir sobre quién hace el trabajo.
+
+**Agentia son dos personas.** El cliente va a trabajar literalmente con ellas. Así que el patrón no se copia: **se invierte.** Donde una plataforma de mil empleados pone «our team is distributed across North America and Europe», una agencia de dos pone los dos nombres, porque son el producto.
+
+La única del benchmark que sí los nombra, Linear, es también la más pequeña y la más joven de las nueve. No es casualidad.
+
+**Lo que sí se copia tal cual es la voz.** Primera persona del plural, cinco de cinco. Y el relato de origen, que dos de cinco cuentan y es lo que convierte una lista de nombres en una razón para confiar.
+
 **6. Seis de nueve cierran hacia empleo, no hacia ventas.** Para una empresa de producto, «Nosotros» es una página de reclutamiento. Stripe, Vercel, Notion, Cloudflare y Atlassian terminan en «únete».
 
 **7. Largo mediano: cuatro o cinco secciones.** Vercel 4, Anthropic 4, Notion 4, Stripe 4, Linear 5. Solo Cloudflare y Atlassian llegan a 7. El outlier es 37signals con 38, y es un manifiesto, no una página corporativa.
@@ -102,6 +124,7 @@ Identidad primero. Se aparta del benchmark a propósito, con el argumento de que
 ## Pendiente que este benchmark deja abierto
 
 - **El equipo no se ve por ningún lado.** Cinco de nueve muestran personas. Agentia afirma tener equipo propio y no enseña a nadie. Si hay fotos o nombres que se puedan publicar, es la mejora de más peso disponible.
+- **Y falta la voz.** Cinco de cinco de las comprobadas hablan en primera persona del plural. La sección de equipo tiene que llevar un párrafo en esa voz —quiénes son Carlos y Enrique, y por qué montaron esto—, no solo dos retratos con su cargo. Dos de cinco cuentan además el relato de origen, que es lo que convierte una lista de nombres en una razón para confiar.
 - **`/nosotros/` no tiene prueba ajena.** Al mudar los clientes a `/trabajos/`, la página se quedó sin nada que respalde lo que afirma de sí misma.
 
 ---
