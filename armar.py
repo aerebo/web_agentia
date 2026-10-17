@@ -63,7 +63,12 @@ PAGINAS = [
         "ruta": "",
         "titulo": "Agentia · Agencia de marketing con IA en Perú",
         "descripcion": "Sitios web que convierten, contenido a escala y campañas medibles. Producción creativa asistida por IA en Huaraz, Ica y Lima.",
-        "piezas": ["hero", "seccion-servicios-resumen", "seccion-formulario"],
+        # Seis bloques segun docs/benchmark-home.md. El orden no es libre:
+        # los nueve sitios medidos ponen la prueba social en el bloque 2,
+        # justo bajo el hero y antes de explicar nada.
+        "piezas": ["hero", "seccion-clientes-resumen", "seccion-servicios-resumen",
+                   "seccion-trabajos-resumen", "seccion-porque-resumen",
+                   "seccion-formulario"],
         "prioridad": "1.0",
     },
     {

@@ -1665,6 +1665,39 @@ svg {
   letter-spacing: -0.02em;
 }
 
+/* --- la franja de clientes de la portada ---
+   Bloque 2, el unico patron que cumplen los nueve sitios de
+   docs/benchmark-home.md sin excepcion. Va justo bajo el hero.
+
+   Son nombres, no logotipos, y es a proposito: un logotipo mal recortado
+   o sin permiso hace mas daño que un nombre bien compuesto. Cuando haya
+   permisos, esto admite logotipos sin tocar la rejilla. */
+.seccion--franja { padding-block: var(--e-5); }
+
+.franja__lead {
+  color: var(--humo-claro);
+  margin-bottom: var(--e-3);
+}
+
+.franja {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-2) var(--e-4);
+  border-top: var(--linea-fina) solid var(--regla);
+  padding-top: var(--e-3);
+}
+
+.franja__nombre {
+  font-size: var(--t-corto);
+  color: var(--lapiz);
+  white-space: nowrap;
+}
+
+.fichas--tres { --fichas-columnas: 3; }
+.trabajos--tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
 /* --- el equipo y la prueba ajena ---
    Secciones abiertas el 10 de octubre de 2026 segun docs/benchmark-nosotros.md:
    cinco de los nueve sitios medidos muestran a su equipo y cinco traen prueba
@@ -2095,6 +2128,7 @@ svg {
   .trabajos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tipos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .trabajos--tres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .prueba { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .cifras { grid-template-columns: 1fr; gap: var(--e-3); }
   .servicio--faq .servicio__cabecera { grid-template-columns: 3rem 1fr 1.5rem; }
@@ -2110,6 +2144,8 @@ svg {
   .tipos,
   .tipos--otros { grid-template-columns: 1fr; }
   .equipo { grid-template-columns: 1fr; }
+  .trabajos--tres { grid-template-columns: 1fr; }
+  .franja { gap: var(--e-1) var(--e-3); }
   .prueba { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .hero__acciones .boton {
