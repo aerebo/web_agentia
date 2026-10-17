@@ -1705,6 +1705,99 @@ svg {
   letter-spacing: -0.02em;
 }
 
+/* --------------------------------------------------------------------------
+   Piezas de la estructura nueva, 17 de octubre de 2026
+   Replican las plantillas de mindcircus.agency: bloques centrados cortos,
+   rejilla de seis servicios, filtros del indice de trabajos, cifras grandes
+   y portada de ficha.
+   -------------------------------------------------------------------------- */
+
+.seccion--centrada { text-align: center; }
+.seccion--centrada .seccion__titular { max-width: none; margin-inline: auto; }
+
+.intro__texto {
+  font-size: var(--t-lede);
+  color: var(--lapiz);
+  max-width: 54ch;
+  margin-inline: auto;
+}
+
+.seccion--tinta .intro__texto,
+.seccion--tinta .frase__texto { color: var(--humo-claro); }
+
+.intro__accion {
+  margin-top: var(--e-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  justify-content: center;
+}
+
+.frase__texto {
+  font-size: var(--t-h2);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+  margin-inline: auto;
+  color: var(--papel);
+}
+
+.tipos--seis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Los filtros del indice de trabajos. Son botones de verdad, no enlaces:
+   filtran en la misma pagina. */
+.filtros {
+  list-style: none;
+  margin-top: var(--e-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1);
+}
+
+.filtro {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.9rem;
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: 999px;
+  background: none;
+  color: var(--lapiz);
+  cursor: pointer;
+}
+
+.filtro--activo { background: var(--tinta); border-color: var(--tinta); color: var(--lamina); }
+
+.numeros {
+  list-style: none;
+  margin-top: var(--e-3);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--e-3);
+}
+
+.numero { display: grid; gap: var(--e-1); }
+
+.numero__dato {
+  font-size: var(--t-h1);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--azul-claro);
+}
+
+.numero__pie { color: var(--humo-claro); }
+
+.trabajo__portada {
+  margin-top: var(--e-3);
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  background: var(--lamina);
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: var(--r-tarjeta);
+}
+
 /* --- marquesina de clientes ---
    Patron de mindcircus.agency. La diferencia en un telefono es grande: seis
    nombres apilados ocupan tres lineas y hay que leerlos; en marquesina
@@ -2268,6 +2361,8 @@ svg {
   .publico { grid-template-columns: 1fr; gap: var(--e-4); }
   .trabajos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tipos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tipos--seis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .trabajos--tres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .prueba { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -2349,7 +2444,9 @@ svg {
      tipo se parta en dos. Uno debajo de otro, que ademas es el orden en
      que se leen. */
   .tipos,
+  .tipos--seis,
   .tipos--otros { grid-template-columns: 1fr; }
+  .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: 1fr; }
   .trabajos--tres { grid-template-columns: 1fr; }
   .franja { gap: var(--e-1) var(--e-3); }

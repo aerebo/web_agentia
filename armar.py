@@ -59,78 +59,135 @@ REDIRECCIONES = {
 }
 
 PAGINAS = [
+    # Portada. Replica la estructura de mindcircus.agency medida el 17 de
+    # octubre de 2026: hero, intro con una sola llamada, rejilla de
+    # servicios, franja de clientes, banner de frase, equipo, carrusel de
+    # casos, herramientas, cifras, formulario y cierre.
     {
         "ruta": "",
         "titulo": "Agentia · Agencia de marketing con IA en Perú",
-        "descripcion": "Sitios web que convierten, contenido a escala y campañas medibles. Producción creativa asistida por IA en Huaraz, Ica y Lima.",
-        # Seis bloques segun docs/benchmark-home.md. El orden no es libre:
-        # los nueve sitios medidos ponen la prueba social en el bloque 2,
-        # justo bajo el hero y antes de explicar nada.
-        "piezas": ["hero", "seccion-clientes-resumen", "seccion-servicios-resumen",
-                   "seccion-trabajos-resumen", "seccion-porque-resumen",
-                   "seccion-formulario"],
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["hero", "seccion-intro", "seccion-servicios-rejilla",
+                   "seccion-clientes-resumen", "seccion-frase", "seccion-equipo",
+                   "seccion-trabajos-resumen", "seccion-herramientas",
+                   "seccion-cifras", "seccion-formulario", "seccion-cta-final"],
         "prioridad": "1.0",
     },
+
+    # Indice de servicios: hero, rejilla de seis, cierre.
     {
         "ruta": "servicios",
         "titulo": "Servicios · Agentia",
-        "descripcion": "Desarrollo web con IA, identidad y contenido, video, personajes de marca, diseño gráfico y pauta publicitaria.",
-        "piezas": ["seccion-servicios"],
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-servicios-rejilla", "seccion-cta-final"],
         "prioridad": "0.9",
     },
+    {
+        "ruta": "servicios/uno",
+        "titulo": "Servicio · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-servicio-interna", "seccion-cta-final"],
+        "prioridad": "0.7",
+    },
+    {
+        "ruta": "servicios/dos",
+        "titulo": "Servicio · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-servicio-interna", "seccion-cta-final"],
+        "prioridad": "0.7",
+    },
+    {
+        "ruta": "servicios/tres",
+        "titulo": "Servicio · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-servicio-interna", "seccion-cta-final"],
+        "prioridad": "0.7",
+    },
+    {
+        "ruta": "servicios/cuatro",
+        "titulo": "Servicio · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-servicio-interna", "seccion-cta-final"],
+        "prioridad": "0.7",
+    },
+    {
+        "ruta": "servicios/cinco",
+        "titulo": "Servicio · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-servicio-interna", "seccion-cta-final"],
+        "prioridad": "0.7",
+    },
+    {
+        "ruta": "servicios/seis",
+        "titulo": "Servicio · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-servicio-interna", "seccion-cta-final"],
+        "prioridad": "0.7",
+    },
+
+    # Indice de trabajos: hero, filtros, rejilla de fichas, cierre.
     {
         "ruta": "trabajos",
         "titulo": "Trabajos · Agentia",
-        "descripcion": "Video, gráfica y web producidos dentro del mismo sistema de marca.",
-        "piezas": ["seccion-trabajos"],
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-trabajos-indice", "seccion-cta-final"],
         "prioridad": "0.9",
     },
+
+    # Ficha de trabajo. Una sola, de plantilla: las demas se clonan el dia
+    # que haya material.
     {
-        "ruta": "trabajos/video",
-        "titulo": "Video · Trabajos · Agentia",
-        "descripcion": "Reels y cortometrajes con modelos generativos y dirección de arte humana. Equipo audiovisual propio en Huaraz, Ica y Lima.",
-        "piezas": ["seccion-tipo-video"],
-        "prioridad": "0.7",
+        "ruta": "trabajo/ejemplo",
+        "titulo": "Trabajo · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-trabajo-ficha", "seccion-cta-final"],
+        "prioridad": "0.6",
     },
-    {
-        "ruta": "trabajos/grafica",
-        "titulo": "Gráfica · Trabajos · Agentia",
-        "descripcion": "Sistemas gráficos para campaña, punto de venta y digital, adaptados a multiformato desde un solo manual de marca.",
-        "piezas": ["seccion-tipo-grafica"],
-        "prioridad": "0.7",
-    },
-    {
-        "ruta": "trabajos/web",
-        "titulo": "Web · Trabajos · Agentia",
-        "descripcion": "Landing pages y sitios con analítica integrada antes de publicar y rendimiento medido en Core Web Vitals.",
-        "piezas": ["seccion-tipo-web"],
-        "prioridad": "0.7",
-    },
+
     {
         "ruta": "nosotros",
         "titulo": "Nosotros · Agentia",
-        "descripcion": "Equipo propio de producción en Huaraz, Ica y Lima. Cómo trabajamos paso a paso, qué recibes en cada uno y para quién es esto.",
-        # Orden segun docs/benchmark-nosotros.md: proposito primero (9 de 9
-        # de los sitios medidos), las cifras debajo como respaldo, y las dos
-        # cosas que ninguno tiene —el proceso y el filtro de publico— que son
-        # justo las que una agencia de servicios si necesita.
-        "piezas": ["seccion-equipo", "seccion-porque", "seccion-proceso",
-                   "seccion-prueba", "seccion-publico"],
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-equipo", "seccion-cifras", "seccion-nosotros-historia",
+                   "seccion-servicios-rejilla", "seccion-cta-final"],
         "prioridad": "0.8",
     },
+
     {
         "ruta": "preguntas",
         "titulo": "Preguntas frecuentes · Agentia",
-        "descripcion": "Si la IA reemplaza al diseñador, si respetamos tu manual de marca, si trabajamos fuera de Lima, cómo se mide el resultado y cómo se cotiza.",
-        "piezas": ["seccion-preguntas"],
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-preguntas", "seccion-cta-final"],
         "prioridad": "0.7",
     },
+
     {
         "ruta": "contacto",
         "titulo": "Contacto · Agentia",
-        "descripcion": "Cuéntanos qué necesitas resolver. Cotizaciones y propuestas en comercial@agentia.com.pe.",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
         "piezas": ["seccion-correos"],
         "prioridad": "0.7",
+    },
+    {
+        "ruta": "agencia-marketing-ia-huaraz",
+        "titulo": "Agencia de marketing con IA en Huaraz · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-ciudad", "seccion-cta-final"],
+        "prioridad": "0.9",
+    },
+    {
+        "ruta": "agencia-marketing-ia-ica",
+        "titulo": "Agencia de marketing con IA en Ica · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-ciudad", "seccion-cta-final"],
+        "prioridad": "0.9",
+    },
+    {
+        "ruta": "agencia-marketing-ia-lima",
+        "titulo": "Agencia de marketing con IA en Lima · Agentia",
+        "descripcion": "Estructura en pruebas. Contenido pendiente.",
+        "piezas": ["seccion-ciudad", "seccion-cta-final"],
+        "prioridad": "0.9",
     },
 ]
 
