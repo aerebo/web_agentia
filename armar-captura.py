@@ -78,9 +78,17 @@ def fijar_escala_fluida(css: str) -> str:
         maximo = a_px(m.group(4), m.group(5))
         return "%.4gpx" % max(minimo, min(medio, maximo))
 
-    return re.sub(
+    css = re.sub(
         r"clamp\(\s*([\d.]+)(rem|px)\s*,\s*([\d.]+)vw\s*,\s*([\d.]+)(rem|px)\s*\)",
         resolver, css)
+
+    # Y cualquier vw que quede suelto. El primer arreglo solo miraba dentro
+    # de clamp(), y la tarjeta del carrusel usa min(78vw, 22rem): salia a
+    # 352 px en vez de 293 y se comia el borde de la tarjeta siguiente, que
+    # es justo lo que avisa de que el carrusel se desliza.
+    return re.sub(r"([\d.]+)vw",
+                  lambda m: "%.4gpx" % (float(m.group(1)) * ANCHO_MOVIL / 100.0),
+                  css)
 
 
 def forzar_movil(css: str) -> str:
