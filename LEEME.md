@@ -138,6 +138,24 @@ igual» mirando una versión anterior. En el lienzo ese ciclo no existe.
   en el pie afecta a todas, no solo a la página que tocaste. Pasó ya una vez:
   se cambió el menú y en Figma quedaron cuatro capturas con el menú viejo.
 
+### Cómo está montado el tablero
+
+El mapa se ha rehecho varias veces y cada vez se perdían las mismas decisiones.
+Quedan escritas:
+
+| Qué | Valor | Por qué |
+|---|---|---|
+| Fondo del tablero | `#12142E` | Estuvo en `#f0f0f3`, casi el mismo gris que las páginas, y las pantallas no tenían borde: se fundían con el fondo |
+| Títulos y nombres | `#FAFAFC` | Sobre el fondo oscuro |
+| Rutas (`/servicios/`) | `#8FA6FF` | Es el azul aprobado sobre fondo oscuro, sección 3.3 del sistema |
+| Notas y conectores | `#959CBE` | |
+| Ruta sobre el marco | 270 px | |
+| Nombre sobre el marco | 180 px | Deja 93 px de aire. Estuvo en 130 y los rótulos quedaban pegados a la barra de cada pantalla |
+| Paso entre columnas, nivel 2 | 1680 px | Marco de 1280 más 400 de aire |
+| Paso entre columnas, nivel 3 | **1400 px** | Más junto a propósito: un grupo apretado se lee como subordinado |
+| Dónde empieza el nivel 3 | en la x de Trabajos | **No centrado.** Centrado, las tres internas caían justo bajo Servicios, Trabajos y Nosotros, y parecía que colgaban de las tres |
+| Altura del nivel 3 | bajo el pie de **toda** la fila | Medido solo desde Trabajos se encaballa con Nosotros, que es mucho más alta |
+
 ### Cómo se recaptura
 
 ```
