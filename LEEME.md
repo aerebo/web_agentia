@@ -50,6 +50,7 @@ docs/direcciones.md             la auditoría del sitio v1 y por qué se eligió
 docs/benchmark.md               siete sitios del sector, medidos. Qué nos falta y qué no
 docs/benchmark-nosotros.md      nueve «About» de empresas de tecnología, medidas
 docs/benchmark-home.md          nueve portadas de plataformas de contenido con IA
+docs/referencias-agencias-ia.md 60 agencias de IA de ocho países, con las URL comprobadas
 servidor-local.py               servidor de desarrollo sin caché
 agentia-historial.bundle        el repositorio git completo, 13 commits
 ```
