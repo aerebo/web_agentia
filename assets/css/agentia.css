@@ -1026,6 +1026,34 @@ svg {
 }
 
 .seccion--tinta .spec { color: var(--humo-claro); }
+.seccion--tinta .seccion__titular { color: var(--papel); }
+
+/* Sobre tinta, lo que estaba pensado para fondo claro hay que rehacerlo:
+   el azul fuerte no llega a contraste y la lamina de las fichas desaparece.
+   El azul claro es el acento aprobado sobre oscuro, seccion 3.3. */
+.seccion--tinta .marquesina { border-block-color: rgba(255, 255, 255, 0.14); }
+.seccion--tinta .marquesina__nombre { color: var(--azul-humo); }
+.seccion--tinta .franja__lead { color: var(--humo-claro); }
+
+.seccion--tinta .ficha {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.seccion--tinta .ficha__titulo { color: var(--papel); }
+.seccion--tinta .ficha__texto  { color: var(--humo-claro); }
+.seccion--tinta .ficha__numero { background: var(--azul); color: var(--lamina); }
+
+.seccion--tinta .aviso {
+  color: var(--humo-claro);
+  border-left-color: var(--azul-claro);
+}
+
+.seccion--tinta .lorem { color: var(--humo-claro); }
+.seccion--tinta .lorem--marca::after {
+  background: rgba(143, 166, 255, 0.18);
+  color: var(--azul-claro);
+}
 .seccion--tinta .seccion__entrada { color: var(--humo-claro); }
 
 .seccion__titular {
@@ -2248,6 +2276,72 @@ svg {
   .resumen__fila { grid-template-columns: 3rem 1fr; row-gap: var(--e-1); }
   .resumen__entrada { grid-column: 2 / span 1; }
   .servicio__respuesta { padding-left: calc(3rem + var(--e-3)); }
+}
+
+/* --------------------------------------------------------------------------
+   Paso de movil, 17 de octubre de 2026
+   Agentia: «no quiero pantallas infinitas, quiero secciones precisas, maximo
+   tres secciones por pantalla, seamos eficientes en los espacios» y «la
+   diagramacion no se parece en nada a la referencia».
+
+   Las dos cosas se arreglan con los mismos numeros, y no son de mi cosecha:
+   estan medidos de mindcircus.agency a 375 px.
+
+     relleno de seccion   32 / 48 / 56 / 64        aqui estaba en 96
+     titular de seccion   21-38, mediana 25        aqui estaba en 40
+     parrafo              12-15                    aqui estaba en 16-18
+     fondos               bandas alternas, varias  aqui, todo claro
+                          oscuras y a sangre
+
+   Tres secciones por pantalla sale solo: con 48 de relleno y el titular a 28,
+   una seccion de enunciado mide unos 260 px y en 812 caben tres.
+   -------------------------------------------------------------------------- */
+@media (max-width: 700px) {
+  :root {
+    /* La escala deja de ser la de escritorio encogida y pasa a ser la del
+       telefono. Al ir sobre los tokens, baja toda la pagina de una vez. */
+    --t-display: 2.5rem;    /* 40, estaba en 48 */
+    --t-h1:      1.75rem;   /* 28, estaba en 40 */
+    --t-h2:      1.375rem;
+    --t-h3:      1.0625rem;
+    --t-lede:    1rem;      /* 16, estaba en 18 */
+    --t-cuerpo:  0.9375rem;
+    --t-corto:   0.875rem;
+
+    /* El aire entre secciones, a la mitad */
+    --sec-amplia: 3.5rem;   /* 56 */
+    --sec-normal: 3rem;     /* 48 */
+    --sec-corta:  2rem;     /* 32 */
+  }
+
+  .seccion__titular { max-width: 24ch; margin-bottom: var(--e-2); }
+  .seccion__entrada { max-width: none; }
+  .seccion__entrada + .seccion__entrada { margin-top: var(--e-1); }
+
+  /* Las rejillas arrancaban a 4rem de su titular. En un telefono eso es
+     media pantalla de nada antes de llegar al contenido. */
+  .fichas, .trabajos, .equipo, .prueba, .cifras, .resumen, .tipos {
+    margin-top: var(--e-3);
+  }
+
+  /* La lista de servicios era el bloque mas alto de la portada, 1508 px.
+     Seis filas que no necesitan tanto respiro. */
+  .resumen__fila { padding-block: var(--e-2); }
+
+  /* La entrada de cada servicio, a una linea. No se borra del documento:
+     sigue ahi para el buscador y para quien use lector de pantalla, y el
+     texto completo esta a un toque, en /servicios/. Seis descripciones de
+     tres lineas en la portada son media pantalla de lectura que nadie hace
+     antes de decidir si entra. */
+  .resumen__entrada {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ficha { padding: var(--e-2); }
+  .aviso { margin-top: var(--e-2); }
 }
 
 @media (max-width: 520px) {
