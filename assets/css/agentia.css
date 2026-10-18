@@ -1793,28 +1793,31 @@ svg {
    discurso». Una fila suelta de logos en la portada decia «usamos lo que
    usa todo el mundo»; dentro del panel de cada servicio dice con que se
    hace ese servicio, que es informacion. */
+/* Separadas del resto por una linea: son otra cosa que las viñetas de
+   arriba. A 11 px no se leian ni de cerca; van al tamaño del cuerpo. */
 .herramientas__lead {
-  margin-top: var(--e-2);
-  color: var(--humo-claro);
+  margin-top: var(--e-3);
+  padding-top: var(--e-2);
+  border-top: var(--linea-fina) solid var(--regla);
+  color: var(--azul-fuerte);
 }
 
 .herramientas {
   list-style: none;
-  margin-top: var(--e-1);
-  margin-bottom: var(--e-2);
+  margin-top: var(--e-2);
+  margin-bottom: var(--e-3);
   display: flex;
   flex-wrap: wrap;
   gap: var(--e-1);
 }
 
 .herramienta {
-  font-family: var(--f-spec);
-  font-size: var(--t-spec);
-  letter-spacing: 0.06em;
-  padding: 0.4rem 0.7rem;
-  border: var(--linea-fina) solid var(--regla);
+  font-size: var(--t-corto);
+  padding: 0.5rem 0.9rem;
+  border: var(--linea-gruesa) solid var(--regla);
   border-radius: 999px;
-  color: var(--lapiz);
+  color: var(--tinta);
+  background: var(--lamina);
 }
 
 /* --- marquesina de clientes ---
