@@ -67,10 +67,14 @@ PAGINAS = [
         "ruta": "",
         "titulo": "Agentia · Agencia de marketing con IA en Perú",
         "descripcion": "Estructura en pruebas. Contenido pendiente.",
-        "piezas": ["hero", "seccion-intro", "seccion-mando",
+        # Servicios y Trabajos no son secciones de la portada: son dos
+        # botones. La portada presenta y reparte; el contenido vive en su
+        # pagina. Antes llevaba el mando entero y el selector entero, que
+        # son las dos paginas metidas aqui dentro.
+        "piezas": ["hero", "seccion-intro", "seccion-puertas",
                    "seccion-clientes-resumen", "seccion-frase",
-                   "seccion-trabajos-selector", "seccion-herramientas",
-                   "seccion-cifras", "seccion-formulario", "seccion-cta-contactar"],
+                   "seccion-herramientas", "seccion-cifras",
+                   "seccion-formulario", "seccion-cta-contactar"],
         "prioridad": "1.0",
     },
 
