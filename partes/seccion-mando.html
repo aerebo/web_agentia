@@ -1,0 +1,121 @@
+<section class="seccion" id="mando" data-vigia>
+    <div class="lienzo">
+      <h2 class="seccion__titular rv">Servicios</h2>
+    </div>
+    <div class="lienzo banco banco--dentro">
+
+      <!-- El rotulo «Modo de marca / Identidad» se quito de la vista: la
+           ficha de al lado ya dice que servicio esta activo, asi que la
+           barra repetia la informacion y se comia una pantalla de alto.
+
+           El <output> se queda, oculto a la vista pero presente en el
+           arbol de accesibilidad: es a quien apunta el aria-describedby
+           del mando y es lo que anuncia el modo a un lector de pantalla
+           cada vez que se gira. Borrarlo dejaria el mando sin voz. -->
+      <output class="oculto-visual" id="modo-activo" for="tuerca">Eiusmod</output>
+
+      <div class="banco__grid">
+
+        <div class="banco__mando rv">
+          <span class="insignia" data-insignia data-estado="marca" aria-hidden="true">
+            <span class="insignia__glifo" data-glifo="marca">
+              <span class="insignia__texto">IA</span>
+            </span>
+            <span class="insignia__glifo insignia__glifo--relleno" data-glifo="play">
+              <svg viewBox="0 0 100 100" focusable="false"><path d="M24 14 L84 50 L24 86 Z"/></svg>
+            </span>
+            <span class="insignia__glifo" data-glifo="lapiz">
+              <svg viewBox="0 0 100 100" focusable="false"><path d="M14 86 L22 60 L66 16 L84 34 L40 78 Z"/><path d="M60 22 L78 40"/></svg>
+            </span>
+            <span class="insignia__glifo" data-glifo="code">
+              <svg viewBox="0 0 100 100" focusable="false"><path d="M34 24 L8 50 L34 76"/><path d="M66 24 L92 50 L66 76"/></svg>
+            </span>
+          </span>
+
+          <div class="tuerca">
+            <span class="tuerca__mando">
+              <input
+                class="tuerca__control"
+                id="tuerca"
+                type="range"
+                autocomplete="off"
+                min="0"
+                max="3"
+                step="1"
+                value="0"
+                aria-label="Modo de marca"
+                aria-describedby="modo-activo">
+              <span class="tuerca__pista" aria-hidden="true">
+                <span class="tuerca__muesca" style="--angulo:0deg"></span>
+                <span class="tuerca__muesca" style="--angulo:90deg"></span>
+                <span class="tuerca__muesca" style="--angulo:180deg"></span>
+                <span class="tuerca__muesca" style="--angulo:270deg"></span>
+              </span>
+              <span class="tuerca__agarre" aria-hidden="true">
+                <span class="tuerca__tirador" data-agarre>
+                  <span class="tuerca__aguja"></span>
+                </span>
+              </span>
+              <span class="tuerca__eje" data-agarre aria-hidden="true"></span>
+            </span>
+            <p class="tuerca__pie spec">Incididunt ut labore et dolore</p>
+          </div>
+        </div>
+
+        <div class="banco__revelado rv">
+
+          <article class="revelado" data-modo="0" data-activo="true">
+            <h2>Gestión de Identidad y Contenido</h2>
+            <p class="revelado__entrada">Ullamco lorem ipsum dolor sit amet consectetur adipiscing elit sed do</p>
+            <ul class="revelado__lista">
+              <li>Dolore magna aliqua enim ad minim veniam quis</li>
+              <li>Incididunt ut labore et dolore magna aliqua</li>
+              <li>Sit amet consectetur adipiscing elit sed do eiusmod</li>
+            </ul>
+            <a class="revelado__enlace" href="{{RAIZ}}servicios/">Ver el servicio <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="revelado" data-modo="1">
+            <h2>Producción de Video</h2>
+            <p class="revelado__entrada">Dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco lorem ipsum dolor</p>
+            <ul class="revelado__lista">
+              <li>Dolore magna aliqua enim ad minim veniam quis</li>
+              <li>Do eiusmod tempor incididunt ut labore et dolore</li>
+              <li>Eiusmod tempor incididunt ut labore et dolore</li>
+            </ul>
+            <a class="revelado__enlace" href="{{RAIZ}}servicios/">Ver el servicio <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="revelado" data-modo="2">
+            <h2>Diseño Gráfico Integral</h2>
+            <p class="revelado__entrada">Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod</p>
+            <ul class="revelado__lista">
+              <li>Magna aliqua enim ad minim veniam quis</li>
+              <li>Dolore magna aliqua enim ad minim veniam</li>
+              <li>Sed do eiusmod tempor incididunt ut labore et</li>
+            </ul>
+            <a class="revelado__enlace" href="{{RAIZ}}servicios/">Ver el servicio <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="revelado" data-modo="3">
+            <h2>Desarrollo Web</h2>
+            <p class="revelado__entrada">Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+            <ul class="revelado__lista">
+              <li>Consectetur adipiscing elit sed do eiusmod tempor incididunt</li>
+              <li>Ut labore et dolore magna aliqua enim</li>
+              <li>Elit sed do eiusmod tempor incididunt ut labore et</li>
+            </ul>
+            <a class="revelado__enlace" href="{{RAIZ}}servicios/">Ver el servicio <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="lienzo">
+      <div class="intro__accion rv">
+        <a class="boton boton--linea" href="{{RAIZ}}servicios/">Ver los seis <span class="boton__flecha" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
