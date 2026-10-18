@@ -72,8 +72,7 @@ PAGINAS = [
         # pagina. Antes llevaba el mando entero y el selector entero, que
         # son las dos paginas metidas aqui dentro.
         "piezas": ["hero", "seccion-intro", "seccion-puertas",
-                   "seccion-clientes-resumen", "seccion-frase",
-                   "seccion-herramientas", "seccion-cifras",
+                   "seccion-clientes-resumen", "seccion-frase", "seccion-cifras",
                    "seccion-formulario", "seccion-cta-contactar"],
         "prioridad": "1.0",
     },

@@ -1788,6 +1788,35 @@ svg {
   color: var(--lapiz);
 }
 
+/* --- las herramientas, dentro de cada servicio ---
+   Agentia: «esa parte de herramientas ponlo en servicios como parte del
+   discurso». Una fila suelta de logos en la portada decia «usamos lo que
+   usa todo el mundo»; dentro del panel de cada servicio dice con que se
+   hace ese servicio, que es informacion. */
+.herramientas__lead {
+  margin-top: var(--e-2);
+  color: var(--humo-claro);
+}
+
+.herramientas {
+  list-style: none;
+  margin-top: var(--e-1);
+  margin-bottom: var(--e-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1);
+}
+
+.herramienta {
+  font-family: var(--f-spec);
+  font-size: var(--t-spec);
+  letter-spacing: 0.06em;
+  padding: 0.4rem 0.7rem;
+  border: var(--linea-fina) solid var(--regla);
+  border-radius: 999px;
+  color: var(--lapiz);
+}
+
 /* --- marquesina de clientes ---
    Patron de mindcircus.agency. La diferencia en un telefono es grande: seis
    nombres apilados ocupan tres lineas y hay que leerlos; en marquesina
