@@ -137,15 +137,6 @@ PAGINAS = [
         "prioridad": "0.9",
     },
 
-    # Ficha de trabajo. Una sola, de plantilla: las demas se clonan el dia
-    # que haya material.
-    {
-        "ruta": "trabajo/ejemplo",
-        "titulo": "Trabajo · Agentia",
-        "descripcion": "Estructura en pruebas. Contenido pendiente.",
-        "piezas": ["seccion-trabajo-ficha", "seccion-cta-final"],
-        "prioridad": "0.6",
-    },
 
     {
         "ruta": "nosotros",
