@@ -161,27 +161,6 @@ PAGINAS = [
         "piezas": ["seccion-correos"],
         "prioridad": "0.7",
     },
-    {
-        "ruta": "agencia-marketing-ia-huaraz",
-        "titulo": "Agencia de marketing con IA en Huaraz · Agentia",
-        "descripcion": "Estructura en pruebas. Contenido pendiente.",
-        "piezas": ["seccion-ciudad"],
-        "prioridad": "0.9",
-    },
-    {
-        "ruta": "agencia-marketing-ia-ica",
-        "titulo": "Agencia de marketing con IA en Ica · Agentia",
-        "descripcion": "Estructura en pruebas. Contenido pendiente.",
-        "piezas": ["seccion-ciudad"],
-        "prioridad": "0.9",
-    },
-    {
-        "ruta": "agencia-marketing-ia-lima",
-        "titulo": "Agencia de marketing con IA en Lima · Agentia",
-        "descripcion": "Estructura en pruebas. Contenido pendiente.",
-        "piezas": ["seccion-ciudad"],
-        "prioridad": "0.9",
-    },
 ]
 
 
